@@ -31,6 +31,11 @@ const _nav = [
       },
       {
         component: CNavItem,
+        name: 'Radio Button',
+        to: '/radio',
+      },
+      {
+        component: CNavItem,
         name: 'Textboxes',
         to: '/textbox',
       },
