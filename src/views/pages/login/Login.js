@@ -15,39 +15,39 @@ import {
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilLockLocked, cilUser } from '@coreui/icons';
-import { useAuth } from '../../../context/AuthContext';
+// import { useAuth } from '../../../context/AuthContext';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-  const { login } = useAuth();
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const navigate = useNavigate();
+  // const { login } = useAuth();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
-        body: JSON.stringify({ 
-          email, 
-          password }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem('token', data.token);
-        login(data.token);
-        navigate('/dashboard');
-      } else {
-        // Login failed, display error message
-        console.error(data.message);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await fetch('http://localhost:5000/api/login', {
+  //       method: 'POST',
+  //       body: JSON.stringify({ 
+  //         email, 
+  //         password }),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //     });
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       localStorage.setItem('token', data.token);
+  //       login(data.token);
+  //       navigate('/dashboard');
+  //     } else {
+  //       // Login failed, display error message
+  //       console.error(data.message);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
 
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
@@ -67,8 +67,8 @@ const Login = () => {
                         type="email"
                         placeholder="Email"
                         autoComplete="username"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        // value={email}
+                        // onChange={(e) => setEmail(e.target.value)}
                       />
                     </CInputGroup>
 
@@ -80,8 +80,8 @@ const Login = () => {
                         type="password"
                         placeholder="Password"
                         autoComplete="new-password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        // value={password}
+                        // onChange={(e) => setPassword(e.target.value)}
                       />
                     </CInputGroup>
 
@@ -95,7 +95,9 @@ const Login = () => {
 
                     <CRow className="mb-5">
                       <CCol className="text-center">
-                        <CButton color="primary" className="px-0 w-100" onClick={handleLogin}>
+                        <CButton color="primary" className="px-0 w-100" 
+                        // onClick={handleLogin}
+                        >
                           Login
                         </CButton>
                       </CCol>

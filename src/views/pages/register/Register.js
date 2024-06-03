@@ -16,32 +16,32 @@ import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  });
+  // const [formData, setFormData] = useState({
+  //   firstName: '',
+  //   lastName: '',
+  //   email: '',
+  //   password: '',
+  // });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({
+  //     ...formData,
+  //     [name]: value,
+  //   });
+  // };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/api/register', formData);
-      console.log('Registration successful:', response.data);
-      // You can redirect the user or show a success message here
-    } catch (error) {
-      console.error('Error registering user:', error.response.data);
-      // You can show an error message to the user here
-    }
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await axios.post('http://localhost:5000/api/register', formData);
+  //     console.log('Registration successful:', response.data);
+  //     // You can redirect the user or show a success message here
+  //   } catch (error) {
+  //     console.error('Error registering user:', error.response.data);
+  //     // You can show an error message to the user here
+  //   }
+  // };
 
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
@@ -63,8 +63,8 @@ const Register = () => {
                       name="firstName"
                       placeholder="First Name"
                       autoComplete="username"
-                      value={formData.firstName}
-                      onChange={handleChange}
+                      // value={formData.firstName}
+                      // onChange={handleChange}
                       required
                     />
                   </CInputGroup>
@@ -78,9 +78,9 @@ const Register = () => {
                       name="lastName"
                       placeholder="Last Name"
                       autoComplete="username"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      required
+                      // value={formData.lastName}
+                      // onChange={handleChange}
+                      // required
                     />
                   </CInputGroup>
 
@@ -91,9 +91,9 @@ const Register = () => {
                       name="email"
                       placeholder="Email"
                       autoComplete="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
+                      // value={formData.email}
+                      // onChange={handleChange}
+                      // required
                     />
                   </CInputGroup>
 
@@ -106,9 +106,9 @@ const Register = () => {
                       name="password"
                       placeholder="Password"
                       autoComplete="new-password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      required
+                      // value={formData.password}
+                      // onChange={handleChange}
+                      // required
                     />
                   </CInputGroup>
 
