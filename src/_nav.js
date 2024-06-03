@@ -27,7 +27,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Text Area',
-        to: '/textarea',
+        to: '/#',
       },
     ],
   },
@@ -44,14 +44,14 @@ const _nav = [
       {
         component: CNavItem,
         name: 'File Upload',
-        to: '/file-upload',
+        to: '/#',
       },
     ],
   },
   {
     component: CNavItem,
-    name: 'Home',
-    to: '/dashboard',
+    name: 'Welcome',
+    to: '/welcome',
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
     badge: {
       color: 'info',

@@ -3,7 +3,7 @@
     "name": "TestZone360",
     "icons": [
         {
-            "src": "./assets/img/favicon.png",
+            "src": "./assets/img/favicon.ico",
             "sizes": "100x100",
             "type": "image/png"
         }

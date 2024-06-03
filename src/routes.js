@@ -1,22 +1,22 @@
 import React from 'react'
 
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const Welcome = React.lazy(() => import('./views/pages/welcome/Welcome'))
 
 //beginner
-const Textboxes = React.lazy(() => import('./views/easy/textbox/Textbox'))
+const Textbox = React.lazy(() => import('./views/beginner/textbox/Textbox'))
 
 //intermediate
-const Datepickers = React.lazy(() => import('./views/advanced/datepicker/Datepicker'))
+const Datepicker = React.lazy(() => import('./views/intermediate/datepicker/Datepicker'))
 
 //advanced
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
-  { path: '/dashboard', name: 'Dashboard', element: Dashboard },
+  { path: '/welcome', name: 'Welcome', element: Welcome },
   
   //paths
-  { path: '/textbox', name: 'Textboxes', element: Textboxes },
-  { path: '/datepicker', name: 'Date Picker', element: Datepickers },
+  { path: '/textbox', name: 'Textbox', element: Textbox },
+  { path: '/datepicker', name: 'Datepicker', element: Datepicker },
 ]
 
 export default routes
