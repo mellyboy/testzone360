@@ -27,7 +27,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Text Area',
-        to: '/#',
+        to: '/textarea',
       },
     ],
   },
