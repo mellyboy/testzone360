@@ -1,0 +1,294 @@
+// Here you can add other styles
+.fixed-width-button {
+  width: 100px;
+  /* Set a fixed width */
+  text-align: center;
+  /* Center the text */
+}
+
+.scrollable-table-container {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background: inherit;
+  z-index: 1;
+}
+
+.tableFixHead {
+  width: 500px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.tableFixHead tbody {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  height: 50px;
+}
+
+.tableFixHead thead tr {
+  display: block;
+}
+
+.tableFixHead th,
+.tableFixHead td {
+  padding: 5px 10px;
+  width: 200px;
+}
+
+th {
+  background: #ABDD93;
+}
+
+
+.output-box {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: transparent;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+
+// _custom.scss
+
+.multiselect-container {
+  background-color: var(--cui-body-bg);
+  color: var(--cui-body-color);
+  border: 1px solid var(--cui-border-color);
+  border-radius: var(--cui-border-radius);
+}
+
+.multiselect-container .search-box {
+  border: 1px solid var(--cui-border-color);
+  font-size: var(--cui-body-font-size);
+  min-height: 2.5rem;
+  color: var(--cui-body-color);
+  background-color: var(--cui-body-bg);
+}
+
+.multiselect-container .input-field {
+  margin: 0.5rem;
+  color: var(--cui-body-color);
+}
+
+.multiselect-container .chips {
+  background: var(--cui-primary);
+  color: var(--cui-white);
+}
+
+.multiselect-container .option-container {
+  border: 1px solid var(--cui-border-color);
+  border-radius: var(--cui-border-radius);
+  background-color: var(--cui-body-bg);
+}
+
+.multiselect-container .option {
+  color: var(--cui-body-color);
+}
+
+.multiselect-container .group-heading {
+  font-weight: bold;
+  color: var(--cui-heading-color);
+}
+
+// Dark mode styles
+body.dark-mode .multiselect-container {
+  background-color: var(--cui-dark-body-bg);
+  color: var(--cui-dark-body-color);
+  border: 1px solid var(--cui-dark-border-color);
+}
+
+body.dark-mode .multiselect-container .search-box {
+  border: 1px solid var(--cui-dark-border-color);
+  font-size: var(--cui-body-font-size);
+  min-height: 2.5rem;
+  color: var(--cui-dark-body-color);
+  background-color: var(--cui-dark-body-bg);
+}
+
+body.dark-mode .multiselect-container .input-field {
+  margin: 0.5rem;
+  color: var(--cui-dark-body-color);
+}
+
+body.dark-mode .multiselect-container .chips {
+  background: var(--cui-dark-primary);
+  color: var(--cui-dark-body-bg);
+}
+
+body.dark-mode .multiselect-container .option-container {
+  border: 1px solid var(--cui-dark-border-color);
+  border-radius: var(--cui-border-radius);
+  background-color: var(--cui-dark-body-bg);
+}
+
+body.dark-mode .multiselect-container .option {
+  color: var(--cui-dark-body-color);
+}
+
+body.dark-mode .multiselect-container .group-heading {
+  font-weight: bold;
+  color: var(--cui-dark-heading-color);
+}
+
+
+// Define custom styles for the date picker
+.custom-datepicker-theme {
+  // Background color for the entire date picker
+  background-color: var(--cui-body-bg) !important;
+
+  // Header background color
+  .react-datepicker__header {
+    background-color: lighten($color: #321fdb, $amount: 20);
+    color: var(--cui-light-rgb) !important;
+  }
+
+  // Styles for individual dates
+  .react-datepicker__day {
+    border: none !important;
+    font-family: var(--cui-font-sans-serif) !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+
+    // Light mode text color
+    color: var(--cui-dark) !important;
+
+    &:hover {
+      background-color: var(--cui-gray-200) !important;
+    }
+  }
+
+  // Make current month's dates bolder
+  .react-datepicker__day:not(.react-datepicker__day--outside-month) {
+    font-weight: 600 !important;
+  }
+
+  // Selected date styles
+  .react-datepicker__day--selected,
+  .react-datepicker__day--keyboard-selected {
+    background-color: lighten($color: #321fdb, $amount: 20) !important;
+    color: var(--cui-dark) !important;
+    font-weight: bold !important;
+  }
+
+  .react-datepicker__today-button {
+    background-color: var(--cui-gray-800) !important;
+    color: lighten($color: #321fdb, $amount: 20) !important;
+
+    &:hover {
+      background-color: var(--cui-dark-rgb) !important;
+    }
+  }
+
+  // Custom header styles for dropdowns
+  .react-datepicker__header select,
+  .react-datepicker__month-read-view--selected-month,
+  .react-datepicker__quarter-text,
+  .react-datepicker__year-text,
+  .react-datepicker__month-text {
+    background-color: var(--cui-body-bg) !important;
+    color: var(--cui-dark) !important;
+    font-family: var(--cui-font-sans-serif) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+  }
+
+  .react-datepicker__month-read-view--selected-month,
+  .react-datepicker__quarter-text,
+  .react-datepicker__year-text,
+  .react-datepicker__month-text {
+    &:hover {
+      background-color: var(--cui-gray-200) !important;
+    }
+  }
+
+  // Custom styles for year dropdown
+  .react-datepicker__year-read-view--selected-year {
+    color: var(--cui-dark) !important;
+  }
+
+  // Dark mode adjustments
+  [data-coreui-theme="dark"] & {
+    .react-datepicker__day {
+      color: var(--cui-gray-300) !important;
+
+      &:hover {
+        background-color: var(--cui-gray-700) !important;
+      }
+    }
+
+    .react-datepicker__day:not(.react-datepicker__day--outside-month) {
+      font-weight: 600 !important;
+      color: var(--cui-light) !important;
+    }
+
+    .react-datepicker__day--selected,
+    .react-datepicker__day--keyboard-selected {
+      background-color: lighten($color: #321fdb, $amount: 20) !important;
+      color: var(--cui-white) !important;
+      font-weight: 600 !important;
+    }
+
+    .react-datepicker__day--outside-month {
+      color: var(--cui-gray-600) !important;
+    }
+
+    .react-datepicker__today-button {
+      background-color: var(--cui-gray-800) !important;
+      color: lighten($color: #321fdb, $amount: 20) !important;
+
+      &:hover {
+        background-color: var(--cui-dark-rgb) !important;
+      }
+    }
+
+    // Dark mode custom header styles for dropdowns
+    .react-datepicker__header select,
+    .react-datepicker__month-read-view--selected-month,
+    .react-datepicker__quarter-text,
+    .react-datepicker__year-text,
+    .react-datepicker__month-text {
+      color: var(--cui-light) !important;
+    }
+
+    .react-datepicker__month-read-view--selected-month,
+    .react-datepicker__quarter-text,
+    .react-datepicker__year-text,
+    .react-datepicker__month-text {
+      &:hover {
+        background-color: var(--cui-gray-700) !important;
+      }
+    }
+
+
+    .react-datepicker__year-read-view--selected-year {
+      color: var(--cui-light) !important;
+    }
+  }
+}
+
+.custom-dropdown-toggle {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: none; /* Ensure there's no border */
+  box-shadow: none; /* Remove any box-shadow */
+  outline: none; /* Remove outline */
+}
+
+.custom-dropdown-toggle:hover, 
+.custom-dropdown-toggle:focus, 
+.custom-dropdown-toggle:active {
+  background-color: rgba(255, 255, 255, 0.1); /* Add hover effect */
+  cursor: pointer; /* Change cursor on hover */
+  border: none; /* Ensure there's no border */
+  box-shadow: none; /* Remove any box-shadow */
+  outline: none; /* Remove outline */
+}
