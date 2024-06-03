@@ -21,6 +21,11 @@ const _nav = [
     items: [
       {
         component: CNavItem,
+        name: 'Checkbox',
+        to: '/checkbox',
+      },
+      {
+        component: CNavItem,
         name: 'Textboxes',
         to: '/textbox',
       },
