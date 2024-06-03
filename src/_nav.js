@@ -21,6 +21,11 @@ const _nav = [
     items: [
       {
         component: CNavItem,
+        name: 'Button',
+        to: '/button',
+      },
+      {
+        component: CNavItem,
         name: 'Checkbox',
         to: '/checkbox',
       },
@@ -53,16 +58,16 @@ const _nav = [
       },
     ],
   },
-  {
-    component: CNavItem,
-    name: 'Welcome',
-    to: '/welcome',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
-  },
+  // {
+  //   component: CNavItem,
+  //   name: 'Welcome',
+  //   to: '/welcome',
+  //   icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  //   badge: {
+  //     color: 'info',
+  //     text: 'NEW',
+  //   },
+  // },
 ]
 
 export default _nav
