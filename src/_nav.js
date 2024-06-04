@@ -65,11 +65,21 @@ const _nav = [
         component: CNavItem,
         name: 'File Upload',
         to: '/#',
+        badge: {
+          color: 'info',
+          text: 'SOON',
+        },
+        disabled: true
       },
       {
         component: CNavItem,
         name: 'Modal',
         to: '/modal',
+      },
+      {
+        component: CNavItem,
+        name: 'Range',
+        to: '/range',
       },
     ],
   },
