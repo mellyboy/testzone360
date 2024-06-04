@@ -292,3 +292,20 @@ body.dark-mode .multiselect-container .group-heading {
   box-shadow: none; /* Remove any box-shadow */
   outline: none; /* Remove outline */
 }
+
+
+//beginner images:
+.image-row {
+  margin-bottom: 16px; /* Adjust the spacing between rows */
+}
+
+.image-col {
+  display: flex;
+  justify-content: center; /* Center the image within the column */
+  align-items: center; /* Center the image within the column */
+  padding: 8px; /* Adjust the spacing between images */
+}
+
+.image {
+  margin: 0 auto; /* Center the image within its column */
+}
