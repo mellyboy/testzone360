@@ -36,6 +36,11 @@ const _nav = [
       },
       {
         component: CNavItem,
+        name: 'Image',
+        to: '/image',
+      },
+      {
+        component: CNavItem,
         name: 'Radio Button',
         to: '/radio',
       },

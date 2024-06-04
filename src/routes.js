@@ -9,6 +9,7 @@ const Dropdown = React.lazy(() => import('./views/beginner/dropdown/Dropdown'))
 const Radio = React.lazy(() => import('./views/beginner/radio/Radio'))
 const Textbox = React.lazy(() => import('./views/beginner/textbox/Textbox'))
 const Textarea = React.lazy(() => import('./views/beginner/textarea/Textarea'))
+const Image = React.lazy(() => import('./views/beginner/image/Image'))
 
 //intermediate
 const Datepicker = React.lazy(() => import('./views/intermediate/datepicker/Datepicker'))
@@ -26,6 +27,7 @@ const routes = [
   { path: '/button', name: 'Button', element: Button },
   { path: '/checkbox', name: 'Checkbox', element: Checkbox },
   { path: '/dropdown', name: 'Dropdown', element: Dropdown },
+  { path: '/image', name: 'Image', element: Image },
   { path: '/radio', name: 'Radio Button', element: Radio },
   { path: '/textbox', name: 'Textbox', element: Textbox },
   { path: '/textarea', name: 'Textarea', element: Textarea },
