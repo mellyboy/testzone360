@@ -3,6 +3,7 @@ import React from 'react'
 const Welcome = React.lazy(() => import('./views/pages/welcome/Welcome'))
 
 //beginner
+const Accordion = React.lazy(() => import('./views/beginner/accordion/Accordion'))
 const Button = React.lazy(() => import('./views/beginner/button/Button'))
 const Checkbox = React.lazy(() => import('./views/beginner/checkbox/Checkbox'))
 const Dropdown = React.lazy(() => import('./views/beginner/dropdown/Dropdown'))
@@ -23,6 +24,7 @@ const routes = [
   { path: '/welcome', name: 'Welcome', element: Welcome },
   
   //beginner
+  { path: '/accordion', name: 'Accordion', element: Accordion },
   { path: '/button', name: 'Button', element: Button },
   { path: '/checkbox', name: 'Checkbox', element: Checkbox },
   { path: '/dropdown', name: 'Dropdown', element: Dropdown },

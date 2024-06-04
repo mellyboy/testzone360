@@ -21,6 +21,11 @@ const _nav = [
     items: [
       {
         component: CNavItem,
+        name: 'Accordion',
+        to: '/accordion',
+      },
+      {
+        component: CNavItem,
         name: 'Button',
         to: '/button',
       },
