@@ -81,6 +81,11 @@ const _nav = [
         name: 'Range',
         to: '/range',
       },
+      {
+        component: CNavItem,
+        name: 'Tooltips and Popover',
+        to: '/tooltips-and-popover',
+      },
     ],
   },
   // {
