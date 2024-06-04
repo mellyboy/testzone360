@@ -14,6 +14,7 @@ const Textarea = React.lazy(() => import('./views/beginner/textarea/Textarea'))
 const Datepicker = React.lazy(() => import('./views/intermediate/datepicker/Datepicker'))
 const Modal = React.lazy(() => import('./views/intermediate/modals/Modal'))
 const Range = React.lazy(() => import('./views/intermediate/range/Range'))
+const TooltipsAndPopover = React.lazy(() => import('./views/intermediate/tooltips-and-popover/TooltipsAndPopover'))
 
 //advanced
 
@@ -33,6 +34,7 @@ const routes = [
   { path: '/datepicker', name: 'Datepicker', element: Datepicker },
   { path: '/modal', name: 'Modal', element: Modal },
   { path: '/range', name: 'Range', element: Range },
+  { path: '/tooltips-and-popover', name: 'Tooltips And Popover', element: TooltipsAndPopover },
 ]
 
 export default routes
