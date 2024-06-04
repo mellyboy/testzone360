@@ -77,7 +77,7 @@ const ImageGallery = () => {
                     </CCard>
                 </CCol>
             </CRow>
-            <CRow>
+            <CRow className='mb-5'>
                 <div className="clearfix">
                     <CImage align="start" rounded src="src/views/beginner/image/img/cat_img1.jpg" width={200} height={200} />
                     <CImage align="end" rounded src="src/views/beginner/image/img/cat_img2.jpg" width={200} height={200} />
