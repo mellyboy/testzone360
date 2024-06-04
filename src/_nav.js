@@ -108,6 +108,28 @@ const _nav = [
       },
     ],
   },
+  {
+    component: CNavGroup,
+    name: 'Advanced',
+    icon: <CIcon icon={cilBadge} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'Dialogs',
+        to: '/#',
+      },
+      {
+        component: CNavItem,
+        name: 'IFrame',
+        to: '/#',
+      },
+      {
+        component: CNavItem,
+        name: 'Toast',
+        to: '/toast',
+      },
+    ],
+  },
   // {
   //   component: CNavItem,
   //   name: 'Welcome',
