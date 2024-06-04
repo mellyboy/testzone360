@@ -78,6 +78,11 @@ const _nav = [
       },
       {
         component: CNavItem,
+        name: 'Hover',
+        to: '/hover',
+      },
+      {
+        component: CNavItem,
         name: 'File Upload',
         to: '/#',
         badge: {
