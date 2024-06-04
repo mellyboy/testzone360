@@ -68,6 +68,11 @@ const _nav = [
     items: [
       {
         component: CNavItem,
+        name: 'Autocomplete',
+        to: '/autocomplete',
+      },
+      {
+        component: CNavItem,
         name: 'Date Pickers',
         to: '/datepicker',
       },

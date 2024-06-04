@@ -14,6 +14,7 @@ const Image = React.lazy(() => import('./views/beginner/image/Image'))
 
 //intermediate
 const Datepicker = React.lazy(() => import('./views/intermediate/datepicker/Datepicker'))
+const Autocomplete = React.lazy(() => import('./views/intermediate/autocomplete/Autocomplete'))
 const Modal = React.lazy(() => import('./views/intermediate/modals/Modal'))
 const Range = React.lazy(() => import('./views/intermediate/range/Range'))
 const TooltipsAndPopover = React.lazy(() => import('./views/intermediate/tooltips-and-popover/TooltipsAndPopover'))
@@ -35,6 +36,7 @@ const routes = [
   { path: '/textarea', name: 'Textarea', element: Textarea },
 
   //intermediate
+  { path: '/autocomplete', name: 'Autocomplete', element: Autocomplete },
   { path: '/datepicker', name: 'Datepicker', element: Datepicker },
   { path: '/modal', name: 'Modal', element: Modal },
   { path: '/range', name: 'Range', element: Range },
