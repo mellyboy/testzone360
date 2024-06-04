@@ -66,6 +66,11 @@ const _nav = [
         name: 'File Upload',
         to: '/#',
       },
+      {
+        component: CNavItem,
+        name: 'Modal',
+        to: '/modal',
+      },
     ],
   },
   // {
