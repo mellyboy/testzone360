@@ -21,6 +21,7 @@ const Range = React.lazy(() => import('./views/intermediate/range/Range'))
 const TooltipsAndPopover = React.lazy(() => import('./views/intermediate/tooltips-and-popover/TooltipsAndPopover'))
 
 //advanced
+const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -43,6 +44,9 @@ const routes = [
   { path: '/modal', name: 'Modal', element: Modal },
   { path: '/range', name: 'Range', element: Range },
   { path: '/tooltips-and-popover', name: 'Tooltips And Popover', element: TooltipsAndPopover },
+
+    //advanced
+    { path: '/toast', name: 'Toast', element: Toast },
 ]
 
 export default routes
