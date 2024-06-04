@@ -5,6 +5,7 @@ const Welcome = React.lazy(() => import('./views/pages/welcome/Welcome'))
 //beginner
 const Button = React.lazy(() => import('./views/beginner/button/Button'))
 const Checkbox = React.lazy(() => import('./views/beginner/checkbox/Checkbox'))
+const Dropdown = React.lazy(() => import('./views/beginner/dropdown/Dropdown'))
 const Radio = React.lazy(() => import('./views/beginner/radio/Radio'))
 const Textbox = React.lazy(() => import('./views/beginner/textbox/Textbox'))
 const Textarea = React.lazy(() => import('./views/beginner/textarea/Textarea'))
@@ -21,6 +22,7 @@ const routes = [
   //beginner
   { path: '/button', name: 'Button', element: Button },
   { path: '/checkbox', name: 'Checkbox', element: Checkbox },
+  { path: '/dropdown', name: 'Dropdown', element: Dropdown },
   { path: '/radio', name: 'Radio Button', element: Radio },
   { path: '/textbox', name: 'Textbox', element: Textbox },
   { path: '/textarea', name: 'Textarea', element: Textarea },
