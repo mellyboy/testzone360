@@ -1,12 +1,17 @@
 import React from 'react';
 import { CContainer, CRow, CCol, CCard, CCardBody, CImage } from '@coreui/react';
 
+import catImg1 from "src/assets/images/img/cat_img1.jpg"
+import catImg2 from "src/assets/images/img/cat_img2.jpg"
+import catImg3 from "src/assets/images/img/cat_img3.jpg"
+import catImg4 from "src/assets/images/img/cat_img4.jpg"
+
 const getRandomVisibility = () => Math.random() > 0.5; // 50% chance to show the image
 
 const ImageGallery = () => {
     const images = [
         {
-            src: "src/views/beginner/image/img/cat_img1.jpg",
+            src: catImg1,
             attribution: <small><a href="https://www.freepik.com/free-vector/hand-drawn-cat-cartoon-illustration">Image by freepik</a></small>
         },
         {
@@ -15,11 +20,11 @@ const ImageGallery = () => {
 
         },
         {
-            src: "src/views/beginner/image/img/cat_img2.jpg",
+            src: catImg2,
             attribution: <small><a href="https://www.freepik.com/free-vector/hand-drawn-cat-cartoon-illustration">Image by freepik</a></small>
         },
         {
-            src: "src/views/beginner/image/img/cat_img3.jpg",
+            src: catImg3,
             attribution: <small><a href="https://www.freepik.com/free-vector/hand-drawn-cat-cartoon-illustration">Image by freepik</a></small>
         },
         {
@@ -27,7 +32,7 @@ const ImageGallery = () => {
             attribution: ""
         },
         {
-            src: "src/views/beginner/image/img/cat_img4.jpg",
+            src: catImg4,
             attribution: <small><a href="https://www.freepik.com/free-vector/hand-drawn-cat-cartoon-illustration">Image by freepik</a></small>
         }
     ];
@@ -79,8 +84,8 @@ const ImageGallery = () => {
             </CRow>
             <CRow className='mb-5'>
                 <div className="clearfix">
-                    <CImage align="start" rounded src="src/views/beginner/image/img/cat_img1.jpg" width={200} height={200} />
-                    <CImage align="end" rounded src="src/views/beginner/image/img/cat_img2.jpg" width={200} height={200} />
+                    <CImage align="start" rounded src={catImg1} width={200} height={200} />
+                    <CImage align="end" rounded src={catImg2} width={200} height={200} />
                 </div>
             </CRow>
         </CContainer>
