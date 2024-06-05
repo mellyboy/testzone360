@@ -22,6 +22,7 @@ const TooltipsAndPopover = React.lazy(() => import('./views/intermediate/tooltip
 
 //advanced
 const Dialog = React.lazy(() => import('./views/advanced/dialog/Dialog'))
+const Draggable = React.lazy(() => import('./views/advanced/draggable/Draggable'))
 const IFrame = React.lazy(() => import('./views/advanced/iframe/Iframe'))
 const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
 
@@ -51,14 +52,15 @@ const routes = [
   { path: '/range', name: 'Range', element: Range },
   { path: '/tooltips-and-popover', name: 'Tooltips And Popover', element: TooltipsAndPopover },
 
-    //advanced
-    { path: '/dialog', name: 'Dialog', element: Dialog },
-    { path: '/iframe', name: 'IFrame', element: IFrame },
-    { path: '/toast', name: 'Toast', element: Toast },
+  //advanced
+  { path: '/dialog', name: 'Dialog', element: Dialog },
+  { path: '/drag-n-drop', name: 'Drag-n-Drop', element: Draggable },
+  { path: '/iframe', name: 'IFrame', element: IFrame },
+  { path: '/toast', name: 'Toast', element: Toast },
 
-    //others
-    { path: '/sample1', name: 'Sample Page 1', element: SamplePage1 },
-    { path: '/sample2', name: 'Sample Page 2', element: SamplePage2 },
+  //others
+  { path: '/sample1', name: 'Sample Page 1', element: SamplePage1 },
+  { path: '/sample2', name: 'Sample Page 2', element: SamplePage2 },
 ]
 
 export default routes

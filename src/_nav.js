@@ -120,6 +120,11 @@ const _nav = [
       },
       {
         component: CNavItem,
+        name: 'Drag-n-Drop',
+        to: '/drag-n-drop',
+      },
+      {
+        component: CNavItem,
         name: 'IFrame',
         to: '/iframe',
       },
