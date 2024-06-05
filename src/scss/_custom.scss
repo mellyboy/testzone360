@@ -338,3 +338,11 @@ body.dark-mode .multiselect-container .group-heading {
   color: var(--cui-gray-300); /* Use CoreUI's gray color in dark mode */
 }
 
+//toggle to hide sidebar
+.c-header-toggler {
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.app-breadcrumb {
+  flex-grow: 1;
+}
