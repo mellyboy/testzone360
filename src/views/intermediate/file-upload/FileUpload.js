@@ -22,7 +22,7 @@ const FileUpload = () => {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         const allowedTypes = ['image/jpeg', 'image/png', 'image/gif']; // Add more allowed types if needed
-        const maxSize = 10 * 1024 * 1024; // 10MB (in bytes)
+        const maxSize = 0.5 * 1024 * 1024;
 
         if (!file) {
             setSelectedFile(null);
@@ -43,7 +43,7 @@ const FileUpload = () => {
         if (file.size > maxSize) {
             setSelectedFile(null);
             setUploadStatus('');
-            setErrorMessage('File size exceeds the limit of 10MB.');
+            setErrorMessage('File size exceeds the limit of 500 KB.');
             setImagePreview('');
             return;
         }
@@ -68,7 +68,7 @@ const FileUpload = () => {
         const formData = new FormData();
         formData.append('file', selectedFile);
 
-        fetch('http://localhost:5000/api/upload', {
+        fetch('http://localhost:5000/api/file/upload', {
             method: 'POST',
             body: formData,
         })
@@ -112,7 +112,7 @@ const FileUpload = () => {
                                     type="file"
                                     id="formFile"
                                     onChange={handleFileChange}
-                                    text="JPEG, PNG, GIF only. Max 10MB."
+                                    text="JPEG, PNG, GIF only. Max 500 KB."
                                 />
                                 <CButton
                                     id="btnUploadFile"
