@@ -116,7 +116,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'Dialogs',
-        to: '/#',
+        to: '/dialog',
       },
       {
         component: CNavItem,

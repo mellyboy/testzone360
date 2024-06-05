@@ -22,6 +22,7 @@ const TooltipsAndPopover = React.lazy(() => import('./views/intermediate/tooltip
 
 //advanced
 const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
+const Dialog = React.lazy(() => import('./views/advanced/dialog/Dialog'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -46,6 +47,7 @@ const routes = [
   { path: '/tooltips-and-popover', name: 'Tooltips And Popover', element: TooltipsAndPopover },
 
     //advanced
+    { path: '/dialog', name: 'Dialog', element: Dialog },
     { path: '/toast', name: 'Toast', element: Toast },
 ]
 
