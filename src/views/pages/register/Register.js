@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import {
   CButton,
   CCard,
@@ -11,37 +12,49 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
+  CToast,
+  CToastBody,
+  CToastClose,
+  CToaster
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+import { cilHome, cilLockLocked, cilUser } from '@coreui/icons'
 
 const Register = () => {
-  // const [formData, setFormData] = useState({
-  //   firstName: '',
-  //   lastName: '',
-  //   email: '',
-  //   password: '',
-  // });
+  const navigate = useNavigate(); // Initialize useHistory hook
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  // };
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    address: '',
+    email: '',
+    password: '',
+  });
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post('http://localhost:5000/api/register', formData);
-  //     console.log('Registration successful:', response.data);
-  //     // You can redirect the user or show a success message here
-  //   } catch (error) {
-  //     console.error('Error registering user:', error.response.data);
-  //     // You can show an error message to the user here
-  //   }
-  // };
+  const [showToast, setShowToast] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/users/register', formData);
+      // console.log('Registration successful:', response.data);
+      setShowToast(true);
+  
+      setTimeout(() => {
+        navigate('/login');
+      }, 2500);
+    } catch (error) {
+      console.error('Error registering user:', error.response.data);
+    }
+  };
 
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
@@ -50,7 +63,9 @@ const Register = () => {
           <CCol md={9} lg={7} xl={6}>
             <CCard className="mx-4">
               <CCardBody className="p-4">
-                <CForm onSubmit={handleSubmit}>
+                <CForm
+                  onSubmit={handleSubmit}
+                >
                   <h1>Register</h1>
                   <p className="text-body-secondary">Create your account</p>
 
@@ -62,9 +77,9 @@ const Register = () => {
                       type="text"
                       name="firstName"
                       placeholder="First Name"
-                      autoComplete="username"
-                      // value={formData.firstName}
-                      // onChange={handleChange}
+                      autoComplete="given-name"
+                      value={formData.firstName}
+                      onChange={handleChange}
                       required
                     />
                   </CInputGroup>
@@ -77,10 +92,25 @@ const Register = () => {
                       type="text"
                       name="lastName"
                       placeholder="Last Name"
-                      autoComplete="username"
-                      // value={formData.lastName}
-                      // onChange={handleChange}
-                      // required
+                      autoComplete="family-name"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      required
+                    />
+                  </CInputGroup>
+
+                  <CInputGroup className="mb-4">
+                    <CInputGroupText>
+                      <CIcon icon={cilHome} />
+                    </CInputGroupText>
+                    <CFormInput
+                      type="text"
+                      name="address"
+                      placeholder="Address"
+                      autoComplete="address-line1"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required
                     />
                   </CInputGroup>
 
@@ -91,9 +121,9 @@ const Register = () => {
                       name="email"
                       placeholder="Email"
                       autoComplete="email"
-                      // value={formData.email}
-                      // onChange={handleChange}
-                      // required
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                     />
                   </CInputGroup>
 
@@ -106,14 +136,14 @@ const Register = () => {
                       name="password"
                       placeholder="Password"
                       autoComplete="new-password"
-                      // value={formData.password}
-                      // onChange={handleChange}
-                      // required
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
                     />
                   </CInputGroup>
 
                   <div className="d-grid mb-5">
-                    <CButton type="submit" color="success">
+                    <CButton type="submit" color="primary">
                       Create Account
                     </CButton>
                   </div>
@@ -127,6 +157,15 @@ const Register = () => {
           </CCol>
         </CRow>
       </CContainer>
+
+      <CToaster className="p-3" placement="top-end">
+        <CToast autohide={false} visible={showToast} className="align-items-center">
+          <div className="d-flex">
+            <CToastBody>Registration Successful. You will be redirected to the Login Form in 3 seconds</CToastBody>
+            <CToastClose onClick={() => setShowToast(false)} className="me-2 m-auto" />
+          </div>
+        </CToast>
+      </CToaster>
     </div>
   );
 };
