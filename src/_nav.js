@@ -138,6 +138,11 @@ const _nav = [
         name: 'Toast',
         to: '/toast',
       },
+      {
+        component: CNavItem,
+        name: 'Test Route',
+        to: '/xyz',
+      },
     ],
   },
   // {
