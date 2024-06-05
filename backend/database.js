@@ -23,5 +23,17 @@ db.serialize(() => {
     // )`);
 });
 
+process.on('SIGINT', () => {
+    db.close((err) => {
+        if (err) {
+            console.error('Error closing the database connection', err);
+        } else {
+            console.log('Database connection closed');
+        }
+        process.exit(0);
+    });
+});
+
+
 module.exports = db;
 
