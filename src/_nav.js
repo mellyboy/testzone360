@@ -125,6 +125,11 @@ const _nav = [
       },
       {
         component: CNavItem,
+        name: 'Dynamic Table',
+        to: '/dynamic-table',
+      },
+      {
+        component: CNavItem,
         name: 'IFrame',
         to: '/iframe',
       },

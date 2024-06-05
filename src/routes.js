@@ -23,6 +23,7 @@ const TooltipsAndPopover = React.lazy(() => import('./views/intermediate/tooltip
 //advanced
 const Dialog = React.lazy(() => import('./views/advanced/dialog/Dialog'))
 const Draggable = React.lazy(() => import('./views/advanced/draggable/Draggable'))
+const DynamicTable = React.lazy(() => import('./views/advanced/dynamic-table/DynamicTable'))
 const IFrame = React.lazy(() => import('./views/advanced/iframe/Iframe'))
 const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
 
@@ -55,6 +56,7 @@ const routes = [
   //advanced
   { path: '/dialog', name: 'Dialog', element: Dialog },
   { path: '/drag-n-drop', name: 'Drag-n-Drop', element: Draggable },
+  { path: '/dynamic-table', name: 'Dynamic Table', element: DynamicTable },
   { path: '/iframe', name: 'IFrame', element: IFrame },
   { path: '/toast', name: 'Toast', element: Toast },
 
