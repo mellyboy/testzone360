@@ -7,7 +7,7 @@ const registerUser = (req, res) => {
         if (err) {
             return res.status(400).json({ error: err.message });
         }
-        res.status(201).json({ message: 'User created successfully', userId: result.id });
+        res.status(201).json({ message: 'created', userId: result.id });
     });
 };
 
