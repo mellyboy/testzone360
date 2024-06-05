@@ -21,8 +21,13 @@ const Range = React.lazy(() => import('./views/intermediate/range/Range'))
 const TooltipsAndPopover = React.lazy(() => import('./views/intermediate/tooltips-and-popover/TooltipsAndPopover'))
 
 //advanced
-const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
 const Dialog = React.lazy(() => import('./views/advanced/dialog/Dialog'))
+const IFrame = React.lazy(() => import('./views/advanced/iframe/Iframe'))
+const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
+
+//others
+const SamplePage1 = React.lazy(() => import('./views/advanced/iframe/sample1'))
+const SamplePage2 = React.lazy(() => import('./views/advanced/iframe/sample2'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -48,7 +53,12 @@ const routes = [
 
     //advanced
     { path: '/dialog', name: 'Dialog', element: Dialog },
+    { path: '/iframe', name: 'IFrame', element: IFrame },
     { path: '/toast', name: 'Toast', element: Toast },
+
+    //others
+    { path: '/sample1', name: 'Sample Page 1', element: SamplePage1 },
+    { path: '/sample2', name: 'Sample Page 2', element: SamplePage2 },
 ]
 
 export default routes

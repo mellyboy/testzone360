@@ -121,7 +121,7 @@ const _nav = [
       {
         component: CNavItem,
         name: 'IFrame',
-        to: '/#',
+        to: '/iframe',
       },
       {
         component: CNavItem,
