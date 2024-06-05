@@ -29,7 +29,7 @@ import {
 
 import CIcon from '@coreui/icons-react'
 import avatar8 from '../assets/images/avatars/cat.png'
-// import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
 import { AppSidebarNav } from './AppSidebarNav'
@@ -47,7 +47,7 @@ const AppSidebar = () => {
   const handleProfileClick = () => {
     navigate('/profile');
   }
-//   const { logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate()
 
   const headerRef = useRef()
@@ -103,13 +103,6 @@ const AppSidebar = () => {
             </CDropdownItem>
 
             <CDropdownItem href="#">
-              <CIcon icon={cilBell} className="me-2" />
-              Updates
-              <CBadge color="info" className="ms-2">
-                42
-              </CBadge>
-            </CDropdownItem>
-            <CDropdownItem href="#">
               <CIcon icon={cilEnvelopeOpen} className="me-2" />
               Messages
               <CBadge color="success" className="ms-2">
@@ -144,10 +137,10 @@ const AppSidebar = () => {
             </CDropdownItem>
 
             <CDropdownDivider />
-            {/* <CDropdownItem as="button" onClick={logout}>
+            <CDropdownItem as="button" onClick={logout}>
               <CIcon icon={cilAccountLogout} className="me-2" />
               Logout
-            </CDropdownItem> */}
+            </CDropdownItem>
           </CDropdownMenu>
         </CDropdown>
       </div>
