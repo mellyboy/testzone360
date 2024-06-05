@@ -15,6 +15,7 @@ const Image = React.lazy(() => import('./views/beginner/image/Image'))
 //intermediate
 const Autocomplete = React.lazy(() => import('./views/intermediate/autocomplete/Autocomplete'))
 const Datepicker = React.lazy(() => import('./views/intermediate/datepicker/Datepicker'))
+const FileUpload = React.lazy(() => import('./views/intermediate/file-upload/FileUpload'))
 const Hover = React.lazy(() => import('./views/intermediate/hover/Hover'))
 const Modal = React.lazy(() => import('./views/intermediate/modals/Modal'))
 const Range = React.lazy(() => import('./views/intermediate/range/Range'))
@@ -48,6 +49,7 @@ const routes = [
   //intermediate
   { path: '/autocomplete', name: 'Autocomplete', element: Autocomplete },
   { path: '/datepicker', name: 'Datepicker', element: Datepicker },
+  { path: '/file-upload', name: 'File Upload', element: FileUpload },
   { path: '/hover', name: 'Hover', element: Hover },
   { path: '/modal', name: 'Modal', element: Modal },
   { path: '/range', name: 'Range', element: Range },

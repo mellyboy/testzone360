@@ -84,12 +84,12 @@ const _nav = [
       {
         component: CNavItem,
         name: 'File Upload',
-        to: '/#',
+        to: '/file-upload',
         badge: {
           color: 'info',
           text: 'SOON',
         },
-        disabled: true
+        // disabled: true
       },
       {
         component: CNavItem,
