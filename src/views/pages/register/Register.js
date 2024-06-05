@@ -21,7 +21,7 @@ import CIcon from '@coreui/icons-react'
 import { cilHome, cilLockLocked, cilUser } from '@coreui/icons'
 
 const Register = () => {
-  const navigate = useNavigate(); // Initialize useHistory hook
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstName: '',
