@@ -29,3 +29,6 @@ yarn-error.log*
 /backend/database.db
 /backend/package-lock.json
 /backend/uploads
+/backend/knexfile.js
+/backend/migrations/
+/backend/database.db*
