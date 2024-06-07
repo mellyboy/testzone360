@@ -32,6 +32,7 @@ const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
 const BMI = React.lazy(() => import('./views/practice/bmi/BMI'))
 
 //others
+const UserProfile = React.lazy(() => import('./views/users/profile/Profile'))
 const SamplePage1 = React.lazy(() => import('./views/advanced/iframe/sample1'))
 const SamplePage2 = React.lazy(() => import('./views/advanced/iframe/sample2'))
 
@@ -69,6 +70,7 @@ const routes = [
   { path: '/bmi', name: 'BMI', element: BMI },
 
   //others
+  { path: '/profile', name: 'Profile', element: UserProfile },
   { path: '/sample1', name: 'Sample Page 1', element: SamplePage1 },
   { path: '/sample2', name: 'Sample Page 2', element: SamplePage2 },
 ]
