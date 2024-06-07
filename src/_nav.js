@@ -5,7 +5,9 @@ import {
   cilStar,
   cilCircle,
   cilBadge,
-  cilGamepad
+  cilGamepad,
+  cilApplications,
+  cilVideogame
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -142,6 +144,22 @@ const _nav = [
         component: CNavItem,
         name: 'Test Route',
         to: '/xyz',
+      },
+    ],
+  },
+  {
+    component: CNavTitle,
+    name: 'Excercises',
+  },
+  {
+    component: CNavGroup,
+    name: 'Mini Apps',
+    icon: <CIcon icon={cilGamepad} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'BMI Calculator',
+        to: '/bmi',
       },
     ],
   },

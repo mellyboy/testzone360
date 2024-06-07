@@ -28,6 +28,9 @@ const DynamicTable = React.lazy(() => import('./views/advanced/dynamic-table/Dyn
 const IFrame = React.lazy(() => import('./views/advanced/iframe/Iframe'))
 const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
 
+//practice
+const BMI = React.lazy(() => import('./views/practice/bmi/BMI'))
+
 //others
 const SamplePage1 = React.lazy(() => import('./views/advanced/iframe/sample1'))
 const SamplePage2 = React.lazy(() => import('./views/advanced/iframe/sample2'))
@@ -61,6 +64,9 @@ const routes = [
   { path: '/dynamic-table', name: 'Dynamic Table', element: DynamicTable },
   { path: '/iframe', name: 'IFrame', element: IFrame },
   { path: '/toast', name: 'Toast', element: Toast },
+
+  //practice
+  { path: '/bmi', name: 'BMI', element: BMI },
 
   //others
   { path: '/sample1', name: 'Sample Page 1', element: SamplePage1 },
