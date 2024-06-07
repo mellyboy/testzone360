@@ -1,5 +1,5 @@
 const User = require('../models/user');
-const db = require('../database'); // Ensure correct import of the db
+const db = require('../database');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -15,8 +15,6 @@ exports.registerUser = (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-    console.log('Request body:', req.body);
-
     const { email, password } = req.body;
     try {
         console.log(email, password);
@@ -29,17 +27,12 @@ exports.loginUser = async (req, res) => {
                 return res.status(400).json({ message: 'Invalid email or password' });
             }
 
-            // // Log the hashed password to verify bcrypt usage
-            // console.log('Hashed password:', user.password);
-
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
                 return res.status(400).json({ message: 'Invalid email or password' });
             }
 
             const token = jwt.sign({ id: user.id }, 'my-32-character-ultra-secure-and-ultra-long-secret', { expiresIn: '1h' });
-
-            // console.log('JWT token:', token);
 
             res.json({ token, userId: user.id });
         });
@@ -48,7 +41,7 @@ exports.loginUser = async (req, res) => {
     }
 };
 
-// Example middleware to verify JWT token
+//middleware to verify JWT token
 const verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {

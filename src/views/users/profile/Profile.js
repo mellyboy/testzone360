@@ -72,7 +72,6 @@ const UserProfile = () => {
         } catch (error) {
             setMessageType('danger');
             setMessage('An error occurred while fetching the profile.');
-            console.error('Error:', error);
         }
     };
 
@@ -102,6 +101,12 @@ const UserProfile = () => {
             if (response.ok) {
                 setMessageType('success');
                 setMessage('Profile updated successfully!');
+                setFormDisabled(true);
+
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1300);
+
             } else {
                 setMessageType('danger');
                 setMessage(data.message || 'An error occurred while updating the profile.');
@@ -109,7 +114,6 @@ const UserProfile = () => {
         } catch (error) {
             setMessageType('danger');
             setMessage('An error occurred while updating the profile.');
-            console.error('Error:', error);
         }
     };
 

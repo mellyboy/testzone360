@@ -8,6 +8,7 @@ db.exec('PRAGMA journal_mode=WAL;', (err) => {
     }
 });
 
+//function to register/create user
 const createUser = async (user, callback) => {
     const { firstName, lastName, address, email, password } = user;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -21,7 +22,7 @@ const createUser = async (user, callback) => {
     });
 };
 
-// New function to get a user profile by ID
+//function to get a user profile
 const getUserProfile = (userId, callback) => {
     const query = `SELECT id, first_name AS firstName, last_name AS lastName, address, address_line_2 as addressLine2, city, region, zip_code AS zipCode, country, gender, account_number as accountNumber, email FROM users WHERE id = ?`;
     db.get(query, [userId], (err, row) => {
@@ -32,11 +33,12 @@ const getUserProfile = (userId, callback) => {
     });
 };
 
+//function to update a user profile
 const updateUserProfile = (userData, callback) => {
     const { id, firstName, lastName, address, addressLine2, city, region, zipCode, country, gender, accountNumber, email } = userData;
     const query = `UPDATE users SET first_name = ?, last_name = ?, address = ?, address_line_2 = ?, city = ?, region = ?, zip_code = ?, country = ?, gender = ?, account_number = ?, email = ? WHERE id = ?`;
 
-    // Retry logic with exponential backoff
+    //retry logic with exponential backoff
     const maxRetries = 3;
     const update = (retries) => {
         db.run(query, [firstName, lastName, address, addressLine2, city, region, zipCode, country, gender, accountNumber, email, id], function(err) {
