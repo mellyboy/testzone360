@@ -370,8 +370,10 @@ body.dark-mode .multiselect-container .group-heading {
 
 .feed-actions {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .like-button {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { CListGroup, CListGroupItem } from '@coreui/react';
+import { CCol, CListGroup, CListGroupItem, CRow } from '@coreui/react';
 import LikeButton from './LikeButton';
+import CommentButton from './CommentButton';
 
 const FeedList = ({ feeds }) => {
     const [feedData, setFeedData] = useState([]);
@@ -17,16 +18,16 @@ const FeedList = ({ feeds }) => {
                     'Authorization': `Bearer ${token}`
                 }
             })
-            .then(response => {
-                const { likedFeeds, likesCounts } = response.data;
-                const newFeedData = feeds.map(feed => ({
-                    ...feed,
-                    isLiked: likedFeeds.includes(feed.id),
-                    likes: likesCounts[feed.id] || 0
-                }));
-                setFeedData(newFeedData);
-            })
-            .catch(error => console.error('Error fetching like status:', error));
+                .then(response => {
+                    const { likedFeeds, likesCounts } = response.data;
+                    const newFeedData = feeds.map(feed => ({
+                        ...feed,
+                        isLiked: likedFeeds.includes(feed.id),
+                        likes: likesCounts[feed.id] || 0
+                    }));
+                    setFeedData(newFeedData);
+                })
+                .catch(error => console.error('Error fetching like status:', error));
         }
     }, [feeds, token]);
 
@@ -44,13 +45,14 @@ const FeedList = ({ feeds }) => {
                 <CListGroupItem key={feed.id} className="feed-item">
                     <div className="feed-title">{feed.title}</div>
                     <div className="feed-content">{feed.content}</div>
-                    <div className="feed-actions">
+                    <div className="feed-actions" style={{ display: 'flex', gap: '10px' }}>
                         <LikeButton
                             feedId={feed.id}
                             initialLikes={feed.likes}
                             initialIsLiked={feed.isLiked}
                             onLikeChange={handleLikeChange}
                         />
+                        <CommentButton feedId={feed.id} />
                     </div>
                 </CListGroupItem>
             ))}

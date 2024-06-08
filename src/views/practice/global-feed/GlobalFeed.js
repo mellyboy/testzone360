@@ -158,7 +158,7 @@ const GlobalFeed = () => {
                                 <CButton
                                     size='sm'
                                     color='primary'
-                                    onClick={handlePublish} // Call handlePublish function on button click
+                                    onClick={handlePublish}
                                 >
                                     <CIcon icon={cilPlus} size="sm" />
                                     {' '}Publish
