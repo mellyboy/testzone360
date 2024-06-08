@@ -33,6 +33,31 @@ exports.createFeed = (req, res) => {
     });
 };
 
+exports.deleteFeed = (req, res) => {
+    verifyToken(req, res, () => {
+        const feedId = req.params.feedId;
+        const userId = req.user.id;
+        feedModel.deleteFeed(feedId, userId, (err, result) => {
+            if (err) return res.status(500).json(err);
+            if (result.changes === 0) return res.status(404).json({ error: "Feed not found or not authorized" });
+            res.status(200).json({ message: "Feed deleted successfully" });
+        });
+    });
+};
+
+exports.updateFeed = (req, res) => {
+    verifyToken(req, res, () => {
+        const feedId = req.params.feedId;
+        const userId = req.user.id;
+        const feed = req.body;
+        feedModel.updateFeed(feedId, userId, feed, (err, result) => {
+            if (err) return res.status(500).json(err);
+            if (result.changes === 0) return res.status(404).json({ error: "Feed not found or not authorized" });
+            res.status(200).json({ message: "Feed updated successfully" });
+        });
+    });
+};
+
 exports.getGlobalFeeds = (req, res) => {
     feedModel.getGlobalFeeds((err, feeds) => {
         if (err) return res.status(500).json(err);
@@ -90,6 +115,18 @@ exports.commentOnFeed = (req, res) => {
         feedModel.commentOnFeed(comment, (err, result) => {
             if (err) return res.status(500).json(err);
             res.status(201).json(result);
+        });
+    });
+};
+
+exports.deleteComment = (req, res) => {
+    verifyToken(req, res, () => {
+        const commentId = req.params.commentId;
+        const userId = req.user.id;
+        feedModel.deleteComment(commentId, userId, (err, result) => {
+            if (err) return res.status(500).json(err);
+            if (result.changes === 0) return res.status(404).json({ error: "Comment not found or not authorized" });
+            res.status(200).json({ message: "Comment deleted successfully" });
         });
     });
 };

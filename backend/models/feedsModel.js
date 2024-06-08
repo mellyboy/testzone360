@@ -12,6 +12,30 @@ const createFeed = (feed, callback) => {
     });
 };
 
+// Update a feed
+const updateFeed = (feedId, userId, feed, callback) => {
+    const { title, content } = feed;
+    const query = `UPDATE feeds SET title = ?, content = ? WHERE id = ? AND author_id = ?`;
+    db.run(query, [title, content, feedId, userId], function(err) {
+        if (err) {
+            return callback(err);
+        }
+        callback(null, { changes: this.changes });
+    });
+};
+
+//delete a feed
+const deleteFeed = (feedId, userId, callback) => {
+    const query = `DELETE FROM feeds WHERE id = ? AND author_id = ?`;
+    db.run(query, [feedId, userId], function(err) {
+        if (err) {
+            return callback(err);
+        }
+        callback(null, { changes: this.changes });
+    });
+};
+
+
 //retrieve all feeds (global feeds)
 const getGlobalFeeds = (callback) => {
     const query = `SELECT * FROM feeds ORDER BY created_at DESC`;
@@ -128,6 +152,17 @@ const commentOnFeed = (comment, callback) => {
     });
 };
 
+//delete a comment
+const deleteComment = (commentId, userId, callback) => {
+    const query = `DELETE FROM comments WHERE id = ? AND user_id = ?`;
+    db.run(query, [commentId, userId], function(err) {
+        if (err) {
+            return callback(err);
+        }
+        callback(null, { changes: this.changes });
+    });
+};
+
 //retrieve comments for a specific feed
 const getComments = (feedId, callback) => {
     const query = `SELECT * FROM comments WHERE feed_id = ? ORDER BY created_at DESC`;
@@ -139,4 +174,4 @@ const getComments = (feedId, callback) => {
     });
 };
 
-module.exports = { createFeed, getGlobalFeeds, getUserFeeds, likeFeed, unlikeFeed, commentOnFeed, getComments, isLiked, isLikedBatch };
+module.exports = { createFeed, updateFeed, deleteFeed, getGlobalFeeds, getUserFeeds, likeFeed, unlikeFeed, commentOnFeed, deleteComment, getComments, isLiked, isLikedBatch };
