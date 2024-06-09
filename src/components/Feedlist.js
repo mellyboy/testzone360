@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { CButton, CListGroup, CListGroupItem, CModal, CModalBody, CModalFooter, CModalHeader, CFormInput, CFormTextarea } from '@coreui/react';
+import { CButton, CListGroup, CListGroupItem, CModal, CModalBody, CModalFooter, CModalHeader, CFormInput, CFormTextarea, CTooltip } from '@coreui/react';
+import Icon from '@mdi/react';
+import { mdiDelete, mdiFileEdit } from '@mdi/js';
 import LikeButton from './LikeButton';
 import CommentButton from './CommentButton';
 
@@ -91,6 +93,10 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
             <CListGroup flush>
                 {feedData.map(feed => (
                     <CListGroupItem key={feed.id} className="feed-item">
+                        <div className="feed-author">
+                            {feed.first_name} {feed.last_name}
+                            <span className="feed-created-at">{new Date(feed.created_at).toLocaleString()}</span>
+                        </div>
                         <div className="feed-title">{feed.title}</div>
                         <div className="feed-content">{feed.content}</div>
                         <div className="feed-actions">
@@ -102,10 +108,24 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
                             />
                             <CommentButton feedId={feed.id} currentUserId={currentUserId} />
                             {feed.author_id === currentUserId && (
-                                <>
-                                    <CButton size='sm' color='warning' onClick={() => handleEditClick(feed)}>Edit</CButton>
-                                    <CButton size='sm' color='danger' onClick={() => handleDeleteFeed(feed.id)}>Delete</CButton>
-                                </>
+                                <div className="corner-buttons">
+                                    <CTooltip
+                                        content="Edit Feed"
+                                        trigger={['hover']}
+                                    >
+                                        <CButton className='small-button' size='sm' color='warning' onClick={() => handleEditClick(feed)}>
+                                            <Icon path={mdiFileEdit} size={0.7} />
+                                        </CButton>
+                                    </CTooltip>
+                                    <CTooltip
+                                        content="Delete Feed"
+                                        trigger={['hover']}
+                                    >
+                                        <CButton className='small-button' size='sm' color='danger' onClick={() => handleDeleteFeed(feed.id)}>
+                                            <Icon path={mdiDelete} size={0.7} />
+                                        </CButton>
+                                    </CTooltip>
+                                </div>
                             )}
                         </div>
                     </CListGroupItem>

@@ -38,7 +38,12 @@ const deleteFeed = (feedId, userId, callback) => {
 
 //retrieve all feeds (global feeds)
 const getGlobalFeeds = (callback) => {
-    const query = `SELECT * FROM feeds ORDER BY created_at DESC`;
+    const query = `
+        SELECT feeds.*, users.first_name, users.last_name 
+        FROM feeds 
+        JOIN users ON feeds.author_id = users.id 
+        ORDER BY feeds.created_at DESC
+    `;
     db.all(query, [], (err, rows) => {
         if (err) {
             return callback(err);
@@ -49,7 +54,13 @@ const getGlobalFeeds = (callback) => {
 
 //retrieve user's feeds (my feeds)
 const getUserFeeds = (userId, callback) => {
-    const query = `SELECT * FROM feeds WHERE author_id = ? ORDER BY created_at DESC`;
+    const query = `
+        SELECT feeds.*, users.first_name, users.last_name 
+        FROM feeds 
+        JOIN users ON feeds.author_id = users.id 
+        WHERE feeds.author_id = ? 
+        ORDER BY feeds.created_at DESC
+    `;
     db.all(query, [userId], (err, rows) => {
         if (err) {
             return callback(err);

@@ -278,36 +278,36 @@ body.dark-mode .multiselect-container .group-heading {
   list-style: none;
   padding: 0;
   margin: 0;
-  border: none; /* Ensure there's no border */
-  box-shadow: none; /* Remove any box-shadow */
-  outline: none; /* Remove outline */
+  border: none;
+  box-shadow: none;
+  outline: none;
 }
 
 .custom-dropdown-toggle:hover, 
 .custom-dropdown-toggle:focus, 
 .custom-dropdown-toggle:active {
   background-color: rgba(255, 255, 255, 0.1); /* Add hover effect */
-  cursor: pointer; /* Change cursor on hover */
-  border: none; /* Ensure there's no border */
-  box-shadow: none; /* Remove any box-shadow */
-  outline: none; /* Remove outline */
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+  outline: none;
 }
 
 
 //beginner images:
 .image-row {
-  margin-bottom: 16px; /* Adjust the spacing between rows */
+  margin-bottom: 16px;
 }
 
 .image-col {
   display: flex;
-  justify-content: center; /* Center the image within the column */
-  align-items: center; /* Center the image within the column */
-  padding: 8px; /* Adjust the spacing between images */
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
 }
 
 .image {
-  margin: 0 auto; /* Center the image within its column */
+  margin: 0 auto;
 }
 
 
@@ -325,22 +325,22 @@ body.dark-mode .multiselect-container .group-heading {
 .autocomplete-dropdown div {
   padding: 8px 16px;
   cursor: pointer;
-  color: #000000; /* Dark text color */
+  color: #000000;
 }
 
 .autocomplete-dropdown div:hover {
   background-color:  lighten($color: #321fdb, $amount: 20) !important;
-  color: #000000; /* Dark text color on hover */
+  color: #000000;
 }
 
 /* Dark mode */
 [data-coreui-theme="dark"] .autocomplete-dropdown div {
-  color: var(--cui-gray-300); /* Use CoreUI's gray color in dark mode */
+  color: var(--cui-gray-300);
 }
 
 //toggle to hide sidebar
 .c-header-toggler {
-  margin-right: 10px; /* Adjust as needed */
+  margin-right: 10px;
 }
 
 .app-breadcrumb {
@@ -356,29 +356,67 @@ body.dark-mode .multiselect-container .group-heading {
   padding: 10px;
   border: 1px solid var(--cui-border-color);
   border-radius: 5px;
+  position: relative;
+}
+
+.feed-author {
+  font-size: 0.9em;
+  font-weight: normal;
+  margin-bottom: 5px;
+}
+
+.feed-created-at {
+  font-size: 0.8em;
+  font-weight: normal; 
+  color: #888;
+  margin-left: 10px;
 }
 
 .feed-title {
   font-size: 1.2em;
   font-weight: bold;
+  margin-bottom: 1;
+}
+
+.feed-created-at {
+  font-size: 0.8em;
+  font-weight: normal;
   margin-bottom: 10px;
+  color: #888;
 }
 
 .feed-content {
   margin-bottom: 20px;
+  text-align: justify;
 }
 
 .feed-actions button {
-  margin-right: 10px; /* Adjust the value as needed */
+  margin-right: 10px;
+}
+
+.corner-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.small-button {
+  padding: 1px 3px; 
+  font-size: 12px;
+}
+
+.small-button .mdi-icon {
+  width: 16px;
+  height: 16px;
 }
 
 .custom-card-comment {
-  padding: 0.10rem; /* Reduce padding inside the card */
-  margin-bottom: 0.25rem; /* Reduce margin between cards */
+  padding: 0.10rem; 
+  margin-bottom: 0.25rem;
 }
 
 .custom-card-text-comment {
-  margin: 0; /* Remove margin from the card text */
-  font-size: 0.875rem; /* Optional: Reduce font size for a more compact look */
-  line-height: 1.2; /* Adjust line height if needed */
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.2;
 }

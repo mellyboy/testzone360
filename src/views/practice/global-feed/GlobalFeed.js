@@ -96,6 +96,7 @@ const GlobalFeed = () => {
                 setCreateFeedMessageType('success');
                 setCreateFeedMessage('Feed published successfully.');
                 fetchGlobalFeeds();
+                fetchMyFeeds(userId, token);
             } else {
                 setCreateFeedMessageType('danger');
                 setCreateFeedMessage('Failed to publish feed.');
