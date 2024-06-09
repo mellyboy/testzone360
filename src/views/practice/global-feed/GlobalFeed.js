@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import {
     CButton,
     CCol,
@@ -30,6 +30,7 @@ const GlobalFeed = () => {
     const [createFeedMessageType, setCreateFeedMessageType] = useState('');
     const [newFeedTitle, setNewFeedTitle] = useState('');
     const [newFeedContent, setNewFeedContent] = useState('');
+    const [errors, setErrors] = useState({ title: '', content: '' });
 
     useEffect(() => {
         fetchGlobalFeeds();
@@ -75,7 +76,31 @@ const GlobalFeed = () => {
         }
     };
 
+    const validateInputs = () => {
+        let isValid = true;
+        let errors = { title: '', content: '' };
+
+        if (newFeedTitle.length < 15 || newFeedTitle.length > 120) {
+            errors.title = 'Title cannot be empty.';
+            isValid = false;
+        }
+
+        if (newFeedContent.length < 15 || newFeedContent.length > 1500) {
+            errors.content = 'Content must be between 15 and 1500 characters.';
+            isValid = false;
+        }
+
+        setErrors(errors);
+        return isValid;
+    };
+
     const handlePublish = async () => {
+        if (!validateInputs()) {
+            setCreateFeedMessage('Please fix the errors before submitting.');
+            setCreateFeedMessageType('danger');
+            return;
+        }
+
         try {
             const token = localStorage.getItem('token');
             const response = await fetch('http://localhost:5000/api/feeds', {
@@ -180,23 +205,27 @@ const GlobalFeed = () => {
                                     </CAlert>
                                 )}
                                 <CFormInput
-                                    size='lg'
-                                    placeholder='Title'
+                                    size="lg"
+                                    placeholder="Title"
                                     type="text"
                                     value={newFeedTitle}
                                     onChange={(e) => setNewFeedTitle(e.target.value)}
-                                    className='mb-2'
+                                    className={`mb-2 ${errors.title ? 'is-invalid' : ''}`}
                                 />
+                                {errors.title && <div className="invalid-feedback">{errors.title}</div>}
+
                                 <CFormTextarea
-                                    className='mb-2'
+                                    className={`mb-2 ${errors.content ? 'is-invalid' : ''}`}
                                     placeholder="Must be 15 - 1500 characters."
                                     value={newFeedContent}
                                     onChange={(e) => setNewFeedContent(e.target.value)}
                                     style={{ height: '100px' }}
                                 ></CFormTextarea>
+                                {errors.content && <div className="invalid-feedback">{errors.content}</div>}
+
                                 <CButton
-                                    size='sm'
-                                    color='primary'
+                                    size="sm"
+                                    color="primary"
                                     onClick={handlePublish}
                                 >
                                     <CIcon icon={cilPlus} size="sm" />

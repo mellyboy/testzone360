@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { CButton, CListGroup, CListGroupItem, CModal, CModalBody, CModalFooter, CModalHeader, CFormInput, CFormTextarea, CTooltip } from '@coreui/react';
+import { CButton, CListGroup, CListGroupItem, CModal, CModalBody, CModalFooter, CModalHeader, CFormInput, CFormTextarea, CTooltip, CAlert } from '@coreui/react';
 import Icon from '@mdi/react';
 import { mdiDelete, mdiFileEdit } from '@mdi/js';
 import LikeButton from './LikeButton';
@@ -11,6 +11,9 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
     const token = localStorage.getItem('token');
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [editFeed, setEditFeed] = useState({ id: '', title: '', content: '' });
+    const [editErrors, setEditErrors] = useState({ title: '', content: '' });
+    const [editMessage, setEditMessage] = useState('');
+    const [editMessageType, setEditMessageType] = useState('success');
 
     const handleEditClick = (feed) => {
         setEditFeed(feed);
@@ -40,7 +43,39 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
         }
     }, [feeds, token]);
 
+    useEffect(() => {
+        if (editModalVisible) {
+          setEditErrors({ title: '', content: '' });
+          setEditMessage('');
+          setEditMessageType('success');
+        }
+      }, [editModalVisible]);
+
+    const validateEditInputs = () => {
+        let isValid = true;
+        let errors = { title: '', content: '' };
+
+        if (editFeed.title.length < 15 || editFeed.title.length > 120) {
+            errors.title = 'Title must be between 15 and 120 characters.';
+            isValid = false;
+        }
+
+        if (editFeed.content.length < 15 || editFeed.content.length > 1500) {
+            errors.content = 'Content must be between 15 and 1500 characters.';
+            isValid = false;
+        }
+
+        setEditErrors(errors);
+        return isValid;
+    };
+
     const handleUpdateFeed = async () => {
+        if (!validateEditInputs()) {
+            setEditMessage('Please fix the errors before submitting.');
+            setEditMessageType('danger');
+            return;
+        }
+
         const token = localStorage.getItem('token');
         try {
             const response = await axios.put(`http://localhost:5000/api/feeds/${editFeed.id}`, {
@@ -51,13 +86,19 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
                     'Authorization': `Bearer ${token}`
                 }
             });
+
             if (response.status === 200) {
                 onUpdateFeed(editFeed);  // Call parent callback to update feed
-                setFeedData(feedData.map(feed => feed.id === editFeed.id ? editFeed : feed)); // Update local state
+                setFeedData(feedData.map(feed => feed.id === editFeed.id ? editFeed : feed));
                 setEditModalVisible(false);
+            } else {
+                setEditMessageType('danger');
+                setEditMessage('Failed to update feed.');
             }
         } catch (error) {
             console.error('Error updating feed:', error);
+            setEditMessageType('danger');
+            setEditMessage('An error occurred while updating the feed.');
         }
     };
 
@@ -134,18 +175,26 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
             <CModal visible={editModalVisible} onClose={() => setEditModalVisible(false)}>
                 <CModalHeader>Update Feed</CModalHeader>
                 <CModalBody>
+                    {editMessage && (
+                        <CAlert color={editMessageType}>
+                            {editMessage}
+                        </CAlert>
+                    )}
                     <CFormInput
                         type="text"
                         value={editFeed.title}
                         onChange={(e) => setEditFeed({ ...editFeed, title: e.target.value })}
-                        className='mb-2'
+                        className={`mb-2 ${editErrors.title ? 'is-invalid' : ''}`}
                     />
+                    {editErrors.title && <div className="invalid-feedback">{editErrors.title}</div>}
+
                     <CFormTextarea
                         value={editFeed.content}
                         onChange={(e) => setEditFeed({ ...editFeed, content: e.target.value })}
-                        className='mb-2'
+                        className={`mb-2 ${editErrors.content ? 'is-invalid' : ''}`}
                         style={{ height: '100px' }}
                     />
+                    {editErrors.content && <div className="invalid-feedback">{editErrors.content}</div>}
                 </CModalBody>
                 <CModalFooter>
                     <CButton color="primary" onClick={handleUpdateFeed}>Update</CButton>
