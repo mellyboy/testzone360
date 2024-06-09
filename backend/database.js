@@ -8,19 +8,45 @@ db.serialize(() => {
         first_name TEXT NOT NULL,
         last_name TEXT NOT NULL,
         address TEXT NOT NULL,
+        address_line_2 TEXT,
+        city TEXT,
+        region TEXT,
+        zip_code TEXT,
+        country TEXT,
+        gender TEXT,
         account_number TEXT UNIQUE,
         email TEXT NOT NULL UNIQUE,
         password TEXT NOT NULL
     )`);
 
-    // // Create Contacts table
-    // db.run(`CREATE TABLE IF NOT EXISTS contacts (
-    //     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    //     user_id INTEGER NOT NULL,
-    //     contact_user_id INTEGER NOT NULL,
-    //     FOREIGN KEY (user_id) REFERENCES users (id),
-    //     FOREIGN KEY (contact_user_id) REFERENCES users (id)
-    // )`);
+    db.run(`CREATE TABLE IF NOT EXISTS feeds (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        content TEXT NOT NULL,
+        author_id INTEGER,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        likes_count INTEGER DEFAULT 0,
+        FOREIGN KEY (author_id) REFERENCES users(id)
+    )`);
+
+    db.run(`CREATE TABLE IF NOT EXISTS likes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        feed_id INTEGER,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (feed_id) REFERENCES feeds(id)
+    )`);
+
+    db.run(`CREATE TABLE IF NOT EXISTS comments (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        content TEXT NOT NULL,
+        user_id INTEGER,
+        feed_id INTEGER,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        FOREIGN KEY (feed_id) REFERENCES feeds(id)
+    )`);
 });
 
 process.on('SIGINT', () => {

@@ -161,6 +161,11 @@ const _nav = [
         name: 'BMI Calculator',
         to: '/bmi',
       },
+      {
+        component: CNavItem,
+        name: 'Global Feed',
+        to: '/global-feed',
+      },
     ],
   },
   // {
