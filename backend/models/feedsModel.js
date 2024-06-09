@@ -165,7 +165,13 @@ const deleteComment = (commentId, userId, callback) => {
 
 //retrieve comments for a specific feed
 const getComments = (feedId, callback) => {
-    const query = `SELECT * FROM comments WHERE feed_id = ? ORDER BY created_at DESC`;
+    const query = `
+        SELECT comments.id, comments.content, comments.created_at, comments.user_id, users.first_name, users.last_name
+        FROM comments
+        JOIN users ON comments.user_id = users.id
+        WHERE comments.feed_id = ?
+        ORDER BY comments.created_at DESC
+    `;
     db.all(query, [feedId], (err, rows) => {
         if (err) {
             return callback(err);

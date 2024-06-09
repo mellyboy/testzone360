@@ -368,24 +368,17 @@ body.dark-mode .multiselect-container .group-heading {
   margin-bottom: 20px;
 }
 
-.feed-actions {
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
+.feed-actions button {
+  margin-right: 10px; /* Adjust the value as needed */
 }
 
-.like-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
+.custom-card-comment {
+  padding: 0.10rem; /* Reduce padding inside the card */
+  margin-bottom: 0.25rem; /* Reduce margin between cards */
 }
 
-.like-button:disabled {
-  background-color: #6c757d;
+.custom-card-text-comment {
+  margin: 0; /* Remove margin from the card text */
+  font-size: 0.875rem; /* Optional: Reduce font size for a more compact look */
+  line-height: 1.2; /* Adjust line height if needed */
 }
-

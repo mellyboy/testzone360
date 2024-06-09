@@ -5,7 +5,7 @@ import CIcon from '@coreui/icons-react';
 import { cilCommentSquare } from '@coreui/icons';
 import CommentsList from './CommentList';
 
-const CommentButton = ({ feedId }) => {
+const CommentButton = ({ feedId,currentUserId  }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
@@ -42,7 +42,21 @@ const CommentButton = ({ feedId }) => {
                 }
             });
             if (response.status === 201) {
-                setComments([...comments, response.data]);
+                // Fetch the user information
+                const userResponse = await axios.get(`http://localhost:5000/api/user/userprofile?id=${currentUserId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                // Add the new comment to the comments array
+                setComments([...comments, {
+                    id: response.data.id,
+                    content: newComment,
+                    user_id: currentUserId,
+                    first_name: userResponse.data.firstName,
+                    last_name: userResponse.data.lastName
+                }]);
                 setNewComment('');
             }
         } catch (error) {
@@ -50,27 +64,29 @@ const CommentButton = ({ feedId }) => {
         }
     };
 
+    const handleDeleteComment = (commentId) => {
+        setComments(comments.filter(comment => comment.id !== commentId));
+    };
+
     return (
-        <div style={{ width: '100%' }}>
+        <>
             <CButton size='sm' color='secondary' onClick={() => setIsOpen(!isOpen)}>
                 <CIcon icon={cilCommentSquare} size="sm" />
                 {' '}Comment
             </CButton>
             <CCollapse visible={isOpen}>
-                <div style={{ width: '100%', marginTop: '10px' }}>
-                    <CommentsList comments={comments} />
-                    <CFormTextarea
-                        placeholder="Add a comment"
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        className='mt-2'
-                    />
-                    <CButton size='sm' color='primary' onClick={handleAddComment} className='mt-2'>
-                        Submit
-                    </CButton>
-                </div>
+                <CommentsList comments={comments} currentUserId={currentUserId} onDeleteComment={handleDeleteComment} />
+                <CFormTextarea
+                    placeholder="Add a comment"
+                    value={newComment}
+                    onChange={(e) => setNewComment(e.target.value)}
+                    className='mt-2'
+                />
+                <CButton size='sm' color='primary' onClick={handleAddComment} className='mt-2'>
+                    Submit
+                </CButton>
             </CCollapse>
-        </div>
+        </>
     );
 
 };

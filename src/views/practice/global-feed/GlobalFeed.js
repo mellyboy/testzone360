@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from 'jwt-decode';
 import {
     CButton,
     CCol,
@@ -14,8 +14,8 @@ import {
     CFormInput
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilPlus, cilThumbUp } from '@coreui/icons';
-import FeedList from '../../../components/Feedlist';  // Import FeedList
+import { cilPlus } from '@coreui/icons';
+import FeedList from '../../../components/Feedlist';
 
 const GlobalFeed = () => {
     const [activeKey, setActiveKey] = useState('global-feed');
@@ -32,12 +32,8 @@ const GlobalFeed = () => {
     const [newFeedContent, setNewFeedContent] = useState('');
 
     useEffect(() => {
-        // Fetch global feeds
-        fetch('http://localhost:5000/api/feeds')
-            .then(response => response.json())
-            .then(data => setGlobalFeeds(data));
+        fetchGlobalFeeds();
 
-        // Decode token and fetch my feeds
         const token = localStorage.getItem('token');
         if (token) {
             const decodedToken = jwtDecode(token);
@@ -45,7 +41,18 @@ const GlobalFeed = () => {
             setUserId(userIdFromToken);
             fetchMyFeeds(userIdFromToken, token);
         }
-    }, []);
+    }, [activeKey]);
+
+    const fetchGlobalFeeds = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/feeds');
+            const data = await response.json();
+            setGlobalFeeds(data);
+        } catch (error) {
+            setGlobalMessageType('danger');
+            setGlobalMessage('Failed to fetch global feeds.');
+        }
+    };
 
     const fetchMyFeeds = async (userId, token) => {
         try {
@@ -84,15 +91,11 @@ const GlobalFeed = () => {
                 })
             });
             if (response.ok) {
-                // Clear input fields
                 setNewFeedTitle('');
                 setNewFeedContent('');
                 setCreateFeedMessageType('success');
                 setCreateFeedMessage('Feed published successfully.');
-                // Fetch updated global feeds
-                fetch('http://localhost:5000/api/feeds')
-                    .then(response => response.json())
-                    .then(data => setGlobalFeeds(data));
+                fetchGlobalFeeds();
             } else {
                 setCreateFeedMessageType('danger');
                 setCreateFeedMessage('Failed to publish feed.');
@@ -101,6 +104,29 @@ const GlobalFeed = () => {
             setCreateFeedMessageType('danger');
             setCreateFeedMessage('An error occurred while publishing the feed.');
         }
+    };
+
+    const handleDeleteFeed = (feedId) => {
+        setGlobalFeeds(globalFeeds.filter(feed => feed.id !== feedId));
+        setMyFeeds(myFeeds.filter(feed => feed.id !== feedId));
+    };
+
+    const handleUpdateFeed = (updatedFeed) => {
+        setGlobalFeeds(globalFeeds.map(feed => feed.id === updatedFeed.id ? updatedFeed : feed));
+        setMyFeeds(myFeeds.map(feed => feed.id === updatedFeed.id ? updatedFeed : feed));
+    };
+
+    const handleLikeChange = (feedId, isLiked, likes) => {
+        setGlobalFeeds(prevGlobalFeeds =>
+            prevGlobalFeeds.map(feed =>
+                feed.id === feedId ? { ...feed, isLiked, likes } : feed
+            )
+        );
+        setMyFeeds(prevMyFeeds =>
+            prevMyFeeds.map(feed =>
+                feed.id === feedId ? { ...feed, isLiked, likes } : feed
+            )
+        );
     };
 
     return (
@@ -120,17 +146,29 @@ const GlobalFeed = () => {
                                         {globalMessage}
                                     </CAlert>
                                 )}
-                                <FeedList feeds={globalFeeds} />
+                                <FeedList
+                                    feeds={globalFeeds}
+                                    currentUserId={userId}
+                                    onDeleteFeed={handleDeleteFeed}
+                                    onUpdateFeed={handleUpdateFeed}
+                                    onLikeChange={handleLikeChange}
+                                />
                             </div>
                         </CTabPanel>
                         <CTabPanel className="p-0" itemKey="my-feed">
                             <div className="panel-content">
                                 {myFeedMessage && (
                                     <CAlert color={myFeedMessageType}>
-                                        {myFeedMessageType}
+                                        {myFeedMessage}
                                     </CAlert>
                                 )}
-                                <FeedList feeds={myFeeds} />
+                                <FeedList
+                                    feeds={myFeeds}
+                                    currentUserId={userId}
+                                    onDeleteFeed={handleDeleteFeed}
+                                    onUpdateFeed={handleUpdateFeed}
+                                    onLikeChange={handleLikeChange}
+                                />
                             </div>
                         </CTabPanel>
                         <CTabPanel className="p-0" itemKey="create-feed">
