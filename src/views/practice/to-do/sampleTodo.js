@@ -51,13 +51,19 @@ const SampleToDo = () => {
     const sourceDroppableId = result.source.droppableId;
     const destinationDroppableId = result.destination.droppableId;
 
-    // Create a new array to avoid mutating state directly
     const updatedTasks = Array.from(tasks);
-    const [movedTask] = updatedTasks.splice(sourceIndex, 1);
-    movedTask.status = destinationDroppableId;
-    updatedTasks.splice(destinationIndex, 0, movedTask);
+    const sourceTasks = getTasksByStatus(sourceDroppableId);
+    const destinationTasks = getTasksByStatus(destinationDroppableId);
 
-    setTasks(updatedTasks);
+    const [movedTask] = sourceTasks.splice(sourceIndex, 1);
+    movedTask.status = destinationDroppableId;
+    destinationTasks.splice(destinationIndex, 0, movedTask);
+
+    const newTasks = tasks.map(task => 
+      task.id === movedTask.id ? movedTask : task
+    );
+
+    setTasks(newTasks);
 
     axios.put(`http://localhost:5000/api/tasks/${movedTask.id}`, {
       title: movedTask.title,
@@ -84,13 +90,13 @@ const SampleToDo = () => {
             <CCol key={column.id}>
               <CCard className="h-100">
                 <CCardHeader>{column.title}</CCardHeader>
-                <CCardBody style={{ height: '600px', overflowY: 'auto' }}>
+                <CCardBody style={{ height: '650px', overflowY: 'auto', padding: '10px' }}>
                   <Droppable droppableId={column.id}>
                     {(provided) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.droppableProps}
-                        style={{ height: '100%' }}
+                        style={{ height: '100%', background: '#f8f9fa', padding: '5px', borderRadius: '5px' }}
                       >
                         {getTasksByStatus(column.id).map((task, index) => (
                           <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
@@ -100,6 +106,17 @@ const SampleToDo = () => {
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
                                 className="mb-2"
+                                style={{
+                                  ...provided.draggableProps.style,
+                                  userSelect: 'none',
+                                  padding: '0px',
+                                  margin: '0 0 8px 0',
+                                  minHeight: '50px',
+                                  backgroundColor: '#fff',
+                                  color: '#333',
+                                  borderRadius: '6px',
+                                  boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
+                                }}
                               >
                                 <CCard>
                                   <CCardHeader>{task.title}</CCardHeader>
