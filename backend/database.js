@@ -47,6 +47,19 @@ db.serialize(() => {
         FOREIGN KEY (user_id) REFERENCES users(id),
         FOREIGN KEY (feed_id) REFERENCES feeds(id)
     )`);
+
+    db.run(`CREATE TABLE IF NOT EXISTS tasks (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        content TEXT,
+        start_date TIMESTAMP,
+        target_end_date TIMESTAMP,
+        user_id INTEGER,
+        status TEXT CHECK( status IN ('To Do', 'Doing', 'Done') ) DEFAULT 'To Do',
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    )`);
 });
 
 process.on('SIGINT', () => {

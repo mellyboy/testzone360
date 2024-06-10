@@ -36,6 +36,7 @@ const GlobalFeed = React.lazy(() => import('./views/practice/global-feed/GlobalF
 const UserProfile = React.lazy(() => import('./views/users/profile/Profile'))
 const SamplePage1 = React.lazy(() => import('./views/advanced/iframe/sample1'))
 const SamplePage2 = React.lazy(() => import('./views/advanced/iframe/sample2'))
+const SampleToDo = React.lazy(() => import('./views/practice/to-do/sampleTodo'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -75,6 +76,7 @@ const routes = [
   { path: '/profile', name: 'Profile', element: UserProfile },
   { path: '/sample1', name: 'Sample Page 1', element: SamplePage1 },
   { path: '/sample2', name: 'Sample Page 2', element: SamplePage2 },
+  { path: '/sampleToDo', name: 'Sample To Do', element: SampleToDo },
 ]
 
 export default routes

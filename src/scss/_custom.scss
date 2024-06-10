@@ -420,3 +420,29 @@ body.dark-mode .multiselect-container .group-heading {
   font-size: 0.875rem;
   line-height: 1.2;
 }
+
+
+//to-do
+.kanban-board .column {
+  background-color: var(--column-bg-color, #f7f7f7); /* Light gray background by default */
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 5px;
+  padding: 10px;
+  height: 100%; /* Ensure columns stretch to fill parent height */
+}
+
+.kanban-board .column + .column {
+  margin-left: 15px; /* Space between columns */
+}
+
+/* Dark mode */
+:root {
+  --column-bg-color: #333; /* Dark gray background in dark mode */
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    --column-bg-color: #f7f7f7; /* Light gray background in light mode */
+  }
+}
