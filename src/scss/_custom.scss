@@ -435,6 +435,23 @@ body.dark-mode .multiselect-container .group-heading {
   margin-left: 15px; /* Space between columns */
 }
 
+.task-corner-buttons {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.task-small-button {
+  margin-right: 4px;
+  padding: 1px 1px; 
+  font-size: 12px;
+}
+
+.task-small-button .mdi-icon {
+  width: 3px;
+  height: 3px;
+}
+
 /* Dark mode */
 :root {
   --column-bg-color: #333; /* Dark gray background in dark mode */

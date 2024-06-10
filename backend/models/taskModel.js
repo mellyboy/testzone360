@@ -1,9 +1,9 @@
 const db = require('../database');
 
 exports.createTask = (task, callback) => {
-    const { title, content, start_date, target_end_date, user_id } = task;
-    const query = `INSERT INTO tasks (title, content, start_date, target_end_date, user_id) VALUES (?, ?, ?, ?, ?)`;
-    db.run(query, [title, content, start_date, target_end_date, user_id], function(err) {
+    const { title, content, start_date, target_end_date, status, user_id } = task;
+    const query = `INSERT INTO tasks (title, content, start_date, target_end_date, status, user_id) VALUES (?, ?, ?, ?, ?, ?)`;
+    db.run(query, [title, content, start_date, target_end_date, status, user_id], function(err) {
         if (err) {
             return callback(err);
         }
