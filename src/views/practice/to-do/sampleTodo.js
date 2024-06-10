@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import {
     CContainer,
     CRow,
@@ -38,6 +38,7 @@ const SampleToDo = () => {
     const [userId, setUserId] = useState(null);
     const [tasks, setTasks] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
+    const [editModalVisible, setEditModalVisible] = useState(false);
     const [currentColumn, setCurrentColumn] = useState('To Do'); // Track the current column
     const [newTask, setNewTask] = useState({
         title: '',
@@ -46,6 +47,7 @@ const SampleToDo = () => {
         target_end_date: '',
         status: 'To Do',
     });
+    const [taskBeingEdited, setTaskBeingEdited] = useState(null);
 
     useEffect(() => {
         if (token) {
@@ -139,6 +141,46 @@ const SampleToDo = () => {
         setModalVisible(true);
     };
 
+    const handleOpenEditModal = (task) => {
+        setTaskBeingEdited(task);
+        setEditModalVisible(true);
+    };
+
+    const handleEditTask = () => {
+        axios.put(`http://localhost:5000/api/tasks/${taskBeingEdited.id}`, {
+            ...taskBeingEdited,
+            start_date: new Date(taskBeingEdited.start_date).getTime() / 1000,
+            target_end_date: taskBeingEdited.target_end_date ? new Date(taskBeingEdited.target_end_date).getTime() / 1000 : null,
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(response => {
+                const updatedTasks = tasks.map(task =>
+                    task.id === response.data.id ? response.data : task
+                );
+                setTasks(updatedTasks);
+                setEditModalVisible(false);
+                setTaskBeingEdited(null);
+            })
+            .catch(error => console.error(error));
+    };
+
+    const handleDeleteTask = (taskId) => {
+        axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+            .then(() => {
+                const updatedTasks = tasks.filter(task => task.id !== taskId);
+                setTasks(updatedTasks);
+            })
+            .catch(error => console.error(error));
+    };
+
     return (
         <CContainer>
             <CRow xs={{ cols: 1 }} md={{ cols: 3 }} className="g-4">
@@ -182,7 +224,7 @@ const SampleToDo = () => {
                                                                             content="Edit Task"
                                                                             trigger={['hover']}
                                                                         >
-                                                                            <CButton variant="ghost" className='task-small-button mdi-icon' size='sm' color='warning'>
+                                                                            <CButton variant="ghost" className='task-small-button mdi-icon' size='sm' color='warning' onClick={() => handleOpenEditModal(task)}>
                                                                                 <Icon path={mdiFileEdit} size={0.6} />
                                                                             </CButton>
                                                                         </CTooltip>
@@ -191,7 +233,7 @@ const SampleToDo = () => {
                                                                             content="Delete Task"
                                                                             trigger={['hover']}
                                                                         >
-                                                                        <CButton variant="ghost" className='task-small-button mdi-icon' size='sm' color='danger'>
+                                                                        <CButton variant="ghost" className='task-small-button mdi-icon' size='sm' color='danger' onClick={() => handleDeleteTask(task.id)}>
                                                                             <Icon path={mdiDelete} size={0.6} />
                                                                         </CButton>
                                                                         </CTooltip>
@@ -279,6 +321,71 @@ const SampleToDo = () => {
                 <CModalFooter>
                     <CButton color="secondary" onClick={() => setModalVisible(false)}>Cancel</CButton>
                     <CButton color="primary" onClick={handleAddTask}>Add Task</CButton>
+                </CModalFooter>
+            </CModal>
+
+            <CModal visible={editModalVisible} onClose={() => setEditModalVisible(false)}>
+                <CModalHeader>
+                    <CModalTitle>Edit Task</CModalTitle>
+                </CModalHeader>
+                <CModalBody>
+                    <CForm>
+                        <CFormInput
+                            className='mb-2'
+                            label='Title'
+                            id="title"
+                            value={taskBeingEdited?.title || ''}
+                            onChange={(e) => setTaskBeingEdited({ ...taskBeingEdited, title: e.target.value })}
+                        />
+                        <CFormTextarea
+                            className='mb-3'
+                            label="Details"
+                            id="content"
+                            value={taskBeingEdited?.content || ''}
+                            onChange={(e) => setTaskBeingEdited({ ...taskBeingEdited, content: e.target.value })}
+                        />
+
+                        <CRow>
+                            <CCol xs={6}>
+                                <CFormInput
+                                    className='mb-3'
+                                    label="Target Start Date"
+                                    type="date"
+                                    id="start_date"
+                                    value={taskBeingEdited?.start_date || ''}
+                                    onChange={(e) => setTaskBeingEdited({ ...taskBeingEdited, start_date: e.target.value })}
+                                />
+                            </CCol>
+
+                            <CCol xs={6}>
+                                <CFormInput
+                                    className='mb-3'
+                                    label="Target End Date"
+                                    type="date"
+                                    id="target_end_date"
+                                    value={taskBeingEdited?.target_end_date || ''}
+                                    onChange={(e) => setTaskBeingEdited({ ...taskBeingEdited, target_end_date: e.target.value })}
+                                />
+                            </CCol>
+                        </CRow>
+
+
+                        <CFormSelect
+                            label="Status"
+                            id="status"
+                            value={taskBeingEdited?.status || ''}
+                            onChange={(e) => setTaskBeingEdited({ ...taskBeingEdited, status: e.target.value })}
+                        >
+                            {columns.map((column) => (
+                                <option key={column.id} value={column.id}>{column.title}</option>
+                            ))}
+                        </CFormSelect>
+
+                    </CForm>
+                </CModalBody>
+                <CModalFooter>
+                    <CButton color="secondary" onClick={() => setEditModalVisible(false)}>Cancel</CButton>
+                    <CButton color="primary" onClick={handleEditTask}>Save Changes</CButton>
                 </CModalFooter>
             </CModal>
         </CContainer>
