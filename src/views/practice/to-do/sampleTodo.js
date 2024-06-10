@@ -90,47 +90,45 @@ const SampleToDo = () => {
             <CCol key={column.id}>
               <CCard className="h-100">
                 <CCardHeader>{column.title}</CCardHeader>
-                <CCardBody style={{ height: '650px', overflowY: 'auto', padding: '10px' }}>
-                  <Droppable droppableId={column.id}>
-                    {(provided) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.droppableProps}
-                        style={{ height: '100%', background: '#f8f9fa', padding: '5px', borderRadius: '5px' }}
-                      >
-                        {getTasksByStatus(column.id).map((task, index) => (
-                          <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
-                            {(provided) => (
-                              <div
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                className="mb-2"
-                                style={{
-                                  ...provided.draggableProps.style,
-                                  userSelect: 'none',
-                                  padding: '0px',
-                                  margin: '0 0 8px 0',
-                                  minHeight: '50px',
-                                  backgroundColor: '#fff',
-                                  color: '#333',
-                                  borderRadius: '6px',
-                                  boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
-                                }}
-                              >
-                                <CCard>
-                                  <CCardHeader>{task.title}</CCardHeader>
-                                  <CCardBody>{task.content}</CCardBody>
-                                </CCard>
-                              </div>
-                            )}
-                          </Draggable>
-                        ))}
-                        {provided.placeholder}
-                      </div>
-                    )}
-                  </Droppable>
-                </CCardBody>
+                <Droppable droppableId={column.id}>
+                  {(provided) => (
+                    <CCardBody
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                      style={{ height: '650px', overflowY: 'auto', padding: '10px' }}
+                    >
+                      {getTasksByStatus(column.id).map((task, index) => (
+                        <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              className="mb-2"
+                              style={{
+                                ...provided.draggableProps.style,
+                                userSelect: 'none',
+                                padding: '0px',
+                                margin: '0 0 8px 0',
+                                minHeight: '50px',
+                                backgroundColor: '#fff',
+                                color: '#333',
+                                borderRadius: '6px',
+                                boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
+                              }}
+                            >
+                              <CCard>
+                                <CCardHeader>{task.title}</CCardHeader>
+                                <CCardBody>{task.content}</CCardBody>
+                              </CCard>
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </CCardBody>
+                  )}
+                </Droppable>
                 <CCardFooter>
                   <div className="d-grid gap-2">
                     <CButton color="primary">Add task button</CButton>
