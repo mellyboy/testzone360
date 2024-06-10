@@ -20,7 +20,8 @@ import {
     CFormInput,
     CFormSelect,
     CFormTextarea,
-    CTooltip
+    CTooltip,
+    CAlert
 } from '@coreui/react';
 import Icon from '@mdi/react';
 import { mdiDelete, mdiFileEdit } from '@mdi/js';
@@ -39,7 +40,7 @@ const SampleToDo = () => {
     const [tasks, setTasks] = useState([]);
     const [modalVisible, setModalVisible] = useState(false);
     const [editModalVisible, setEditModalVisible] = useState(false);
-    const [currentColumn, setCurrentColumn] = useState('To Do'); // Track the current column
+    const [currentColumn, setCurrentColumn] = useState('To Do');
     const [newTask, setNewTask] = useState({
         title: '',
         content: '',
@@ -48,6 +49,7 @@ const SampleToDo = () => {
         status: 'To Do',
     });
     const [taskBeingEdited, setTaskBeingEdited] = useState(null);
+    const [errors, setErrors] = useState({}); // State to hold validation errors
 
     useEffect(() => {
         if (token) {
@@ -107,7 +109,26 @@ const SampleToDo = () => {
 
     const getTasksByStatus = (status) => tasks.filter(task => task.status === status);
 
+    const validateFields = (task) => {
+        const errors = {};
+        if (!task.title) {
+            errors.title = 'Title is required.';
+        } else if (task.title.length > 100) {
+            errors.title = 'Title cannot exceed 100 characters.';
+        }
+        if (task.content.length > 2500) {
+            errors.content = 'Content cannot exceed 2500 characters.';
+        }
+        return errors;
+    };
+
     const handleAddTask = () => {
+        const errors = validateFields(newTask);
+        if (Object.keys(errors).length > 0) {
+            setErrors(errors);
+            return;
+        }
+
         axios.post('http://localhost:5000/api/tasks', {
             ...newTask,
             start_date: new Date(newTask.start_date).getTime() / 1000,
@@ -126,27 +147,36 @@ const SampleToDo = () => {
                     content: '',
                     start_date: '',
                     target_end_date: '',
-                    status: currentColumn, // Use currentColumn as initial status
+                    status: currentColumn,
                 });
+                setErrors({});
             })
             .catch(error => console.error(error));
     };
 
     const handleOpenModal = (columnId) => {
-        setCurrentColumn(columnId); // Set the current column
+        setCurrentColumn(columnId);
         setNewTask({
             ...newTask,
-            status: columnId, // Set the initial status to the column id
+            status: columnId,
         });
+        setErrors({});
         setModalVisible(true);
     };
 
     const handleOpenEditModal = (task) => {
         setTaskBeingEdited(task);
+        setErrors({});
         setEditModalVisible(true);
     };
 
     const handleEditTask = () => {
+        const errors = validateFields(taskBeingEdited);
+        if (Object.keys(errors).length > 0) {
+            setErrors(errors);
+            return;
+        }
+
         axios.put(`http://localhost:5000/api/tasks/${taskBeingEdited.id}`, {
             ...taskBeingEdited,
             start_date: new Date(taskBeingEdited.start_date).getTime() / 1000,
@@ -164,6 +194,7 @@ const SampleToDo = () => {
                 setTasks(updatedTasks);
                 setEditModalVisible(false);
                 setTaskBeingEdited(null);
+                setErrors({});
             })
             .catch(error => console.error(error));
     };
@@ -259,7 +290,7 @@ const SampleToDo = () => {
                     ))}
                 </DragDropContext>
             </CRow>
-            <CModal visible={modalVisible} onClose={() => setModalVisible(false)}>
+            <CModal visible={modalVisible} onClose={() => { setModalVisible(false); setErrors({}); }}>
                 <CModalHeader>
                     <CModalTitle>Add New Task</CModalTitle>
                 </CModalHeader>
@@ -272,6 +303,7 @@ const SampleToDo = () => {
                             value={newTask.title}
                             onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
                         />
+                        {errors.title && <CAlert color="danger">{errors.title}</CAlert>}
                         <CFormTextarea
                             className='mb-3'
                             label="Details"
@@ -279,6 +311,7 @@ const SampleToDo = () => {
                             value={newTask.content}
                             onChange={(e) => setNewTask({ ...newTask, content: e.target.value })}
                         />
+                        {errors.content && <CAlert color="danger">{errors.content}</CAlert>}
 
                         <CRow>
                             <CCol xs={6}>
@@ -304,7 +337,6 @@ const SampleToDo = () => {
                             </CCol>
                         </CRow>
 
-
                         <CFormSelect
                             label="Status"
                             id="status"
@@ -324,7 +356,7 @@ const SampleToDo = () => {
                 </CModalFooter>
             </CModal>
 
-            <CModal visible={editModalVisible} onClose={() => setEditModalVisible(false)}>
+            <CModal visible={editModalVisible} onClose={() => { setEditModalVisible(false); setErrors({}); }}>
                 <CModalHeader>
                     <CModalTitle>Edit Task</CModalTitle>
                 </CModalHeader>
@@ -337,6 +369,7 @@ const SampleToDo = () => {
                             value={taskBeingEdited?.title || ''}
                             onChange={(e) => setTaskBeingEdited({ ...taskBeingEdited, title: e.target.value })}
                         />
+                        {errors.title && <CAlert color="danger">{errors.title}</CAlert>}
                         <CFormTextarea
                             className='mb-3'
                             label="Details"
@@ -344,6 +377,7 @@ const SampleToDo = () => {
                             value={taskBeingEdited?.content || ''}
                             onChange={(e) => setTaskBeingEdited({ ...taskBeingEdited, content: e.target.value })}
                         />
+                        {errors.content && <CAlert color="danger">{errors.content}</CAlert>}
 
                         <CRow>
                             <CCol xs={6}>
@@ -368,7 +402,6 @@ const SampleToDo = () => {
                                 />
                             </CCol>
                         </CRow>
-
 
                         <CFormSelect
                             label="Status"
