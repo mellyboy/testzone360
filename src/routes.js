@@ -31,6 +31,7 @@ const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
 //practice
 const BMI = React.lazy(() => import('./views/practice/bmi/BMI'))
 const GlobalFeed = React.lazy(() => import('./views/practice/global-feed/GlobalFeed'))
+const ToDo = React.lazy(() => import('./views/practice/to-do/ToDo'))
 
 //others
 const UserProfile = React.lazy(() => import('./views/users/profile/Profile'))
@@ -70,6 +71,7 @@ const routes = [
   //practice
   { path: '/bmi', name: 'BMI', element: BMI },
   { path: '/global-feed', name: 'Global Feed', element: GlobalFeed },
+  { path: '/to-do', name: 'To Do', element: ToDo },
 
   //others
   { path: '/profile', name: 'Profile', element: UserProfile },

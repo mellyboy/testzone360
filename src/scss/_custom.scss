@@ -420,3 +420,22 @@ body.dark-mode .multiselect-container .group-heading {
   font-size: 0.875rem;
   line-height: 1.2;
 }
+
+
+//to-do
+.task-corner-buttons {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.task-small-button {
+  margin-right: 4px;
+  padding: 1px 1px; 
+  font-size: 12px;
+}
+
+.task-small-button .mdi-icon {
+  width: 3px;
+  height: 3px;
+}

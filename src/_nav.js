@@ -166,6 +166,16 @@ const _nav = [
         name: 'Global Feed',
         to: '/global-feed',
       },
+      {
+        component: CNavItem,
+        name: 'To Do',
+        to: '/to-do',
+      },
+      {
+        component: CNavItem,
+        name: 'Update Profile',
+        to: '/profile',
+      },
     ],
   },
   // {

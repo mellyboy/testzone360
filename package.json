@@ -27,6 +27,7 @@
     "@coreui/react": "^5.0.0",
     "@coreui/react-chartjs": "^3.0.0",
     "@coreui/utils": "^2.0.2",
+    "@hello-pangea/dnd": "^16.6.0",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
     "@popperjs/core": "^2.11.8",
