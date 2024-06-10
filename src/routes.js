@@ -31,12 +31,12 @@ const Toast = React.lazy(() => import('./views/advanced/toast/Toast'))
 //practice
 const BMI = React.lazy(() => import('./views/practice/bmi/BMI'))
 const GlobalFeed = React.lazy(() => import('./views/practice/global-feed/GlobalFeed'))
+const ToDo = React.lazy(() => import('./views/practice/to-do/ToDo'))
 
 //others
 const UserProfile = React.lazy(() => import('./views/users/profile/Profile'))
 const SamplePage1 = React.lazy(() => import('./views/advanced/iframe/sample1'))
 const SamplePage2 = React.lazy(() => import('./views/advanced/iframe/sample2'))
-const SampleToDo = React.lazy(() => import('./views/practice/to-do/sampleTodo'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -71,12 +71,12 @@ const routes = [
   //practice
   { path: '/bmi', name: 'BMI', element: BMI },
   { path: '/global-feed', name: 'Global Feed', element: GlobalFeed },
+  { path: '/to-do', name: 'To Do', element: ToDo },
 
   //others
   { path: '/profile', name: 'Profile', element: UserProfile },
   { path: '/sample1', name: 'Sample Page 1', element: SamplePage1 },
   { path: '/sample2', name: 'Sample Page 2', element: SamplePage2 },
-  { path: '/sampleToDo', name: 'Sample To Do', element: SampleToDo },
 ]
 
 export default routes
