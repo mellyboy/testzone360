@@ -1,5 +1,7 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { jwtDecode } from 'jwt-decode';
 import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
 
 import {
   CCloseButton,
@@ -21,14 +23,11 @@ import {
   cilSettings,
   cilUser,
   cilAccountLogout,
-  cilBell,
   cilEnvelopeOpen,
-  cilMoon,
-  cilSun,
 } from '@coreui/icons'
 
 import CIcon from '@coreui/icons-react'
-import avatar8 from '../assets/images/avatars/cat.png'
+import avatar from '../assets/images/avatars/duck.png'
 import { useAuth } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 
@@ -43,15 +42,18 @@ const AppSidebar = () => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow)
+  
+  const [colorMode, setColorMode] = useState('light');
+  const [userData, setUserData] = useState(null);
 
   const handleProfileClick = () => {
     navigate('/profile');
   }
+
   const { logout } = useAuth();
   const navigate = useNavigate()
 
   const headerRef = useRef()
-  const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
 
   useEffect(() => {
     document.addEventListener('scroll', () => {
@@ -60,10 +62,36 @@ const AppSidebar = () => {
     })
   }, [])
 
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const userIdFromToken = decodedToken.id;
+      fetchUserProfile(userIdFromToken);
+  }
+    
+  }, []);
+
+  const fetchUserProfile = async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/user/userprofile?id=${userId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+      },
+      });
+      setUserData(response.data);
+    } catch (error) {
+      console.error('Failed to fetch user profile', error);
+    }
+  };
+
   return (
     <CSidebar
-      className="border-end"
-      colorScheme="dark"
+      className={`border-end ${colorMode === 'dark' ? 'sidebar-dark' : ''}`}
+      colorScheme={colorMode}
       position="fixed"
       unfoldable={unfoldable}
       visible={sidebarShow}
@@ -74,7 +102,6 @@ const AppSidebar = () => {
       <CSidebarHeader className="border-bottom">
         <CSidebarBrand to="/">
           <CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />
-          {/* <CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} /> */}
         </CSidebarBrand>
         <CCloseButton
           className="d-lg-none"
@@ -91,8 +118,8 @@ const AppSidebar = () => {
             caret={false}
             style={{ listStyle: 'none', padding: 0, margin: 0 }}
           >
-            <CAvatar src={avatar8} size="md" />
-            <div className="ms-3">USER</div>
+            <CAvatar src={avatar} size="md" />
+            <div className="ms-3">{userData ? userData.firstName : 'USER'}</div>
           </CDropdownToggle>
           <CDropdownMenu className="pt-0" placement="bottom-end">
             <CDropdownHeader className="body-bg-rgb fw-semibold my-2">Account</CDropdownHeader>
@@ -102,11 +129,11 @@ const AppSidebar = () => {
               Profile
             </CDropdownItem>
 
-            <CDropdownItem href="#">
+            <CDropdownItem href="#" disabled>
               <CIcon icon={cilEnvelopeOpen} className="me-2" />
               Messages
-              <CBadge color="success" className="ms-2">
-                42
+              <CBadge color="info" className="ms-2">
+                SOON
               </CBadge>
             </CDropdownItem>
 
@@ -114,28 +141,6 @@ const AppSidebar = () => {
               <CIcon icon={cilSettings} className="me-2" />
               Settings
             </CDropdownItem>
-
-            <CDropdownDivider />
-            <CDropdownHeader className="body-bg-rgb fw-semibold my-2">Theme Settings</CDropdownHeader>
-            <CDropdownItem
-              active={colorMode === 'light'}
-              className="d-flex align-items-center"
-              as="button"
-              type="button"
-              onClick={() => setColorMode('light')}
-            >
-              <CIcon className="me-2" icon={cilSun} size="lg" /> Light
-            </CDropdownItem>
-            <CDropdownItem
-              active={colorMode === 'dark'}
-              className="d-flex align-items-center"
-              as="button"
-              type="button"
-              onClick={() => setColorMode('dark')}
-            >
-              <CIcon className="me-2" icon={cilMoon} size="lg" /> Dark
-            </CDropdownItem>
-
             <CDropdownDivider />
             <CDropdownItem as="button" onClick={logout}>
               <CIcon icon={cilAccountLogout} className="me-2" />
@@ -144,13 +149,9 @@ const AppSidebar = () => {
           </CDropdownMenu>
         </CDropdown>
       </div>
-      {/* --INSERT END-- */}
 
       <AppSidebarNav items={navigation} />
-
-      <CSidebarFooter className="border-top d-none d-lg-flex">
-
-      </CSidebarFooter>
+      
     </CSidebar>
   )
 }

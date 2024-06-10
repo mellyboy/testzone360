@@ -7,7 +7,8 @@ import {
   cilBadge,
   cilGamepad,
   cilApplications,
-  cilVideogame
+  cilVideogame,
+  cilWeightlifitng
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -140,21 +141,16 @@ const _nav = [
         name: 'Toast',
         to: '/toast',
       },
-      {
-        component: CNavItem,
-        name: 'Test Route',
-        to: '/xyz',
-      },
     ],
   },
   {
     component: CNavTitle,
-    name: 'Excercises',
+    name: 'Practice Here',
   },
   {
     component: CNavGroup,
-    name: 'Mini Apps',
-    icon: <CIcon icon={cilGamepad} customClassName="nav-icon" />,
+    name: 'Exercises',
+    icon: <CIcon icon={cilWeightlifitng} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
@@ -175,6 +171,37 @@ const _nav = [
         component: CNavItem,
         name: 'Update Profile',
         to: '/profile',
+      },
+      {
+        component: CNavItem,
+        name: 'Dasboard',
+        to: '/#',
+        badge: {
+          color: 'info',
+          text: 'SOON',
+        },
+        disabled: true
+      },
+      {
+        component: CNavItem,
+        name: 'Send Message',
+        to: '/#',
+        badge: {
+          color: 'info',
+          text: 'SOON',
+        },
+        disabled: true
+      },
+      {
+        component: CNavItem,
+        name: 'Money Transfer',
+        to: '/#',
+        badge: {
+          color: 'info',
+          text: 'SOON',
+          size: 'sm'
+        },
+        disabled: true
       },
     ],
   },

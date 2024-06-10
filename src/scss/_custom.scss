@@ -286,7 +286,7 @@ body.dark-mode .multiselect-container .group-heading {
 .custom-dropdown-toggle:hover, 
 .custom-dropdown-toggle:focus, 
 .custom-dropdown-toggle:active {
-  background-color: rgba(255, 255, 255, 0.1); /* Add hover effect */
+  background-color: rgba(211, 211, 211, 0.2); /* Add hover effect */
   cursor: pointer;
   border: none;
   box-shadow: none;
@@ -439,3 +439,76 @@ body.dark-mode .multiselect-container .group-heading {
   width: 3px;
   height: 3px;
 }
+
+/*custom theme toggle switch */
+.align-items-center {
+  display: flex;
+  align-items: center;
+}
+.mx-1 {
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+.me-2 {
+  margin-right: 0.5rem;
+}
+.ms-2 {
+  margin-left: 0.5rem;
+}
+
+.switch-light .form-check-input {
+  background-color: transparent !important;
+  border-color: black !important;
+  width: 50px !important;
+  height: 25px !important;
+}
+
+.switch-light .form-check-input:checked {
+  background-color: transparent !important;
+  border-color: black !important;
+}
+
+.switch-light .form-check-input:checked::before {
+  background-color: black !important;
+  border-color: black !important;
+  transform: translateX(25px) !important;
+}
+
+/*custom theme toggle switch dark mode */
+.switch-dark .form-check-input {
+  background-color: transparent !important;
+  border-color: #ffc107 !important;
+  width: 50px !important;
+  height: 25px !important;
+}
+
+.switch-dark .form-check-input:checked {
+  background-color: transparent !important;
+  border-color: #ffc107 !important;
+}
+
+.switch-dark .form-check-input:checked::before {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+  transform: translateX(25px) !important;
+}
+
+.switch-light .form-check-input::before {
+  background-color: black !important;
+  border-color: black !important;
+}
+
+.switch-dark .form-check-input::before {
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+/* Adjust the circle inside the switch */
+.switch-light .form-check-input::before,
+.switch-dark .form-check-input::before {
+  width: 20px !important;
+  height: 20px !important;
+  top: 2px !important;
+  left: 2px !important;
+}
+
