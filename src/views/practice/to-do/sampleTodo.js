@@ -15,8 +15,6 @@ import {
     CModalBody,
     CModalFooter,
     CForm,
-    CFormLabel,
-    CInputGroup,
     CFormInput,
     CFormSelect,
     CFormTextarea,
@@ -129,29 +127,31 @@ const SampleToDo = () => {
             return;
         }
 
-        axios.post('http://localhost:5000/api/tasks', {
+        const taskToAdd = {
             ...newTask,
             start_date: new Date(newTask.start_date).getTime() / 1000,
             target_end_date: newTask.target_end_date ? new Date(newTask.target_end_date).getTime() / 1000 : null,
-        }, {
+        };
+
+        axios.post('http://localhost:5000/api/tasks', taskToAdd, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
         })
-            .then(response => {
-                setTasks([...tasks, response.data]);
-                setModalVisible(false);
-                setNewTask({
-                    title: '',
-                    content: '',
-                    start_date: '',
-                    target_end_date: '',
-                    status: currentColumn,
-                });
-                setErrors({});
-            })
-            .catch(error => console.error(error));
+        .then(response => {
+            setTasks(prevTasks => [...prevTasks, response.data]);
+            setModalVisible(false);
+            setNewTask({
+                title: '',
+                content: '',
+                start_date: '',
+                target_end_date: '',
+                status: currentColumn,
+            });
+            setErrors({});
+        })
+        .catch(error => console.error(error));
     };
 
     const handleOpenModal = (columnId) => {
@@ -177,26 +177,25 @@ const SampleToDo = () => {
             return;
         }
 
-        axios.put(`http://localhost:5000/api/tasks/${taskBeingEdited.id}`, {
+        const updatedTask = {
             ...taskBeingEdited,
             start_date: new Date(taskBeingEdited.start_date).getTime() / 1000,
             target_end_date: taskBeingEdited.target_end_date ? new Date(taskBeingEdited.target_end_date).getTime() / 1000 : null,
-        }, {
+        };
+
+        axios.put(`http://localhost:5000/api/tasks/${taskBeingEdited.id}`, updatedTask, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
             },
         })
-            .then(response => {
-                const updatedTasks = tasks.map(task =>
-                    task.id === response.data.id ? response.data : task
-                );
-                setTasks(updatedTasks);
-                setEditModalVisible(false);
-                setTaskBeingEdited(null);
-                setErrors({});
-            })
-            .catch(error => console.error(error));
+        .then(response => {
+            setTasks(prevTasks => prevTasks.map(task => task.id === response.data.id ? response.data : task));
+            setEditModalVisible(false);
+            setTaskBeingEdited(null);
+            setErrors({});
+        })
+        .catch(error => console.error(error));
     };
 
     const handleDeleteTask = (taskId) => {
