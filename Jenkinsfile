@@ -16,17 +16,30 @@ pipeline {
         }
         stage('Frontend Build') {
             steps {
-                dir('testzone360/frontend') {
-                    sh 'npm install && npm run build'
+                dir('testzone360') {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
+        stage('Verify Build and Backend Directories') {
+            steps {
+                dir('testzone360') {
+                    sh 'ls -la build'
+                    sh 'ls -la backend'
                 }
             }
         }
         stage('Deploy') {
             steps {
                 
-                sh 'cp -r testzone360/build/* /var/www/html'
-                sh 'cp -r testzone360/backend/* /var/www/html/api'
+                // Copy the entire build folder to /var/www/html
+                sh 'sudo cp -r testzone360/build/* /var/www/html/'
                 
+                // Copy the entire backend folder to /var/www/html/api
+                sh 'sudo cp -r testzone360/backend/* /var/www/html/api'
+                
+                // Restart Nginx to apply the changes
                 sh 'sudo systemctl restart nginx'
             }
         }
