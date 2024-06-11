@@ -28,9 +28,10 @@ const Login = () => {
     try {
       const response = await fetch('http://localhost:5000/api/user/login', {
         method: 'POST',
-        body: JSON.stringify({ 
-          email, 
-          password }),
+        body: JSON.stringify({
+          email,
+          password
+        }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -50,11 +51,18 @@ const Login = () => {
     }
   };
 
+  const handleCreateAcctLink = () => {
+    navigate('/register');
+  };
+
   return (
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
-          <CCol md={5}>
+          <CCol xs={12} sm={10} md={8} lg={6} xl={5}>
+            <div className="alert alert-warning text-center mb-4" role="alert">
+              This is a demo site. Please do not use personal data.
+            </div>
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
@@ -73,7 +81,7 @@ const Login = () => {
                       />
                     </CInputGroup>
 
-                    <CInputGroup className="mb-2">
+                    <CInputGroup className="mb-4">
                       <CInputGroupText>
                         <CIcon icon={cilLockLocked} />
                       </CInputGroupText>
@@ -86,14 +94,6 @@ const Login = () => {
                       />
                     </CInputGroup>
 
-                    <CRow className="mb-3">
-                      <CCol className="text-center">
-                        <CButton color="link" className="px-0">
-                          Forgot password?
-                        </CButton>
-                      </CCol>
-                    </CRow>
-
                     <CRow className="mb-5">
                       <CCol className="text-center">
                         <CButton color="primary" className="px-0 w-100" onClick={handleLogin}>
@@ -104,7 +104,11 @@ const Login = () => {
 
                     <CRow>
                       <CCol className="text-center">
-                          Don't have an account? Create Account
+                        Don't have an account?
+                        <CButton color="link" onClick={handleCreateAcctLink}>
+                          Create Account
+                        </CButton>
+
                       </CCol>
                     </CRow>
 

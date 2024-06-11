@@ -41,13 +41,16 @@ const Register = () => {
     });
   };
 
+  const handleLoginLink = () => {
+    navigate('/login');
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/api/user/register', formData);
-      // console.log('Registration successful:', response.data);
       setShowToast(true);
-  
+
       setTimeout(() => {
         navigate('/login');
       }, 2500);
@@ -60,7 +63,10 @@ const Register = () => {
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
-          <CCol md={9} lg={7} xl={6}>
+        <CCol xs={12} sm={10} md={8} lg={6} xl={5}>
+            <div className="alert alert-warning text-center mb-4" role="alert">
+              This is a demo site. Please do not use personal data.
+            </div>
             <CCard className="mx-4">
               <CCardBody className="p-4">
                 <CForm
@@ -149,7 +155,11 @@ const Register = () => {
                   </div>
 
                   <CRow>
-                    <CCol className="text-center">Already have an account? Login Account</CCol>
+                    <CCol className="text-center">Already have an account?
+                      <CButton color='link' onClick={handleLoginLink}>
+                        Login Account
+                      </CButton>
+                    </CCol>
                   </CRow>
                 </CForm>
               </CCardBody>
