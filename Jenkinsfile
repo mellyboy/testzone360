@@ -23,8 +23,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'cp -r testzone360/build /var/www/html'
-                sh 'cp -r testzone360/backend /var/www/html/api'
+                
+                sh 'cp -r testzone360/build/* /var/www/html'
+                sh 'cp -r testzone360/backend/* /var/www/html/api'
                 
                 sh 'sudo systemctl restart nginx'
             }
