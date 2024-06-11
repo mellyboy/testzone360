@@ -9,25 +9,21 @@ pipeline {
         }
         stage('Backend Build') {
             steps {
-                dir('testzone360/backend') {
+                dir('backend') {
                     sh 'npm install'
                 }
             }
         }
         stage('Frontend Build') {
             steps {
-                dir('testzone360') {
-                    sh 'npm install'
-                    sh 'npm run build'
-                }
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
         stage('Verify Build and Backend Directories') {
             steps {
-                dir('testzone360') {
-                    sh 'ls -la build'
-                    sh 'ls -la backend'
-                }
+                sh 'ls -la build'
+                sh 'ls -la backend'
             }
         }
         stage('Deploy') {
