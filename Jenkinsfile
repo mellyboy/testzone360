@@ -30,13 +30,13 @@ pipeline {
             steps {
                 
                 // Copy the entire build folder to /var/www/html
-                sh 'sudo cp -r testzone360/build/* /var/www/html/'
+                sh 'cp -r testzone360/build/* /var/www/html/'
                 
                 // Copy the entire backend folder to /var/www/html/api
-                sh 'sudo cp -r testzone360/backend/* /var/www/html/api'
+                sh 'cp -r testzone360/backend/* /var/www/html/api'
                 
                 // Restart Nginx to apply the changes
-                sh 'sudo systemctl restart nginx'
+                sh 'systemctl restart nginx'
             }
         }
     }
