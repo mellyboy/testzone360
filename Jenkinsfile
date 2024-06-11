@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/mellyboy/testzone360.git'
+                git clone 'https://github.com/mellyboy/testzone360.git'
             }
         }
         stage('Backend Build') {
