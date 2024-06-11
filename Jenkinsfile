@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/mellyboy/testzone360.git'
+                git url: 'https://github.com/mellyboy/testzone360.git', credentialsId: 'github-pat'
             }
         }
         stage('Backend Build') {
