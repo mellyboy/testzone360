@@ -14,7 +14,7 @@ import {
 const Accordion = () => {
     return (
         <CRow>
-            <CCol xs={6}>
+            <CCol xs={12} md={6}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example 1</strong><small>{' '}| Auto-close</small>
@@ -69,7 +69,7 @@ const Accordion = () => {
                 </CCard>
             </CCol>
 
-            <CCol xs={6}>
+            <CCol xs={12} md={6}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example 2</strong><small>{' '}| Stays Open</small>
