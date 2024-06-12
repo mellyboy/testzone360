@@ -55,3 +55,13 @@ CREATE TABLE IF NOT EXISTS tasks (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+ALTER TABLE likes
+DROP CONSTRAINT likes_feed_id_fkey,
+ADD CONSTRAINT likes_feed_id_fkey
+FOREIGN KEY (feed_id) REFERENCES feeds(id) ON DELETE CASCADE;
+
+ALTER TABLE comments
+DROP CONSTRAINT comments_feed_id_fkey,
+ADD CONSTRAINT comments_feed_id_fkey
+FOREIGN KEY (feed_id) REFERENCES feeds(id) ON DELETE CASCADE;

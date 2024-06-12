@@ -136,6 +136,7 @@ const GlobalFeed = () => {
     const handleDeleteFeed = (feedId) => {
         setGlobalFeeds(globalFeeds.filter(feed => feed.id !== feedId));
         setMyFeeds(myFeeds.filter(feed => feed.id !== feedId));
+        window.location.reload();
     };
 
     const handleUpdateFeed = (updatedFeed) => {
