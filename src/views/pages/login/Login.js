@@ -26,6 +26,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      console.log(import.meta.env.VITE_APP_API_URL)
       const apiURL = import.meta.env.VITE_APP_API_URL;
       const response = await fetch(`${apiURL}/user/login`, {
         method: 'POST',
