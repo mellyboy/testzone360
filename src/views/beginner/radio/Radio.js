@@ -27,8 +27,8 @@ const RadioButton = () => {
 
     return (
         <CRow className="d-flex align-items-stretch">
-            <CCol xs={4} className="d-flex flex-grow-1">
-                <CCard className="d-flex flex-column mb-4 flex-grow-1">
+            <CCol xs={12} md={6} lg={4} className="mb-4 d-flex flex-column">
+                <CCard className="flex-grow-1">
                     <CCardHeader>
                         <strong>Example 1</strong><small>{' '}| Basic Radio Button</small>
                     </CCardHeader>
@@ -68,8 +68,8 @@ const RadioButton = () => {
                 </CCard>
             </CCol>
 
-            <CCol xs={4} className="d-flex flex-grow-1">
-                <CCard className="d-flex flex-column mb-4 flex-grow-1">
+            <CCol xs={12} md={6} lg={4} className="mb-4 d-flex flex-column">
+                <CCard className="flex-grow-1">
                     <CCardHeader>
                         <strong>Example 2</strong><small>{' '}| Disabled Radio Button</small>
                     </CCardHeader>
@@ -108,13 +108,13 @@ const RadioButton = () => {
                 </CCard>
             </CCol>
 
-            <CCol xs={4} className="d-flex flex-grow-1">
-                <CCard className="d-flex flex-column mb-4 flex-grow-1">
+            <CCol xs={12} lg={4} className="mb-4 d-flex flex-column">
+                <CCard className="flex-grow-1">
                     <CCardHeader>
                         <strong>Example 3</strong><small>{' '}| Radio as Toggle Button</small>
                     </CCardHeader>
                     <CCardBody className="d-flex flex-column">
-                        <div className="d-flex justify-content-around mb-5">
+                        <div className="d-flex justify-content-around mb-5 flex-wrap">
                             <CFormCheck
                                 button={{ color: 'success', variant: 'outline' }}
                                 type="radio"
@@ -125,6 +125,7 @@ const RadioButton = () => {
                                 label="Paid"
                                 checked={selectedToggleButton === 'Paid'}
                                 onChange={handleToggleButtonChange}
+                                className="mb-2"
                             />
                             <CFormCheck
                                 button={{ color: 'warning', variant: 'outline' }}
@@ -136,6 +137,7 @@ const RadioButton = () => {
                                 label="Pending"
                                 checked={selectedToggleButton === 'Pending'}
                                 onChange={handleToggleButtonChange}
+                                className="mb-2"
                             />
                             <CFormCheck
                                 button={{ color: 'danger', variant: 'outline' }}
@@ -147,6 +149,7 @@ const RadioButton = () => {
                                 label="Overdue"
                                 checked={selectedToggleButton === 'Overdue'}
                                 onChange={handleToggleButtonChange}
+                                className="mb-2"
                             />
                         </div>
                         <div className="output-box">Selected: {selectedToggleButton}</div>
