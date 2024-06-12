@@ -15,7 +15,8 @@ import {
   CToast,
   CToastBody,
   CToastClose,
-  CToaster
+  CToaster,
+  CFormFeedback
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilHome, cilLockLocked, cilUser } from '@coreui/icons'
@@ -32,6 +33,7 @@ const Register = () => {
   });
 
   const [showToast, setShowToast] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +49,37 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const strictEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    // Validation logic
+    if (formData.firstName.length > 50) {
+      newErrors.firstName = 'First Name must be 50 characters or less';
+    }
+    if (formData.lastName.length > 50) {
+      newErrors.lastName = 'Last Name must be 50 characters or less';
+    }
+    if (formData.address.length > 100) {
+      newErrors.address = 'Address must be 100 characters or less';
+    }
+    if (formData.email.length > 254) {
+      newErrors.email = 'Email must be 254 characters or less';
+    } else if (!strictEmailRegex.test(formData.email)) {
+      newErrors.email = 'Email format is invalid';
+    }
+    if (formData.password.length > 100) {
+      newErrors.password = 'Password must be 100 characters or less';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    } else {
+      setErrors({});
+    }
+
     try {
       const apiURL = import.meta.env.VITE_APP_API_URL;
       const response = await axios.post(`${apiURL}/user/register`, formData);
@@ -88,7 +121,9 @@ const Register = () => {
                       value={formData.firstName}
                       onChange={handleChange}
                       required
+                      invalid={!!errors.firstName}
                     />
+                    {errors.firstName && <CFormFeedback invalid>{errors.firstName}</CFormFeedback>}
                   </CInputGroup>
 
                   <CInputGroup className="mb-4">
@@ -103,7 +138,9 @@ const Register = () => {
                       value={formData.lastName}
                       onChange={handleChange}
                       required
+                      invalid={!!errors.lastName}
                     />
+                    {errors.lastName && <CFormFeedback invalid>{errors.lastName}</CFormFeedback>}
                   </CInputGroup>
 
                   <CInputGroup className="mb-4">
@@ -118,7 +155,9 @@ const Register = () => {
                       value={formData.address}
                       onChange={handleChange}
                       required
+                      invalid={!!errors.address}
                     />
+                    {errors.address && <CFormFeedback invalid>{errors.address}</CFormFeedback>}
                   </CInputGroup>
 
                   <CInputGroup className="mb-4">
@@ -131,7 +170,9 @@ const Register = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      invalid={!!errors.email}
                     />
+                    {errors.email && <CFormFeedback invalid>{errors.email}</CFormFeedback>}
                   </CInputGroup>
 
                   <CInputGroup className="mb-4">
@@ -146,7 +187,9 @@ const Register = () => {
                       value={formData.password}
                       onChange={handleChange}
                       required
+                      invalid={!!errors.password}
                     />
+                    {errors.password && <CFormFeedback invalid>{errors.password}</CFormFeedback>}
                   </CInputGroup>
 
                   <div className="d-grid mb-5">
