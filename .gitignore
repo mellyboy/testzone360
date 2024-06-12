@@ -34,3 +34,4 @@ yarn-error.log*
 /backend/database.db*
 
 /pg/node_modules
+/pg/config/
