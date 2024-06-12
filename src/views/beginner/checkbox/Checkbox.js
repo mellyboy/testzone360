@@ -53,7 +53,7 @@ const Checkbox = () => {
                     state[node.parent.label] = false;
                 }
 
-                updateParentState(node.parent, state); // Recursively update parent state
+                updateParentState(node.parent, state);
             }
         };
 
@@ -155,7 +155,7 @@ const Checkbox = () => {
                                     key={index}
                                     id={`${index}-Checkbox`}
                                     name={fruit.name}
-                                    label={`${fruit.name} ($${fruit.price.toFixed(2)})`}
+                                    label={`${fruit.name} (₱${fruit.price.toFixed(2)})`}
                                     value={fruit.name}
                                     checked={selectedFruits[index]}
                                     onChange={() => handleFruitChange(index)}
