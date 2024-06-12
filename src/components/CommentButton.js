@@ -10,6 +10,7 @@ const CommentButton = ({ feedId,currentUserId  }) => {
     const [comments, setComments] = useState([]);
     const [newComment, setNewComment] = useState('');
     const token = localStorage.getItem('token');
+    const apiURL = import.meta.env.VITE_APP_API_URL;
 
     useEffect(() => {
         if (isOpen) {
@@ -19,7 +20,7 @@ const CommentButton = ({ feedId,currentUserId  }) => {
 
     const fetchComments = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/api/feeds/${feedId}/comments`, {
+            const response = await axios.get(`${apiURL}/feeds/${feedId}/comments`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -34,7 +35,7 @@ const CommentButton = ({ feedId,currentUserId  }) => {
 
     const handleAddComment = async () => {
         try {
-            const response = await axios.post(`http://localhost:5000/api/feeds/${feedId}/comments`, {
+            const response = await axios.post(`${apiURL}/feeds/${feedId}/comments`, {
                 content: newComment
             }, {
                 headers: {
@@ -43,7 +44,7 @@ const CommentButton = ({ feedId,currentUserId  }) => {
             });
             if (response.status === 201) {
                 // Fetch the user information
-                const userResponse = await axios.get(`http://localhost:5000/api/user/userprofile?id=${currentUserId}`, {
+                const userResponse = await axios.get(`${apiURL}/user/userprofile`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

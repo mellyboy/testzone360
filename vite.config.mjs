@@ -1,9 +1,11 @@
-import { defineConfig, loadEnv } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'node:path'
-import autoprefixer from 'autoprefixer'
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'node:path';
+import autoprefixer from 'autoprefixer';
 
 export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '');
+
   return {
     base: './',
     build: {
@@ -45,5 +47,11 @@ export default defineConfig(({ mode }) => {
         // https://vitejs.dev/config/server-options.html
       },
     },
-  }
-})
+    define: {
+      'process.env': {
+        ...process.env,
+        ...env,
+      },
+    },
+  };
+});

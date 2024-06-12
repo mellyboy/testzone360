@@ -31,22 +31,23 @@ const GlobalFeed = () => {
     const [newFeedTitle, setNewFeedTitle] = useState('');
     const [newFeedContent, setNewFeedContent] = useState('');
     const [errors, setErrors] = useState({ title: '', content: '' });
+    const apiURL = import.meta.env.VITE_APP_API_URL;
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         fetchGlobalFeeds();
-
-        const token = localStorage.getItem('token');
         if (token) {
             const decodedToken = jwtDecode(token);
             const userIdFromToken = decodedToken.id;
             setUserId(userIdFromToken);
             fetchMyFeeds(userIdFromToken, token);
+
         }
     }, [activeKey]);
 
-    const fetchGlobalFeeds = async () => {
+    const fetchGlobalFeeds = async (token) => {
         try {
-            const response = await fetch('http://localhost:5000/api/feeds');
+            const response = await fetch(`${apiURL}/feeds`);
             const data = await response.json();
             setGlobalFeeds(data);
         } catch (error) {
@@ -57,7 +58,7 @@ const GlobalFeed = () => {
 
     const fetchMyFeeds = async (userId, token) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/feeds/${userId}`, {
+            const response = await fetch(`${apiURL}/feeds/${userId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -103,7 +104,7 @@ const GlobalFeed = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('http://localhost:5000/api/feeds', {
+            const response = await fetch(`${apiURL}/feeds`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -135,6 +136,7 @@ const GlobalFeed = () => {
     const handleDeleteFeed = (feedId) => {
         setGlobalFeeds(globalFeeds.filter(feed => feed.id !== feedId));
         setMyFeeds(myFeeds.filter(feed => feed.id !== feedId));
+        window.location.reload();
     };
 
     const handleUpdateFeed = (updatedFeed) => {

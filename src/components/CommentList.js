@@ -7,11 +7,12 @@ import Icon from '@mdi/react';
 import { mdiDelete } from '@mdi/js';
 
 const CommentsList = ({ comments, currentUserId, onDeleteComment }) => {
+    const apiURL = import.meta.env.VITE_APP_API_URL;
 
     const handleDelete = async (commentId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:5000/api/comments/${commentId}`, {
+            await axios.delete(`${apiURL}/comments/${commentId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

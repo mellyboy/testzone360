@@ -14,10 +14,12 @@
     "url": "https://github.com/mellyboy/testzone360/issues"
   },
   "scripts": {
-    "build": "vite build",
+    "build:dev": "cross-env NODE_ENV=development vite build",
+    "build:prod": "cross-env NODE_ENV=production vite build",
     "lint": "eslint \"src/**/*.js\"",
     "serve": "vite preview",
-    "start": "vite"
+    "start:dev": "cross-env NODE_ENV=development vite",
+    "start": "cross-env NODE_ENV=production vite"
   },
   "dependencies": {
     "@coreui/chartjs": "^4.0.0",
@@ -35,6 +37,7 @@
     "chart.js": "^4.4.2",
     "classnames": "^2.5.1",
     "core-js": "^3.36.1",
+    "dotenv": "^16.4.5",
     "jwt-decode": "^4.0.0",
     "multiselect-react-dropdown": "^2.0.25",
     "prop-types": "^15.8.1",
@@ -52,6 +55,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",

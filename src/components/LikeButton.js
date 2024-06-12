@@ -9,6 +9,7 @@ const LikeButton = ({ feedId, initialLikes, initialIsLiked, onLikeChange }) => {
     const [likes, setLikes] = useState(initialLikes);
     const [isLiked, setIsLiked] = useState(initialIsLiked);
     const token = localStorage.getItem('token');
+    const apiURL = import.meta.env.VITE_APP_API_URL;
 
     const handleLike = async () => {
         if (token) {
@@ -17,7 +18,7 @@ const LikeButton = ({ feedId, initialLikes, initialIsLiked, onLikeChange }) => {
 
             if (isLiked) {
                 try {
-                    const response = await axios.delete(`http://localhost:5000/api/feeds/${feedId}/likes`, {
+                    const response = await axios.delete(`${apiURL}/feeds/${feedId}/likes`, {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         },
@@ -33,7 +34,7 @@ const LikeButton = ({ feedId, initialLikes, initialIsLiked, onLikeChange }) => {
                 }
             } else {
                 try {
-                    const response = await axios.post(`http://localhost:5000/api/feeds/${feedId}/likes`, {
+                    const response = await axios.post(`${apiURL}/feeds/${feedId}/likes`, {
                         user_id: userId
                     }, {
                         headers: {
