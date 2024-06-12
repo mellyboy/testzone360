@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { jwtDecode } from "jwt-decode";
+import {jwtDecode} from 'jwt-decode';
 import Icon from '@mdi/react';
 import { mdiRefresh } from '@mdi/js';
 import {
@@ -13,10 +13,9 @@ import {
     CFormInput,
     CFormLabel,
     CFormSelect,
-    CInputGroup,
-    CInputGroupText,
     CRow,
-    CAlert
+    CAlert,
+    CFormFeedback
 } from '@coreui/react';
 
 const UserProfile = () => {
@@ -37,6 +36,7 @@ const UserProfile = () => {
     });
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState('');
+    const [errors, setErrors] = useState({});
     const apiURL = import.meta.env.VITE_APP_API_URL;
 
     useEffect(() => {
@@ -86,6 +86,49 @@ const UserProfile = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const newErrors = {};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const strictEmailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+        // Validation logic
+        if (profileData.firstName.length > 50) {
+            newErrors.firstName = 'First Name must be 50 characters or less';
+        }
+        if (profileData.lastName.length > 50) {
+            newErrors.lastName = 'Last Name must be 50 characters or less';
+        }
+        if (profileData.address.length > 100) {
+            newErrors.address = 'Address must be 100 characters or less';
+        }
+        if (profileData.addressLine2.length > 100) {
+            newErrors.addressLine2 = 'Address Line 2 must be 100 characters or less';
+        }
+        if (profileData.city.length > 100) {
+            newErrors.city = 'City must be 100 characters or less';
+        }
+        if (profileData.region.length > 100) {
+            newErrors.region = 'Region must be 100 characters or less';
+        }
+        if (profileData.zipCode.length > 10) {
+            newErrors.zipCode = 'Zip Code must be 10 characters or less';
+        }
+        if (profileData.accountNumber.length > 20) {
+            newErrors.accountNumber = 'Account Number must be 20 characters or less';
+        }
+        if (profileData.email.length > 254) {
+            newErrors.email = 'Email must be 254 characters or less';
+        } else if (!strictEmailRegex.test(profileData.email)) {
+            newErrors.email = 'Email format is invalid';
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        } else {
+            setErrors({});
+        }
+
         const token = localStorage.getItem('token');
 
         try {
@@ -146,7 +189,9 @@ const UserProfile = () => {
                                         placeholder="First Name"
                                         value={profileData.firstName || ''}
                                         onChange={handleChange}
+                                        invalid={!!errors.firstName}
                                     />
+                                    {errors.firstName && <CFormFeedback invalid>{errors.firstName}</CFormFeedback>}
                                 </CCol>
 
                                 <CCol md={6}>
@@ -158,7 +203,9 @@ const UserProfile = () => {
                                         placeholder="Last Name"
                                         value={profileData.lastName || ''}
                                         onChange={handleChange}
+                                        invalid={!!errors.lastName}
                                     />
+                                    {errors.lastName && <CFormFeedback invalid>{errors.lastName}</CFormFeedback>}
                                 </CCol>
 
                                 <CCol xs={12}>
@@ -169,7 +216,9 @@ const UserProfile = () => {
                                         placeholder="Street Address Line 1"
                                         value={profileData.address || ''}
                                         onChange={handleChange}
+                                        invalid={!!errors.address}
                                     />
+                                    {errors.address && <CFormFeedback invalid>{errors.address}</CFormFeedback>}
                                 </CCol>
 
                                 <CCol xs={12}>
@@ -179,7 +228,9 @@ const UserProfile = () => {
                                         placeholder="Street Address Line 2"
                                         value={profileData.addressLine2 || ''}
                                         onChange={handleChange}
+                                        invalid={!!errors.addressLine2}
                                     />
+                                    {errors.addressLine2 && <CFormFeedback invalid>{errors.addressLine2}</CFormFeedback>}
                                 </CCol>
 
                                 <CCol xs={6}>
@@ -189,7 +240,9 @@ const UserProfile = () => {
                                         placeholder="City"
                                         value={profileData.city || ''}
                                         onChange={handleChange}
+                                        invalid={!!errors.city}
                                     />
+                                    {errors.city && <CFormFeedback invalid>{errors.city}</CFormFeedback>}
                                 </CCol>
 
                                 <CCol xs={6}>
@@ -199,7 +252,9 @@ const UserProfile = () => {
                                         placeholder="Region"
                                         value={profileData.region || ''}
                                         onChange={handleChange}
+                                        invalid={!!errors.region}
                                     />
+                                    {errors.region && <CFormFeedback invalid>{errors.region}</CFormFeedback>}
                                 </CCol>
                                 <CCol xs={6}>
                                     <CFormInput
@@ -208,7 +263,9 @@ const UserProfile = () => {
                                         placeholder="Zip Code"
                                         value={profileData.zipCode || ''}
                                         onChange={handleChange}
+                                        invalid={!!errors.zipCode}
                                     />
+                                    {errors.zipCode && <CFormFeedback invalid>{errors.zipCode}</CFormFeedback>}
                                 </CCol>
 
                                 <CCol xs={6}>
@@ -261,11 +318,13 @@ const UserProfile = () => {
                                         placeholder="Email Address"
                                         value={profileData.email || ''}
                                         onChange={handleChange}
+                                        invalid={!!errors.email}
                                     />
+                                    {errors.email && <CFormFeedback invalid>{errors.email}</CFormFeedback>}
                                 </CCol>
 
                                 <CCol xs={12}>
-                                    <CFormLabel>Contact Number</CFormLabel>
+                                    <CFormLabel>Account Number</CFormLabel>
                                     <CFormInput
                                         type="text"
                                         id="accountNumber"
@@ -273,7 +332,9 @@ const UserProfile = () => {
                                         placeholder="Account Number"
                                         value={profileData.accountNumber || ''}
                                         onChange={handleChange}
+                                        invalid={!!errors.accountNumber}
                                     />
+                                    {errors.accountNumber && <CFormFeedback invalid>{errors.accountNumber}</CFormFeedback>}
                                 </CCol>
 
                                 <CCol xs={12}>
