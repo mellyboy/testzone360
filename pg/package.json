@@ -4,7 +4,7 @@
   "description": "'testzone360 backend'",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=prod node index.js",
+    "start": "node index.js",
     "start:dev": "cross-env NODE_ENV=dev node index.js"
   },
   "author": "Melly",
