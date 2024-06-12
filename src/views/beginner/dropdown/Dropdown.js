@@ -29,7 +29,6 @@ const Dropdown = () => {
             });
     }, []);
 
-    // Function to handle the change in selected country
     const handleCountryChange = (event) => {
         setSelectedCountry(event.target.value);
     };
@@ -59,7 +58,7 @@ const Dropdown = () => {
             'borderBottom': 'none',
             'borderRadius': '0px'
         }
-    }
+    };
 
     const [selectedAction, setSelectedAction] = useState('');
 
@@ -92,30 +91,21 @@ const Dropdown = () => {
                         <CCardBody>
                             <CContainer>
                                 <CRow>
-                                    <CCol xs={6}>
-                                        <CRow>
-                                            <CCol xs={12}>
-                                                <CFormSelect
-                                                    label="Select Country"
-                                                    size="lg"
-                                                    className="mb-3"
-                                                    options={countries.map(country => ({
-                                                        value: country.label,
-                                                        label: country.label
-                                                    }))}
-                                                    onChange={handleCountryChange}
-                                                />
-                                            </CCol>
-                                        </CRow>
+                                    <CCol xs={12} md={6}>
+                                        <CFormSelect
+                                            label="Select Country"
+                                            size="lg"
+                                            className="mb-3"
+                                            options={countries.map(country => ({
+                                                value: country.label,
+                                                label: country.label
+                                            }))}
+                                            onChange={handleCountryChange}
+                                        />
                                     </CCol>
-                                    <CCol xs={6}>
-                                        <CRow>
-                                            <CCol>
-                                                {/* Display selected country */}
-                                                <p>Selected Country:</p>
-                                                <p id='selectedCountry'>{selectedCountry}</p>
-                                            </CCol>
-                                        </CRow>
+                                    <CCol xs={12} md={6}>
+                                        <p>Selected Country:</p>
+                                        <p id='selectedCountry'>{selectedCountry}</p>
                                     </CCol>
                                 </CRow>
                             </CContainer>
@@ -123,17 +113,16 @@ const Dropdown = () => {
                     </CCard>
                 </CCol>
 
-                <CCol xs={6}>
+                <CCol xs={12}>
                     <CCard className="mb-4">
                         <CCardHeader>
-                            <strong>Example 1</strong>
+                            <strong>Example 2</strong>
                             <small>{' '}| Multi-Select</small>
                         </CCardHeader>
                         <CCardBody>
                             <label className='form-label'>Programming Language</label>
                             <div className='mb-3'>
                                 <Multiselect
-                                    label="Multiselect"
                                     isObject={false}
                                     onKeyPressFn={() => { }}
                                     onRemove={handleRemove}
@@ -184,37 +173,32 @@ const Dropdown = () => {
                     </CCard>
                 </CCol>
 
-                <CCol xs={6}>
+                <CCol xs={12}>
                     <CCard className="mb-4">
                         <CCardHeader>
-                            <strong>Example 1</strong><small>{' '}| Dropdown</small>
+                            <strong>Example 3</strong><small>{' '}| Dropdown</small>
                         </CCardHeader>
                         <CCardBody>
                             <CContainer>
                                 <CRow>
-                                    <CCol xs={6}>
-                                        <CRow>
-                                            <CDropdown>
-                                                <CDropdownToggle color="primary">Some Actions</CDropdownToggle>
-                                                <CDropdownMenu>
-                                                    <CDropdownItem onClick={() => handleActionSelection('print')}>Print: HELLO</CDropdownItem>
-                                                    <CDropdownItem onClick={() => handleActionSelection('dashboard')}>Redirect to Dashboard</CDropdownItem>
-                                                    <CDropdownItem onClick={() => handleActionSelection('google')}>Redirect to Google in New Tab</CDropdownItem>
-                                                </CDropdownMenu>
-                                            </CDropdown>
-                                        </CRow>
+                                    <CCol xs={12} md={6}>
+                                        <CDropdown>
+                                            <CDropdownToggle color="primary">Some Actions</CDropdownToggle>
+                                            <CDropdownMenu>
+                                                <CDropdownItem onClick={() => handleActionSelection('print')}>Print: HELLO</CDropdownItem>
+                                                <CDropdownItem onClick={() => handleActionSelection('dashboard')}>Redirect to Dashboard</CDropdownItem>
+                                                <CDropdownItem onClick={() => handleActionSelection('google')}>Redirect to Google in New Tab</CDropdownItem>
+                                            </CDropdownMenu>
+                                        </CDropdown>
                                     </CCol>
-                                    <CCol xs={6}>
-                                        <CRow>
-                                            <p>{selectedAction}</p>
-                                        </CRow>
+                                    <CCol xs={12} md={6}>
+                                        <p>{selectedAction}</p>
                                     </CCol>
                                 </CRow>
                             </CContainer>
                         </CCardBody>
                     </CCard>
                 </CCol>
-
             </CRow>
         </CContainer>
     );
