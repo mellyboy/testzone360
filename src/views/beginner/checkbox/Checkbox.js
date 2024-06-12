@@ -143,7 +143,7 @@ const Checkbox = () => {
 
     return (
         <CRow className="d-flex align-items-stretch">
-            <CCol xs={6} className="d-flex flex-grow-1">
+            <CCol xs={12} md={6} className="d-flex flex-grow-1">
                 <CCard className="d-flex flex-column mb-4 flex-grow-1">
                     <CCardHeader>
                         <strong>Example 1</strong><small>{' '}| Basic Checkbox</small>
@@ -169,7 +169,7 @@ const Checkbox = () => {
                 </CCard>
             </CCol>
 
-            <CCol xs={6} className="d-flex flex-grow-1">
+            <CCol xs={12} md={6} className="d-flex flex-grow-1">
                 <CCard className="d-flex flex-column mb-4 flex-grow-1">
                     <CCardHeader>
                         <strong>Example 2</strong><small>{' '}| with Disabled Checkbox</small>
@@ -202,7 +202,7 @@ const Checkbox = () => {
 
 
 
-            <CCol xs={6} className="d-flex flex-grow-1">
+            <CCol xs={12} md={6} className="d-flex flex-grow-1">
                 <CCard className="d-flex flex-column mb-4 flex-grow-1">
                     <CCardHeader>
                         <strong>Example 3</strong><small>{' '}| Intermediate Checkbox</small>
@@ -213,7 +213,7 @@ const Checkbox = () => {
                 </CCard>
             </CCol>
 
-            <CCol xs={6} className="d-flex flex-grow-1">
+            <CCol xs={12} md={6} className="d-flex flex-grow-1">
                 <CCard className="d-flex flex-column mb-4 flex-grow-1">
                     <CCardHeader>
                         Output of Example 3
@@ -224,7 +224,7 @@ const Checkbox = () => {
                 </CCard>
             </CCol>
 
-            <CCol xs={6} className="d-flex flex-grow-1">
+            <CCol xs={12} md={6} className="d-flex flex-grow-1">
                 <CCard className="d-flex flex-column mb-4 flex-grow-1">
                     <CCardHeader>
                         <strong>Example 4</strong><small>{' '}| Checkbox as Toggle</small>
