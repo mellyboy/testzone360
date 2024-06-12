@@ -138,9 +138,12 @@ const AppSidebar = () => {
               </CBadge>
             </CDropdownItem>
 
-            <CDropdownItem href="#">
+            <CDropdownItem href="#" disabled>
               <CIcon icon={cilSettings} className="me-2" />
               Settings
+              <CBadge color="info" className="ms-2">
+                SOON
+              </CBadge>
             </CDropdownItem>
             <CDropdownDivider />
             <CDropdownItem as="button" onClick={logout}>

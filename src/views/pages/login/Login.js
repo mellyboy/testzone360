@@ -62,7 +62,8 @@ const Login = () => {
         <CRow className="justify-content-center">
           <CCol xs={12} sm={10} md={8} lg={6} xl={5}>
             <div className="alert alert-warning text-center mb-4" role="alert">
-              This is a demo site. Please do not use personal data.
+              This is a demo site. Please do not use personal data. You can use:
+              dummy@demo.xyz / password
             </div>
             <CCardGroup>
               <CCard className="p-4">

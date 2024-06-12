@@ -64,12 +64,12 @@ const Register = () => {
     <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
-        <CCol xs={12} sm={10} md={8} lg={6} xl={5}>
+          <CCol xs={12} sm={10} md={8} lg={6} xl={5}>
             <div className="alert alert-warning text-center mb-4" role="alert">
               This is a demo site. Please do not use personal data.
             </div>
-            <CCard className="mx-4">
-              <CCardBody className="p-4">
+            <CCard className="p-4">
+              <CCardBody>
                 <CForm
                   onSubmit={handleSubmit}
                 >
