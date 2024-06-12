@@ -1,10 +1,10 @@
 import React from 'react';
 import { CContainer, CRow, CCol, CCard, CCardBody, CImage } from '@coreui/react';
 
-import catImg1 from "src/assets/images/img/cat_img1.jpg"
-import catImg2 from "src/assets/images/img/cat_img2.jpg"
-import catImg3 from "src/assets/images/img/cat_img3.jpg"
-import catImg4 from "src/assets/images/img/cat_img4.jpg"
+import catImg1 from 'src/assets/images/img/cat_img1.jpg';
+import catImg2 from 'src/assets/images/img/cat_img2.jpg';
+import catImg3 from 'src/assets/images/img/cat_img3.jpg';
+import catImg4 from 'src/assets/images/img/cat_img4.jpg';
 
 const getRandomVisibility = () => Math.random() > 0.5; // 50% chance to show the image
 
@@ -17,7 +17,6 @@ const ImageGallery = () => {
         {
             src: "cat_img.jpg",
             attribution: ""
-
         },
         {
             src: catImg2,
@@ -48,7 +47,7 @@ const ImageGallery = () => {
             </CRow>
             <CRow className="image-row">
                 {images.slice(0, 3).map((image, index) => (
-                    <CCol xs={4} className="image-col" key={index}>
+                    <CCol xs={12} sm={6} md={4} className="image-col" key={index}>
                         {getRandomVisibility() ? (
                             <div>
                                 <CImage rounded src={image.src} width={150} height={150} className="image" />
@@ -62,7 +61,7 @@ const ImageGallery = () => {
             </CRow>
             <CRow className="image-row">
                 {images.slice(3).map((image, index) => (
-                    <CCol xs={4} className="image-col" key={index + 3}>
+                    <CCol xs={12} sm={6} md={4} className="image-col" key={index + 3}>
                         {getRandomVisibility() ? (
                             <div>
                                 <CImage rounded src={image.src} width={150} height={150} className="image" />
@@ -83,10 +82,12 @@ const ImageGallery = () => {
                 </CCol>
             </CRow>
             <CRow className='mb-5'>
-                <div className="clearfix">
-                    <CImage align="start" rounded src={catImg1} width={200} height={200} />
-                    <CImage align="end" rounded src={catImg2} width={200} height={200} />
-                </div>
+                <CCol xs={12} md={6} className="d-flex justify-content-center align-items-center">
+                    <CImage rounded src={catImg1} width={200} height={200} />
+                </CCol>
+                <CCol xs={12} md={6} className="d-flex justify-content-center align-items-center">
+                    <CImage rounded src={catImg2} width={200} height={200} />
+                </CCol>
             </CRow>
         </CContainer>
     );
