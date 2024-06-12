@@ -15,11 +15,11 @@
   },
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development vite build",
-    "build:prod": "cross-env NODE_ENV=production vite build",
+    "build": "vite build",
     "lint": "eslint \"src/**/*.js\"",
     "serve": "vite preview",
     "start:dev": "cross-env NODE_ENV=development vite",
-    "start": "cross-env NODE_ENV=production vite"
+    "start": "vite"
   },
   "dependencies": {
     "@coreui/chartjs": "^4.0.0",
