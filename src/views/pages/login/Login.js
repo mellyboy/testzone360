@@ -12,6 +12,8 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
+  CAlert,
+  CFormFeedback
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
 import { cilLockLocked } from '@coreui/icons';
@@ -20,11 +22,39 @@ import { useAuth } from '../../../context/AuthContext';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+  const [serverError, setServerError] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  const validateInputs = () => {
+    const newErrors = {};
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!email) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(email)) {
+      newErrors.email = 'Email format is invalid';
+    }
+
+    if (!password) {
+      newErrors.password = 'Password is required';
+    }
+
+    return newErrors;
+  };
+
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    const newErrors = validateInputs();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    } else {
+      setErrors({});
+    }
+
     try {
       const apiURL = import.meta.env.VITE_APP_API_URL;
       const response = await fetch(`${apiURL}/user/login`, {
@@ -44,11 +74,10 @@ const Login = () => {
         login(data.token);
         navigate('/welcome');
       } else {
-        // Login failed, display error message
-        console.error(data.message);
+        setServerError(data.message || 'Login failed');
       }
     } catch (error) {
-      console.error('Error:', error);
+      setServerError('An error occurred while logging in');
     }
   };
 
@@ -68,9 +97,15 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4">
                 <CCardBody>
-                  <CForm>
+                  <CForm onSubmit={handleLogin}>
                     <h1>Login</h1>
                     <p className="text-body-secondary">Sign In to your account</p>
+
+                    {serverError && (
+                      <CAlert color="danger">
+                        {serverError}
+                      </CAlert>
+                    )}
 
                     <CInputGroup className="mb-4">
                       <CInputGroupText>@</CInputGroupText>
@@ -80,7 +115,9 @@ const Login = () => {
                         autoComplete="username"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        invalid={!!errors.email}
                       />
+                      {errors.email && <CFormFeedback invalid>{errors.email}</CFormFeedback>}
                     </CInputGroup>
 
                     <CInputGroup className="mb-4">
@@ -93,12 +130,14 @@ const Login = () => {
                         autoComplete="new-password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        invalid={!!errors.password}
                       />
+                      {errors.password && <CFormFeedback invalid>{errors.password}</CFormFeedback>}
                     </CInputGroup>
 
                     <CRow className="mb-5">
                       <CCol className="text-center">
-                        <CButton color="primary" className="px-0 w-100" onClick={handleLogin}>
+                        <CButton color="primary" className="px-0 w-100" type="submit">
                           Login
                         </CButton>
                       </CCol>
@@ -110,7 +149,6 @@ const Login = () => {
                         <CButton color="link" onClick={handleCreateAcctLink}>
                           Create Account
                         </CButton>
-
                       </CCol>
                     </CRow>
 
