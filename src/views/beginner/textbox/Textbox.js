@@ -25,9 +25,8 @@ const Textbox = () => {
 
     return (
         <CRow>
-
-            <CCol xs={6}>
-                <CCard className="mb-4">
+            <CCol xs={12} md={6} className="mb-4">
+                <CCard className="h-100">
                     <CCardHeader>
                         <strong>Example 1</strong>
                     </CCardHeader>
@@ -46,8 +45,8 @@ const Textbox = () => {
                     </CCardBody>
                 </CCard>
             </CCol>
-            <CCol xs={6}>
-                <CCard className="mb-4">
+            <CCol xs={12} md={6} className="mb-4">
+                <CCard className="h-100">
                     <CCardHeader>
                         <strong>Example 2</strong>
                     </CCardHeader>
@@ -66,8 +65,8 @@ const Textbox = () => {
                     </CCardBody>
                 </CCard>
             </CCol>
-            <CCol xs={12}>
-                <CCard className="mb-4">
+            <CCol xs={12} className="mb-4">
+                <CCard className="h-100">
                     <CCardHeader>
                         <strong>Example 3</strong>
                     </CCardHeader>
@@ -92,8 +91,8 @@ const Textbox = () => {
                     </CCardBody>
                 </CCard>
             </CCol>
-            <CCol xs={12}>
-                <CCard className="mb-4">
+            <CCol xs={12} className="mb-4">
+                <CCard className="h-100">
                     <CCardHeader>
                         <strong>Example 4</strong><small>{' '}| Input with mask</small>
                     </CCardHeader>
@@ -131,4 +130,4 @@ const Textbox = () => {
     );
 };
 
-export default Textbox
+export default Textbox;
