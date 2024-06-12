@@ -37,6 +37,7 @@ const UserProfile = () => {
     });
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState('');
+    const apiURL = import.meta.env.VITE_APP_API_URL;
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -55,7 +56,7 @@ const UserProfile = () => {
 
     const fetchUserProfile = async (userId, token) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/user/userprofile?id=${userId}`, {
+            const response = await fetch(`${apiURL}/user/userprofile?id=${userId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
@@ -88,7 +89,7 @@ const UserProfile = () => {
         const token = localStorage.getItem('token');
 
         try {
-            const response = await fetch('http://localhost:5000/api/user/userprofile', {
+            const response = await fetch(`${apiURL}/user/userprofile`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

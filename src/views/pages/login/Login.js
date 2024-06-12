@@ -14,7 +14,7 @@ import {
   CRow,
 } from '@coreui/react';
 import CIcon from '@coreui/icons-react';
-import { cilLockLocked, cilUser } from '@coreui/icons';
+import { cilLockLocked } from '@coreui/icons';
 import { useAuth } from '../../../context/AuthContext';
 
 const Login = () => {
@@ -26,7 +26,8 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/user/login', {
+      const apiURL = import.meta.env.VITE_APP_API_URL;
+      const response = await fetch(`${apiURL}/user/login`, {
         method: 'POST',
         body: JSON.stringify({
           email,

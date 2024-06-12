@@ -76,7 +76,8 @@ const AppSidebar = () => {
 
   const fetchUserProfile = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/user/userprofile?id=${userId}`, {
+      const apiURL = import.meta.env.VITE_APP_API_URL;
+      const response = await axios.get(`${apiURL}/user/userprofile`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,

@@ -14,6 +14,7 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
     const [editErrors, setEditErrors] = useState({ title: '', content: '' });
     const [editMessage, setEditMessage] = useState('');
     const [editMessageType, setEditMessageType] = useState('success');
+    const apiURL = import.meta.env.VITE_APP_API_URL;
 
     const handleEditClick = (feed) => {
         setEditFeed(feed);
@@ -23,7 +24,7 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
     useEffect(() => {
         if (token && feeds.length > 0) {
             const feedIds = feeds.map(feed => feed.id);
-            axios.post(`http://localhost:5000/api/feeds/likes`, {
+            axios.post(`${apiURL}/feeds/likes`, {
                 feedIds
             }, {
                 headers: {
@@ -78,7 +79,7 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
 
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.put(`http://localhost:5000/api/feeds/${editFeed.id}`, {
+            const response = await axios.put(`${apiURL}/feeds/${editFeed.id}`, {
                 title: editFeed.title,
                 content: editFeed.content
             }, {
@@ -105,7 +106,7 @@ const FeedList = ({ feeds, currentUserId, onDeleteFeed, onUpdateFeed, onLikeChan
     const handleDeleteFeed = async (feedId) => {
         const token = localStorage.getItem('token');
         try {
-            const response = await axios.delete(`http://localhost:5000/api/feeds/${feedId}`, {
+            const response = await axios.delete(`${apiURL}/feeds/${feedId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

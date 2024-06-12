@@ -50,6 +50,7 @@ const ToDo = () => {
     });
     const [taskBeingEdited, setTaskBeingEdited] = useState(null);
     const [errors, setErrors] = useState({});
+    const apiURL = import.meta.env.VITE_APP_API_URL;
 
     useEffect(() => {
         if (token) {
@@ -84,7 +85,7 @@ const ToDo = () => {
 
         setTasks(newTasks);
 
-        axios.put(`http://localhost:5000/api/tasks/${movedTask.id}`, {
+        axios.put(`${apiURL}/tasks/${movedTask.id}`, {
             title: movedTask.title,
             content: movedTask.content,
             start_date: movedTask.start_date,
@@ -115,7 +116,7 @@ const ToDo = () => {
     };
 
     const fetchAllTasks = async (token) => {
-        axios.get('http://localhost:5000/api/tasks', {
+        axios.get(`${apiURL}/tasks`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
@@ -140,7 +141,7 @@ const ToDo = () => {
             target_end_date: newTask.target_end_date ? new Date(newTask.target_end_date).getTime() / 1000 : null,
         };
 
-        axios.post('http://localhost:5000/api/tasks', taskToAdd, {
+        axios.post(`${apiURL}/tasks`, taskToAdd, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
@@ -191,7 +192,7 @@ const ToDo = () => {
             target_end_date: taskBeingEdited.target_end_date ? new Date(taskBeingEdited.target_end_date).getTime() / 1000 : null,
         };
 
-        axios.put(`http://localhost:5000/api/tasks/${taskBeingEdited.id}`, updatedTask, {
+        axios.put(`${apiURL}/tasks/${taskBeingEdited.id}`, updatedTask, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`,
@@ -208,7 +209,7 @@ const ToDo = () => {
     };
 
     const handleDeleteTask = (taskId) => {
-        axios.delete(`http://localhost:5000/api/tasks/${taskId}`, {
+        axios.delete(`${apiURL}/tasks/${taskId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
             },

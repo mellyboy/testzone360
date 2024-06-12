@@ -4,7 +4,7 @@ const feedController = require('../controller/feed');
 const verifyToken = require('../middleware/auth');
 
 router.post('/feeds', verifyToken, feedController.createFeed);
-router.get('/feeds', verifyToken, feedController.getGlobalFeeds);
+router.get('/feeds', feedController.getGlobalFeeds);
 router.get('/feeds/:userId', verifyToken, feedController.getUserFeeds);
 router.post('/feeds/:feedId/likes', verifyToken, feedController.likeFeed);
 router.delete('/feeds/:feedId/likes', verifyToken, feedController.unlikeFeed);

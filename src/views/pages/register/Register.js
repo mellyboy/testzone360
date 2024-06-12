@@ -48,7 +48,8 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/user/register', formData);
+      const apiURL = import.meta.env.VITE_APP_API_URL;
+      const response = await axios.post(`${apiURL}/user/register`, formData);
       setShowToast(true);
 
       setTimeout(() => {
