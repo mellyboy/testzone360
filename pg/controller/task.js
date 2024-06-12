@@ -2,7 +2,10 @@ const taskModel = require('../model/task');
 const verifyToken = require('../middleware/auth');
 
 const convertUnixToDate = (unixTimestamp) => {
-    return new Date(unixTimestamp * 1000).toISOString();
+    if (!unixTimestamp) return null;
+    const date = new Date(unixTimestamp * 1000);
+    if (isNaN(date.getTime())) return null;
+    return date.toISOString();
 };
 
 exports.createTask = async (req, res) => {
@@ -13,8 +16,8 @@ exports.createTask = async (req, res) => {
             const task = {
                 title,
                 content,
-                start_date: start_date ? convertUnixToDate(start_date) : null,
-                target_end_date: target_end_date ? convertUnixToDate(target_end_date) : null,
+                start_date: start_date ? new Date(start_date).toISOString().split('T')[0] : null,
+                target_end_date: target_end_date ? new Date(target_end_date).toISOString().split('T')[0] : null,
                 status,
                 user_id: req.user.id
             };
@@ -49,8 +52,8 @@ exports.updateTask = async (req, res) => {
             const updates = {
                 title,
                 content,
-                start_date: start_date ? convertUnixToDate(start_date) : null,
-                target_end_date: target_end_date ? convertUnixToDate(target_end_date) : null,
+                start_date: start_date ? new Date(start_date).toISOString().split('T')[0] : null,
+                target_end_date: target_end_date ? new Date(target_end_date).toISOString().split('T')[0] : null,
                 status
             };
 

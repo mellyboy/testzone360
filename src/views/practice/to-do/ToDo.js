@@ -63,6 +63,14 @@ const ToDo = () => {
 
     }, [token]);
 
+    const normalizeDate = (date) => {
+        if (!date) return '';
+        const d = new Date(date);
+        const month = ('0' + (d.getMonth() + 1)).slice(-2);
+        const day = ('0' + d.getDate()).slice(-2);
+        return `${d.getFullYear()}-${month}-${day}`;
+    };
+
     const onDragEnd = (result) => {
         if (!result.destination) return;
 
@@ -77,6 +85,8 @@ const ToDo = () => {
 
         const [movedTask] = sourceTasks.splice(sourceIndex, 1);
         movedTask.status = destinationDroppableId;
+        movedTask.start_date = normalizeDate(movedTask.start_date);
+        movedTask.target_end_date = normalizeDate(movedTask.target_end_date);
         destinationTasks.splice(destinationIndex, 0, movedTask);
 
         const newTasks = tasks.map(task =>
@@ -137,8 +147,8 @@ const ToDo = () => {
 
         const taskToAdd = {
             ...newTask,
-            start_date: new Date(newTask.start_date).getTime() / 1000,
-            target_end_date: newTask.target_end_date ? new Date(newTask.target_end_date).getTime() / 1000 : null,
+            start_date: newTask.start_date || null,
+            target_end_date: newTask.target_end_date || null,
         };
 
         axios.post(`${apiURL}/tasks`, taskToAdd, {
@@ -174,7 +184,18 @@ const ToDo = () => {
     };
 
     const handleOpenEditModal = (task) => {
-        setTaskBeingEdited(task);
+        const formatDate = (date) => {
+            const d = new Date(date);
+            const month = ('0' + (d.getMonth() + 1)).slice(-2);
+            const day = ('0' + d.getDate()).slice(-2);
+            return `${d.getFullYear()}-${month}-${day}`;
+        };
+
+        setTaskBeingEdited({
+            ...task,
+            start_date: task.start_date ? formatDate(task.start_date) : '',
+            target_end_date: task.target_end_date ? formatDate(task.target_end_date) : '',
+        });
         setErrors({});
         setEditModalVisible(true);
     };
@@ -188,8 +209,8 @@ const ToDo = () => {
 
         const updatedTask = {
             ...taskBeingEdited,
-            start_date: new Date(taskBeingEdited.start_date).getTime() / 1000,
-            target_end_date: taskBeingEdited.target_end_date ? new Date(taskBeingEdited.target_end_date).getTime() / 1000 : null,
+            start_date: taskBeingEdited.start_date || null,
+            target_end_date: taskBeingEdited.target_end_date || null,
         };
 
         axios.put(`${apiURL}/tasks/${taskBeingEdited.id}`, updatedTask, {
@@ -444,7 +465,6 @@ const ToDo = () => {
                                 <option key={column.id} value={column.id}>{column.title}</option>
                             ))}
                         </CFormSelect>
-
                     </CForm>
                 </CModalBody>
                 <CModalFooter>

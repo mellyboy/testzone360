@@ -65,3 +65,6 @@ ALTER TABLE comments
 DROP CONSTRAINT comments_feed_id_fkey,
 ADD CONSTRAINT comments_feed_id_fkey
 FOREIGN KEY (feed_id) REFERENCES feeds(id) ON DELETE CASCADE;
+
+ALTER TABLE tasks ALTER COLUMN start_date TYPE DATE USING start_date::date;
+ALTER TABLE tasks ALTER COLUMN target_end_date TYPE DATE USING target_end_date::date;
