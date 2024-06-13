@@ -5,8 +5,8 @@ const InnerIframe = () => {
         <iframe
             title="InnerIframe"
             src="#/sample2"
-            width="500"
-            height="300"
+            width="100%"
+            height="300px"
             style={{ border: 'none' }}
         />
     );

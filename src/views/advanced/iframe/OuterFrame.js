@@ -1,5 +1,4 @@
 import React from 'react';
-import InnerIframe from './InnerFrame';
 
 const OuterIframe = () => {
     return (
@@ -10,15 +9,11 @@ const OuterIframe = () => {
                             <iframe
                                 title="InnerIframe"
                                 src="#/sample2"
-                                width="500"
-                                height="300"
-                                style="border: none;"
+                                style="width: 100%; height: 300px; border: none;"
                             ></iframe>
                         </body>
                     </html>`}
-            width="600"
-            height="400"
-            style={{ border: 'none' }}
+            style={{ width: '100%', height: '400px', border: 'none' }}
         />
     );
 };

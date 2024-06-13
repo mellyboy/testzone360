@@ -72,25 +72,29 @@ const Toast = () => {
 
     return (
         <CRow>
-            <CCol xs={6}>
+            <CCol md={6} xs={12}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example 1</strong><small>{' '}| Simple Toast</small>
                     </CCardHeader>
                     <CCardBody>
-                        <CButton id='example1SendToast' color="primary" onClick={() => addToast(exampleToast)}>Send a toast</CButton>
+                        <div className="d-grid gap-2 col-6 mx-auto">
+                            <CButton id='example1SendToast' color="primary" onClick={() => addToast(exampleToast)}>Send a toast</CButton>
+                        </div>
                         <CToaster className="p-3" placement="top-end" push={toast} ref={toaster} />
                     </CCardBody>
                 </CCard>
             </CCol>
 
-            <CCol xs={6}>
+            <CCol md={6} xs={12}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example 2</strong><small>{' '}| Components Inside a Toast</small>
                     </CCardHeader>
                     <CCardBody>
-                        <CButton id='example2SendToast' color="primary" onClick={() => addExample2Toast(example2ToastMsg)}>Send a toast</CButton>
+                        <div className="d-grid gap-2 col-6 mx-auto">
+                            <CButton id='example2SendToast' color="primary" onClick={() => addExample2Toast(example2ToastMsg)}>Send a toast</CButton>
+                        </div>
                         <CToaster className="p-3" placement="bottom" push={example2Toast} ref={example2Toaster} />
                     </CCardBody>
                 </CCard>
