@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { CContainer, CRow, CCol, CCard, CCardBody, CImage } from '@coreui/react';
 
-import catImg1 from "src/assets/images/img/cat_img1.jpg"
-import catImg2 from "src/assets/images/img/cat_img2.jpg"
-import catImg3 from "src/assets/images/img/cat_img3.jpg"
+import catImg1 from "src/assets/images/img/cat_img1.jpg";
+import catImg2 from "src/assets/images/img/cat_img2.jpg";
+import catImg3 from "src/assets/images/img/cat_img3.jpg";
 
 const Hover = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -26,13 +26,13 @@ const Hover = () => {
             </CRow>
             <CRow className="image-row">
                 {images.map((image, index) => (
-                    <CCol xs={4} className="image-col" key={index}>
+                    <CCol xs={12} sm={6} md={4} className="image-col mb-3" key={index}>
                         <div
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
-                            style={{ position: 'relative', display: 'inline-block' }}
+                            style={{ position: 'relative', display: 'inline-block', width: '100%' }}
                         >
-                            <CImage align="start" rounded src={image.src} width={200} height={200} />
+                            <CImage align="start" rounded src={image.src} width="100%" height="auto" />
                             {hoveredIndex === index && (
                                 <div
                                     style={{
@@ -62,7 +62,7 @@ const Hover = () => {
             </CRow>
             <CRow className="image-row">
                 {images.map((image, index) => (
-                    <CCol xs={4} key={index}>
+                    <CCol xs={12} sm={6} md={4} key={index}>
                         {clickedIndex === index && (
                             <div style={{ textAlign: 'center', marginTop: '10px', fontWeight: 'bold' }}>
                                 {image.name}

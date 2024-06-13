@@ -35,7 +35,7 @@ const Autocomplete = () => {
 
     return (
         <CRow className="justify-content-center">
-            <CCol xs={6}>
+            <CCol xs={12} md={6}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example</strong><small>{' '}| Autocomplete</small>
@@ -43,7 +43,7 @@ const Autocomplete = () => {
                     <CCardBody>
                         <CContainer>
                             <CRow>
-                                <CCol xs={6}>
+                                <CCol xs={12} md={6}>
                                     <CFormInput
                                         type="text"
                                         size="lg"
@@ -62,7 +62,7 @@ const Autocomplete = () => {
                                         </div>
                                     )}
                                 </CCol>
-                                <CCol xs={6}>
+                                <CCol xs={12} md={6} className='mt-2'>
                                     You selected: {selectedValue}
                                 </CCol>
                             </CRow>

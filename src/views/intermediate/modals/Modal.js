@@ -36,7 +36,7 @@ const Modal = () => {
     return (
         <CContainer>
             <CRow>
-                <CCol xs={12}>
+                <CCol xs={12} md={12}>
                     <CCard className="mb-4">
                         <CCardHeader>
                             <strong>Example 1</strong><small>{' '}| Basic Modal</small>
@@ -44,8 +44,8 @@ const Modal = () => {
                         <CCardBody>
                             <CContainer>
                                 <CRow>
-                                    <CCol xs={3}>
-                                        <CRow className="mb-3">
+                                    <CCol xs={12} md={3}>
+                                        <CRow className="mb-2">
                                             <CCol>
                                                 <div className="d-grid gap-2">
                                                     <CButton id='btnShortContentModal' color="primary" onClick={() => setShortModal(!shortModal)}>Launch Short Content Modal</CButton>
@@ -87,8 +87,8 @@ const Modal = () => {
                                             </CCol>
                                         </CRow>
                                     </CCol>
-                                    <CCol xs={3}>
-                                        <CRow>
+                                    <CCol xs={12} md={3}>
+                                        <CRow className="mb-2">
                                             <CCol>
                                                 <div className="d-grid gap-2">
                                                     <CButton id='btnLongContentModal' color="primary" onClick={() => setLongModal(!longModal)}>Long Content Modal</CButton>
@@ -189,8 +189,8 @@ const Modal = () => {
                                             </CCol>
                                         </CRow>
                                     </CCol>
-                                    <CCol xs={3}>
-                                        <CRow>
+                                    <CCol xs={12} md={3}>
+                                        <CRow className="mb-2">
                                             <CCol>
                                                 <div className="d-grid gap-2">
                                                     <CButton id='btnScrollableModal' color="primary" onClick={() => setScrollableModal(!scrollableModal)}>Scrollable Modal</CButton>
@@ -292,8 +292,8 @@ const Modal = () => {
                                             </CCol>
                                         </CRow>
                                     </CCol>
-                                    <CCol xs={3}>
-                                        <CRow className="mb-3">
+                                    <CCol xs={12} md={3}>
+                                        <CRow className="mb-2">
                                             <CCol>
                                                 <div className="d-grid gap-2">
                                                     <CButton id='btnStaticModal' color="primary" onClick={() => setStaticModal(!staticModal)}>Static Backdrop Modal</CButton>
@@ -329,7 +329,7 @@ const Modal = () => {
                     </CCard>
                 </CCol>
 
-                <CCol xs={12}>
+                <CCol xs={12} md={12}>
                     <CCard className="mb-4">
                         <CCardHeader>
                             <strong>Example 2</strong><small>{' '}| Advanced Modals</small>
@@ -337,8 +337,8 @@ const Modal = () => {
                         <CCardBody>
                             <CContainer>
                                 <CRow>
-                                    <CCol xs={4}>
-                                        <CRow className="mb-3">
+                                    <CCol md={4} xs={12}>
+                                        <CRow className="mb-2">
                                             <CCol>
                                                 <div className="d-grid gap-2">
                                                     <CButton id='btnFullscreenModal' color="primary" onClick={() => setFullScreenModal(!fullScreenModal)}>Launch a Fullscreen Modal</CButton>
@@ -358,8 +358,8 @@ const Modal = () => {
                                             </CCol>
                                         </CRow>
                                     </CCol>
-                                    <CCol xs={4}>
-                                        <CRow>
+                                    <CCol md={4} xs={12}>
+                                        <CRow className="mb-2">
                                             <CCol>
                                                 <div className="d-grid gap-2">
                                                     <CButton id='btnToggleBetweenModals' color="primary" onClick={() => setToggleBetweenModal(!toggleBetweenModal)}>Launch first modal</CButton>
@@ -421,8 +421,8 @@ const Modal = () => {
                                         </CRow>
                                     </CCol>
 
-                                    <CCol xs={4}>
-                                        <CRow className="mb-3">
+                                    <CCol md={4} xs={12}>
+                                        <CRow className="mb-2">
                                             <CCol>
                                                 <div className="d-grid gap-2">
                                                     <CButton id='btnComponentsWithinModal' color="primary" onClick={() => setComponentWithinModal(!componentWithinModal)}>Components Within Modal</CButton>
@@ -475,14 +475,6 @@ const Modal = () => {
                                         </CRow>
                                     </CCol>
                                 </CRow>
-
-                                <CRow>
-                                    <CCol xs={12}>
-                                        Something to Display
-
-                                    </CCol>
-                                </CRow>
-
                             </CContainer>
                         </CCardBody>
                     </CCard>

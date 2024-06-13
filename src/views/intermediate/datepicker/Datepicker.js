@@ -73,25 +73,22 @@ const Datepicker = () => {
     };
 
     return (
-        <CRow>
-            <CCol xs={6}>
-                <CCard className="mb-4">
-                    <CCardHeader>
-                        <strong>Example 1</strong><small>{' '}| Select Date</small>
-                    </CCardHeader>
-                    <CCardBody>
-                        <CContainer>
+        <CContainer fluid>
+            <CRow>
+                <CCol lg={6} xs={12}>
+                    <CCard className="mb-4">
+                        <CCardHeader>
+                            <strong>Example 1</strong><small>{' '}| Select Date</small>
+                        </CCardHeader>
+                        <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol xs={6}>
-                                    Simple Date Picker:
-                                </CCol>
-                                <CCol xs={6}>
-                                    Output:
+                                <CCol xs={12} md={6}>
+                                    <small>Simple Date Picker:</small>
                                 </CCol>
                             </CRow>
 
                             <CRow className='mb-3'>
-                                <CCol xs={6}>
+                                <CCol xs={12} md={6}>
                                     <DatePicker
                                         selected={startDate}
                                         onChange={(date) => setStartDate(date)}
@@ -105,16 +102,13 @@ const Datepicker = () => {
                             </CRow>
 
                             <CRow className="align-items-center">
-                                <CCol xs={6}>
-                                    Date Picker with Portal:
-                                </CCol>
-                                <CCol xs={6}>
-                                    Output:
+                                <CCol xs={12} md={6}>
+                                    <small>Date Picker with Portal:</small>
                                 </CCol>
                             </CRow>
 
                             <CRow>
-                                <CCol xs={6}>
+                                <CCol xs={12} md={6}>
                                     <DatePicker
                                         calendarClassName="custom-datepicker-theme"
                                         selected={datePickerWithPortalStartDate}
@@ -122,33 +116,28 @@ const Datepicker = () => {
                                         withPortal
                                     />
                                 </CCol>
-                                <CCol xs={6}>
+                                <CCol xs={6} className=''>
                                     {datePickerWithPortalStartDate.toDateString()}
                                 </CCol>
                             </CRow>
-                        </CContainer>
-                    </CCardBody>
-                </CCard>
-            </CCol>
+                        </CCardBody>
+                    </CCard>
+                </CCol>
 
-            <CCol xs={6}>
-                <CCard className="mb-4">
-                    <CCardHeader>
-                        <strong>Example 2</strong><small>{' '}| Date Range #1 - Separate Input Box</small>
-                    </CCardHeader>
-                    <CCardBody>
-                        <CContainer>
+                <CCol lg={6} md={12}>
+                    <CCard className="mb-4">
+                        <CCardHeader>
+                            <strong>Example 2</strong><small>{' '}| Date Range #1 - Separate Input Box</small>
+                        </CCardHeader>
+                        <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol xs={6}>
-                                    Start Date:
-                                </CCol>
-                                <CCol xs={6}>
-                                    Output Start Date:
+                                <CCol xs={12} md={6}>
+                                    <small>Start Date:</small>
                                 </CCol>
                             </CRow>
 
                             <CRow className='mb-3'>
-                                <CCol xs={6}>
+                                <CCol xs={12} md={6}>
                                     <DatePicker
                                         selected={example2StartDate}
                                         onChange={(date) => setExample2StartDate(date)}
@@ -158,22 +147,19 @@ const Datepicker = () => {
                                         calendarClassName="custom-datepicker-theme"
                                     />
                                 </CCol>
-                                <CCol xs={6}>
+                                <CCol xs={12} md={6}>
                                     {example2StartDate.toDateString()}
                                 </CCol>
                             </CRow>
 
                             <CRow className="align-items-center">
-                                <CCol xs={6}>
-                                    End Date:
-                                </CCol>
-                                <CCol xs={6}>
-                                    Output End Date:
+                                <CCol xs={12} md={6}>
+                                    <small>End Date:</small>
                                 </CCol>
                             </CRow>
 
                             <CRow>
-                                <CCol xs={6}>
+                                <CCol xs={12} md={6}>
                                     <DatePicker
                                         selected={example2EndDate}
                                         onChange={(date) => setExample2EndDate(date)}
@@ -184,165 +170,168 @@ const Datepicker = () => {
                                         calendarClassName="custom-datepicker-theme"
                                     />
                                 </CCol>
-                                <CCol xs={6}>
+                                <CCol xs={12} md={6}>
                                     {example2EndDate.toDateString()}
                                 </CCol>
                             </CRow>
-                        </CContainer>
-                    </CCardBody>
-                </CCard>
-            </CCol>
+                        </CCardBody>
+                    </CCard>
+                </CCol>
 
-            <CCol xs={6}>
-                <CCard className="mb-4">
-                    <CCardHeader>
-                        <strong>Example 3</strong><small>{' '}| Select Date - Custom Header</small>
-                    </CCardHeader>
-                    <CCardBody>
-                        <CContainer>
+                <CCol lg={6} xs={12}>
+                    <CCard className="mb-4">
+                        <CCardHeader>
+                            <strong>Example 3</strong><small>{' '}| Select Date - Custom Header</small>
+                        </CCardHeader>
+                        <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol xs={6}>
-                                    Simple:
+                                <CCol xs={12} md={6}>
+                                    <CRow>
+                                        <CCol>
+                                            <small>Simple:</small>
+                                        </CCol>
+                                    </CRow>
+
+                                    <CRow>
+                                        <CCol xs={12} md={6} className='mb-2'>
+                                            <DatePicker
+                                                calendarClassName="custom-datepicker-theme"
+                                                renderCustomHeader={({
+                                                    date,
+                                                    changeYear,
+                                                    changeMonth,
+                                                    decreaseMonth,
+                                                    increaseMonth,
+                                                    prevMonthButtonDisabled,
+                                                    nextMonthButtonDisabled,
+                                                }) => (
+                                                    <div
+                                                        style={{
+                                                            margin: 10,
+                                                            display: "flex",
+                                                            justifyContent: "center",
+                                                        }}
+                                                    >
+                                                        <CButton
+                                                            color="primary"
+                                                            size='sm'
+                                                            onClick={decreaseMonth}
+                                                            disabled={prevMonthButtonDisabled}>
+                                                            {"<"}
+                                                        </CButton>
+                                                        <CFormSelect
+                                                            size='sm'
+                                                            value={getYear(date)}
+                                                            onChange={({ target: { value } }) => changeYear(value)}
+                                                        >
+                                                            {years.map((option) => (
+                                                                <option key={option} value={option}>
+                                                                    {option}
+                                                                </option>
+                                                            ))}
+                                                        </CFormSelect>
+
+                                                        <CFormSelect
+                                                            size='sm'
+                                                            value={months[getMonth(date)]}
+                                                            onChange={({ target: { value } }) =>
+                                                                changeMonth(months.indexOf(value))
+                                                            }
+                                                        >
+                                                            {months.map((option) => (
+                                                                <option key={option} value={option}>
+                                                                    {option}
+                                                                </option>
+                                                            ))}
+                                                        </CFormSelect>
+
+                                                        <CButton
+                                                            color="primary"
+                                                            size='sm'
+                                                            onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+                                                            {">"}
+                                                        </CButton>
+                                                    </div>
+                                                )}
+                                                selected={customHeaderStartDate}
+                                                onChange={(date) => setCustomHeaderStartDate(date)}
+                                            />
+                                        </CCol>
+                                    </CRow>
+
                                 </CCol>
 
-                                <CCol xs={6}>
-                                    With Portal:
-                                </CCol>
-                            </CRow>
-
-                            <CRow className="align-items-center">
-                                <CCol xs={6}>
-                                    <DatePicker
-                                        calendarClassName="custom-datepicker-theme"
-                                        renderCustomHeader={({
-                                            date,
-                                            changeYear,
-                                            changeMonth,
-                                            decreaseMonth,
-                                            increaseMonth,
-                                            prevMonthButtonDisabled,
-                                            nextMonthButtonDisabled,
-                                        }) => (
-                                            <div
-                                                style={{
-                                                    margin: 10,
-                                                    display: "flex",
-                                                    justifyContent: "center",
-                                                }}
-                                            >
-                                                <CButton
-                                                    color="primary"
-                                                    size='sm'
-                                                    onClick={decreaseMonth}
-                                                    disabled={prevMonthButtonDisabled}>
-                                                    {"<"}
-                                                </CButton>
-                                                <CFormSelect
-                                                    size='sm'
-                                                    value={getYear(date)}
-                                                    onChange={({ target: { value } }) => changeYear(value)}
-                                                >
-                                                    {years.map((option) => (
-                                                        <option key={option} value={option}>
-                                                            {option}
-                                                        </option>
-                                                    ))}
-                                                </CFormSelect>
-
-                                                <CFormSelect
-                                                    size='sm'
-                                                    value={months[getMonth(date)]}
-                                                    onChange={({ target: { value } }) =>
-                                                        changeMonth(months.indexOf(value))
-                                                    }
-                                                >
-                                                    {months.map((option) => (
-                                                        <option key={option} value={option}>
-                                                            {option}
-                                                        </option>
-                                                    ))}
-                                                </CFormSelect>
-
-                                                <CButton
-                                                    color="primary"
-                                                    size='sm'
-                                                    onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-                                                    {">"}
-                                                </CButton>
-                                            </div>
-                                        )}
-                                        selected={customHeaderStartDate}
-                                        onChange={(date) => setCustomHeaderStartDate(date)}
-                                    />
-                                </CCol>
-                                <CCol xs={6}>
+                                <CCol>
                                     {customHeaderStartDate.toDateString()}
                                 </CCol>
                             </CRow>
+                        </CCardBody>
+                    </CCard>
+                </CCol>
 
-                        </CContainer>
-                    </CCardBody>
-                </CCard>
-            </CCol>
-
-            <CCol xs={6}>
-                <CCard className="mb-4">
-                    <CCardHeader>
-                        <strong>Example 4</strong><small>{' '}| Date Range #2 - Single Input Box</small>
-                    </CCardHeader>
-                    <CCardBody>
-                        <CContainer>
+                <CCol lg={6} md={12}>
+                    <CCard className="mb-4">
+                        <CCardHeader>
+                            <strong>Example 4</strong><small>{' '}| Date Range #2 - Single Input Box</small>
+                        </CCardHeader>
+                        <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol xs={6}>
-                                    Simple:
+                                <CCol md={6} xs={12} >
+                                    <CRow>
+                                        <CCol>
+                                            <small>Simple:</small>
+                                        </CCol>
+                                    </CRow>
+                                    <CRow>
+                                        <CCol>
+                                            <DatePicker
+                                                calendarClassName="custom-datepicker-theme"
+                                                selectsRange={true}
+                                                startDate={example4SimpleStartDate}
+                                                endDate={example4SimpleEndDate}
+                                                onChange={(update) => {
+                                                    setExample4SimpleDateRange(update);
+                                                }}
+                                                isClearable={true}
+                                            />
+                                        </CCol>
+                                    </CRow>
                                 </CCol>
 
-                                <CCol xs={6}>
-                                    With Portal:
+                                <CCol md={6} xs={12} >
+                                    <CRow>
+                                        <CCol>
+                                            <small>With Portal:</small>
+                                        </CCol>
+                                    </CRow>
+                                    <CRow>
+                                        <CCol>
+                                            <DatePicker
+                                                calendarClassName="custom-datepicker-theme"
+                                                selectsRange={true}
+                                                startDate={example4PortalStartDate}
+                                                endDate={example4PortalEndDate}
+                                                onChange={(update) => {
+                                                    setExample4PortalDateRange(update);
+                                                }}
+                                                withPortal
+                                            />
+                                        </CCol>
+                                    </CRow>
                                 </CCol>
                             </CRow>
+                        </CCardBody>
+                    </CCard>
+                </CCol>
 
+                <CCol lg={4} md={6} sm={12}>
+                    <CCard className="mb-4">
+                        <CCardHeader>
+                            <strong>Example 5</strong><small>{' '}| Month Picker</small>
+                        </CCardHeader>
+                        <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol xs={6}>
-                                    <DatePicker
-                                        calendarClassName="custom-datepicker-theme"
-                                        selectsRange={true}
-                                        startDate={example4SimpleStartDate}
-                                        endDate={example4SimpleEndDate}
-                                        onChange={(update) => {
-                                            setExample4SimpleDateRange(update);
-                                        }}
-                                        isClearable={true}
-                                    />
-                                </CCol>
-                                <CCol xs={6}>
-                                    <DatePicker
-                                        calendarClassName="custom-datepicker-theme"
-                                        selectsRange={true}
-                                        startDate={example4PortalStartDate}
-                                        endDate={example4PortalEndDate}
-                                        onChange={(update) => {
-                                            setExample4PortalDateRange(update);
-                                        }}
-                                        withPortal
-                                    />
-                                </CCol>
-                            </CRow>
-
-                        </CContainer>
-                    </CCardBody>
-                </CCard>
-            </CCol>
-
-            <CCol xs={4}>
-                <CCard className="mb-4">
-                    <CCardHeader>
-                        <strong>Example 5</strong><small>{' '}| Month Picker</small>
-                    </CCardHeader>
-                    <CCardBody>
-                        <CContainer>
-                            <CRow className="align-items-center">
-                                <CCol xs={8}>
+                                <CCol md={8} xs={12} className='mb-2'>
                                     <DatePicker
                                         selected={monthPickerDate}
                                         onChange={(date) => setMonthPickerDate(date)}
@@ -352,24 +341,22 @@ const Datepicker = () => {
                                         calendarClassName="custom-datepicker-theme"
                                     />
                                 </CCol>
-                                <CCol xs={4}>
+                                <CCol md={4} xs={12} >
                                     {monthPickerDate.getMonth() + 1}/{monthPickerDate.getFullYear()}
                                 </CCol>
                             </CRow>
-                        </CContainer>
-                    </CCardBody>
-                </CCard>
-            </CCol>
+                        </CCardBody>
+                    </CCard>
+                </CCol>
 
-            <CCol xs={4}>
-                <CCard className="mb-4">
-                    <CCardHeader>
-                        <strong>Example 6</strong><small>{' '}| Quarter Picker</small>
-                    </CCardHeader>
-                    <CCardBody>
-                        <CContainer>
+                <CCol lg={4} md={6} sm={12}>
+                    <CCard className="mb-4">
+                        <CCardHeader>
+                            <strong>Example 6</strong><small>{' '}| Quarter Picker</small>
+                        </CCardHeader>
+                        <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol xs={8}>
+                                <CCol md={8} xs={12} className='mb-2'>
                                     <DatePicker
                                         selected={quarterPickerDate}
                                         onChange={(date) => setQuarterPickerDate(date)}
@@ -379,24 +366,22 @@ const Datepicker = () => {
                                         calendarClassName="custom-datepicker-theme"
                                     />
                                 </CCol>
-                                <CCol xs={4}>
+                                <CCol md={4} xs={12} >
                                     {quarterPickerDate.getFullYear()}, Q{Math.floor((quarterPickerDate.getMonth() + 3) / 3)}
                                 </CCol>
                             </CRow>
-                        </CContainer>
-                    </CCardBody>
-                </CCard>
-            </CCol>
+                        </CCardBody>
+                    </CCard>
+                </CCol>
 
-            <CCol xs={4}>
-                <CCard className="mb-4">
-                    <CCardHeader>
-                        <strong>Example 7</strong><small>{' '}| Year Picker</small>
-                    </CCardHeader>
-                    <CCardBody>
-                        <CContainer>
+                <CCol lg={4} md={6} sm={12}>
+                    <CCard className="mb-4">
+                        <CCardHeader>
+                            <strong>Example 7</strong><small>{' '}| Year Picker</small>
+                        </CCardHeader>
+                        <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol xs={8}>
+                                <CCol md={8} xs={12} className='mb-2'>
                                     <DatePicker
                                         selected={yearPickerDate}
                                         onChange={(date) => setYearPickerDate(date)}
@@ -406,15 +391,15 @@ const Datepicker = () => {
                                         calendarClassName="custom-datepicker-theme"
                                     />
                                 </CCol>
-                                <CCol xs={4}>
+                                <CCol md={4} xs={12} >
                                     {yearPickerDate.getFullYear()}
                                 </CCol>
                             </CRow>
-                        </CContainer>
-                    </CCardBody>
-                </CCard>
-            </CCol>
-        </CRow>
+                        </CCardBody>
+                    </CCard>
+                </CCol>
+            </CRow>
+        </CContainer>
     );
 };
 
