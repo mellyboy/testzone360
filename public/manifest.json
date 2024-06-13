@@ -1,6 +1,6 @@
 {
-    "short_name": "testzone",
-    "name": "TestZone360",
+    "short_name": "TestZone",
+    "name": "TestZone360 - QA and Automation Practice Playground",
     "icons": [
         {
             "src": "./assets/img/favicon.ico",
