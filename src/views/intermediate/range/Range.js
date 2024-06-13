@@ -32,7 +32,7 @@ const Range = () => {
 
     return (
         <CRow>
-            <CCol xs={6}>
+            <CCol md={6} xs={12}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example 1</strong><small>{' '}| Simple Range</small>
@@ -58,7 +58,7 @@ const Range = () => {
                 </CCard>
             </CCol>
 
-            <CCol xs={6}>
+            <CCol md={6} xs={12}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example 2</strong><small>{' '}| Text Zoom</small>
@@ -87,7 +87,7 @@ const Range = () => {
                 </CCard>
             </CCol>
 
-            <CCol xs={6}>
+            <CCol md={6} xs={12}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example 3</strong><small>{' '}| Range with Color Indicator</small>
@@ -96,7 +96,7 @@ const Range = () => {
                         <CContainer>
                             <div className="row justify-content-md-center mb-4">
                                 <CCol md="auto">
-                                <span style={{ color: getColor(colorValue), fontWeight: 'bold' }}>Watch Me Change Color!</span>
+                                    <span style={{ color: getColor(colorValue), fontWeight: 'bold' }}>Watch Me Change Color!</span>
                                 </CCol>
                             </div>
                             <CRow className="align-items-center">
@@ -115,7 +115,7 @@ const Range = () => {
                 </CCard>
             </CCol>
 
-            <CCol xs={6}>
+            <CCol md={6} xs={12}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example 4</strong><small>{' '}| Range with Tooltip</small>
