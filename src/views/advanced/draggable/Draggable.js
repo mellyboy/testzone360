@@ -11,7 +11,7 @@ import {
 } from '@coreui/react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-//helper function to reorder the list
+// Helper function to reorder the list
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -55,13 +55,13 @@ const DraggableCards = () => {
       return;
     }
 
-    //if dragging inside the main area
+    // If dragging inside the main area
     if (source.droppableId === 'droppable' && destination.droppableId === 'droppable') {
       const newCards = reorder(cards, source.index, destination.index);
       setCards(newCards);
     }
 
-    //if dragging into the big card
+    // If dragging into the big card
     if (source.droppableId === 'droppable' && destination.droppableId === 'insideCard') {
       const newCards = Array.from(cards);
       const [movedCard] = newCards.splice(source.index, 1);
@@ -69,13 +69,13 @@ const DraggableCards = () => {
       setInsideCard([...insideCard, movedCard]);
     }
 
-    //if dragging inside the big card
+    // If dragging inside the big card
     if (source.droppableId === 'insideCard' && destination.droppableId === 'insideCard') {
       const newInsideCards = reorder(insideCard, source.index, destination.index);
       setInsideCard(newInsideCards);
     }
 
-    //if dragging out of the big card
+    // If dragging out of the big card
     if (source.droppableId === 'insideCard' && destination.droppableId === 'droppable') {
       const newInsideCards = Array.from(insideCard);
       const [movedCard] = newInsideCards.splice(source.index, 1);
@@ -93,24 +93,26 @@ const DraggableCards = () => {
               <Draggable key={card.id} draggableId={card.id} index={index}>
                 {(provided) => (
                   <CCol
-                    xs={6}
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    lg={3}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
+                    className="mb-4"
                   >
-                    <CContainer>
-                      <CCard style={{ width: '18rem' }}>
-                        <CCardBody>
-                          <CCardTitle>{card.title}</CCardTitle>
-                          <CCardSubtitle className="mb-2 text-body-secondary">
-                            {card.subtitle}
-                          </CCardSubtitle>
-                          <CCardText>
-                            {card.text}
-                          </CCardText>
-                        </CCardBody>
-                      </CCard>
-                    </CContainer>
+                    <CCard className="h-100">
+                      <CCardBody>
+                        <CCardTitle>{card.title}</CCardTitle>
+                        <CCardSubtitle className="mb-2 text-body-secondary">
+                          {card.subtitle}
+                        </CCardSubtitle>
+                        <CCardText>
+                          {card.text}
+                        </CCardText>
+                      </CCardBody>
+                    </CCard>
                   </CCol>
                 )}
               </Draggable>
@@ -123,7 +125,7 @@ const DraggableCards = () => {
       <Droppable droppableId="insideCard">
         {(provided) => (
           <CContainer {...provided.droppableProps} ref={provided.innerRef}>
-            <CCard color={bigCardColor} textColor="white" style={{ width: '100%', marginTop: '2rem' }}>
+            <CCard color={bigCardColor} textColor="white" className="mt-4">
               <CCardBody>
                 <CCardTitle>BIG CARD</CCardTitle>
                 <CCardSubtitle className="mb-2 text-body-secondary">
@@ -137,12 +139,16 @@ const DraggableCards = () => {
                 {insideCard.map((card, index) => (
                   <Draggable key={card.id} draggableId={card.id} index={index}>
                     {(provided) => (
-                      <CContainer
+                      <CCol
+                      sm={6}
+                      md={4}
+                      lg={3}
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
+                        className="mb-4"
                       >
-                        <CCard style={{ width: '18rem', margin: '1rem 0' }}>
+                        <CCard className="h-100">
                           <CCardBody>
                             <CCardTitle>{card.title}</CCardTitle>
                             <CCardSubtitle className="mb-2 text-body-secondary">
@@ -153,7 +159,7 @@ const DraggableCards = () => {
                             </CCardText>
                           </CCardBody>
                         </CCard>
-                      </CContainer>
+                      </CCol>
                     )}
                   </Draggable>
                 ))}

@@ -162,9 +162,9 @@ const GlobalFeed = () => {
             <CCol xs={12}>
                 <CTabs activeItemKey={activeKey} onActiveItemChange={setActiveKey}>
                     <CTabList className='mb-2' variant="tabs">
-                        <CTab itemKey="global-feed">Global Feed</CTab>
-                        <CTab itemKey="my-feed">My Feed</CTab>
-                        <CTab itemKey="create-feed">Create Feed</CTab>
+                        <CTab itemKey="global-feed"><small>Global Feed</small></CTab>
+                        <CTab itemKey="my-feed"><small>My Feed</small></CTab>
+                        <CTab itemKey="create-feed"><smal>Create Feed</smal></CTab>
                     </CTabList>
                     <CTabContent>
                         <CTabPanel className="p-0" itemKey="global-feed">

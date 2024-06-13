@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     CButton,
     CCard,
@@ -11,28 +11,27 @@ import {
 import OuterIframe from './OuterFrame';
 
 const IFrame = () => {
-
     return (
-        <CRow>
-            <CCol xs={6}>
-                <CContainer>
-                    {/* Place your iframe here */}
-                    <iframe
-                        title="NestedIframe"
-                        src="#/sample1"
-                        width="600"
-                        height="400"
-                    />
-                </CContainer>
-            </CCol>
+        <CContainer>
+            <CRow>
+                <CCol xs={12} md={6} className="mb-4">
+                    <CContainer>
+                        {/* Place your iframe here */}
+                        <iframe
+                            title="NestedIframe"
+                            src="#/sample1"
+                            style={{ width: '100%', height: '400px', border: 'none' }}
+                        />
+                    </CContainer>
+                </CCol>
 
-            <CCol xs={6}>
-                <CContainer>
-                    <OuterIframe />
-                </CContainer>
-            </CCol>
-        </CRow>
-        
+                <CCol xs={12} md={6} className="mb-4">
+                    <CContainer>
+                        <OuterIframe />
+                    </CContainer>
+                </CCol>
+            </CRow>
+        </CContainer>
     );
 };
 

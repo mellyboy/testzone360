@@ -35,22 +35,22 @@ const Dialog = () => {
     }
 
     return (
-        <CRow>
-            <CCol xs={12}>
+        <CRow className="justify-content-center">
+            <CCol xs={12} md={10} lg={8}>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Examples</strong><small>{' '}| JavaScript Dialog Boxes</small>
                     </CCardHeader>
                     <CCardBody>
                         <CRow>
-                            <CCol xs={6}>
-                                <div className="d-grid gap-2 col-6 mx-auto">
+                            <CCol md={6} xs={12} className='mb-3'>
+                                <div className="d-grid gap-2 col-12 mx-auto">
                                     <CButton color="danger" onClick={handleAlert}>Alert</CButton>
                                     <CButton color="primary" onClick={handleConfirm}>Confirm</CButton>
                                     <CButton color="info" onClick={handlePrompt}>Prompt</CButton>
                                 </div>
                             </CCol>
-                            <CCol xs={6}>
+                            <CCol md={6} xs={12}>
                                 <div className="d-grid gap-2 col-6 mx-auto">
                                     {output && <p>{output}</p>}
                                 </div>

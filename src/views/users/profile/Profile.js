@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import Icon from '@mdi/react';
 import { mdiRefresh } from '@mdi/js';
 import {
@@ -165,11 +165,10 @@ const UserProfile = () => {
         <CRow>
             <CCol xs={12}>
                 <CCard className="mb-4">
-                    <CCardHeader>
-                        <strong>Profile Information</strong>
-                        <CButton color="link" onClick={() => setFormDisabled(false)}>
-                            <Icon path={mdiRefresh} size={1} />
-                            Update Profile
+                    <CCardHeader className="d-flex justify-content-between align-items-center">
+                        <strong style={{ fontSize: '0.95rem' }}>Profile Information</strong>
+                        <CButton style={{ fontSize: '0.95rem' }} color="link" onClick={() => setFormDisabled(false)}>
+                        <Icon path={mdiRefresh} size={1} />Update Profile
                         </CButton>
                     </CCardHeader>
                     <CCardBody>
@@ -233,7 +232,7 @@ const UserProfile = () => {
                                     {errors.addressLine2 && <CFormFeedback invalid>{errors.addressLine2}</CFormFeedback>}
                                 </CCol>
 
-                                <CCol xs={6}>
+                                <CCol md={6} xs={12}>
                                     <CFormInput
                                         id="city"
                                         name="city"
@@ -245,7 +244,7 @@ const UserProfile = () => {
                                     {errors.city && <CFormFeedback invalid>{errors.city}</CFormFeedback>}
                                 </CCol>
 
-                                <CCol xs={6}>
+                                <CCol md={6} xs={12}>
                                     <CFormInput
                                         id="region"
                                         name="region"
@@ -256,7 +255,7 @@ const UserProfile = () => {
                                     />
                                     {errors.region && <CFormFeedback invalid>{errors.region}</CFormFeedback>}
                                 </CCol>
-                                <CCol xs={6}>
+                                <CCol md={6} xs={12}>
                                     <CFormInput
                                         id="zipCode"
                                         name="zipCode"
@@ -268,7 +267,7 @@ const UserProfile = () => {
                                     {errors.zipCode && <CFormFeedback invalid>{errors.zipCode}</CFormFeedback>}
                                 </CCol>
 
-                                <CCol xs={6}>
+                                <CCol md={6} xs={12}>
                                     <CFormSelect
                                         id="country"
                                         name="country"
