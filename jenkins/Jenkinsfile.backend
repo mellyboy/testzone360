@@ -24,7 +24,7 @@ pipeline {
                     echo 'Deploying backend...'
 
                     sh '''
-                    rsync -avz -e ssh pg/* ${DEPLOYMENT_PATH}
+                    rsync -r -e ssh pg/ ${DEPLOYMENT_PATH}
                     '''
                 }
             }
