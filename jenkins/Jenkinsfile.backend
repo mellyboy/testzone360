@@ -24,7 +24,7 @@ pipeline {
                     echo 'Deploying backend...'
 
                     sh '''
-                    rsync -avz --chmod=ugo=rwX "ssh -o StrictHostKeyChecking=no" pg/* ${DEPLOYMENT_PATH}
+                    rsync -avz -e ssh -o StrictHostKeyChecking=no pg/* ${DEPLOYMENT_PATH}
                     '''
                 }
             }
