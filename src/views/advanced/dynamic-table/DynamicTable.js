@@ -58,17 +58,15 @@ const DynamicTable = () => {
                                     ))}
                                     <CTableHeaderCell className="bg-body-tertiary">Net Profit</CTableHeaderCell>
                                 </CTableRow>
-
-
                             </CTableHead>
-                            <CTableBody>
+                            <CTableBody id='dynamicTable'>
                                 {financialData.companies.map((company, rowIndex) => (
-                                    <CTableRow key={rowIndex}>
-                                        <CTableHeaderCell scope="row">{company}</CTableHeaderCell>
+                                    <CTableRow id={company} key={rowIndex}>
+                                        <CTableHeaderCell id={rowIndex} scope="row">{company}</CTableHeaderCell>
                                         {financialData.data[rowIndex].map((value, colIndex) => (
-                                            <CTableDataCell key={colIndex}>{value}</CTableDataCell>
+                                            <CTableDataCell id={colIndex} key={colIndex}>{value}</CTableDataCell>
                                         ))}
-                                        <CTableDataCell>
+                                        <CTableDataCell id='commputedNetProfit'>
                                             {calculateNetProfit(
                                                 financialData.data[rowIndex][0], //gross Profit
                                                 financialData.data[rowIndex][1], //operating Expenses
