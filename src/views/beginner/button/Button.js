@@ -97,7 +97,7 @@ const Button = () => {
                                     </CCol>
                                     <CCol xs={6}>
                                         <CRow>
-                                            <CCol>
+                                            <CCol id="example1Msg">
                                                 {displayMessage}
                                             </CCol>
                                         </CRow>
