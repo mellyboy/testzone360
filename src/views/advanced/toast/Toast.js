@@ -23,7 +23,7 @@ const Toast = () => {
 
     const toaster = useRef()
     const exampleToast = (
-        <CToast>
+        <CToast id='toast1'>
             <CToastHeader closeButton>
                 <svg
                     className="rounded me-2"
@@ -49,7 +49,7 @@ const Toast = () => {
     const [buttonPressCount, setButtonPressCount] = useState(0);
 
     const example2ToastMsg = (
-        <CToast autohide={false} visible={true} className="w-75"> {/* Adjust width here */}
+        <CToast id='toast2' autohide={false} visible={true} className="w-75">
             <CToastBody>
                 <CRow>
                     <CCol xs={12} className="text-center mb-2">
@@ -73,7 +73,7 @@ const Toast = () => {
     return (
         <CRow>
             <CCol md={6} xs={12}>
-                <CCard className="mb-4">
+                <CCard id='example1' className="mb-4">
                     <CCardHeader>
                         <strong>Example 1</strong><small>{' '}| Simple Toast</small>
                     </CCardHeader>
@@ -87,7 +87,7 @@ const Toast = () => {
             </CCol>
 
             <CCol md={6} xs={12}>
-                <CCard className="mb-4">
+                <CCard id='example2' className="mb-4">
                     <CCardHeader>
                         <strong>Example 2</strong><small>{' '}| Components Inside a Toast</small>
                     </CCardHeader>
