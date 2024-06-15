@@ -126,7 +126,7 @@ const TooltipsAndPopover = () => {
 
                                 <CCol md={6} xs={12}>
                                     <CRow>
-                                        <CCol xs={12}>
+                                        <CCol id='displayOutput' xs={12}>
                                             Output:
                                             <p>
                                                 {output}
