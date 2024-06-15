@@ -82,7 +82,7 @@ const GlobalFeed = () => {
         let errors = { title: '', content: '' };
 
         if (newFeedTitle.length < 15 || newFeedTitle.length > 100) {
-            errors.title = 'Content must be between 15 and 100 characters.';
+            errors.title = 'Title must be between 15 and 100 characters.';
             isValid = false;
         }
 
