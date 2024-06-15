@@ -11,7 +11,7 @@ const SamplePage1 = () => {
     return (
         <CRow className="justify-content-center">
             <CCol xs={12} md={6} className="text-center">
-                <CImage rounded thumbnail src={spongebob} width={200} height={200} />
+                <CImage id='sample1Img' rounded thumbnail src={spongebob} width={200} height={200} />
             </CCol>
             <CCol xs={12} md={6} className="text-center mt-4">
                 <div>

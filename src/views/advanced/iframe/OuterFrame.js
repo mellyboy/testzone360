@@ -3,10 +3,12 @@ import React from 'react';
 const OuterIframe = () => {
     return (
         <iframe
+            id='outerFrame'
             title="OuterIframe"
             srcDoc={`<html>
                         <body style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh;">
                             <iframe
+                                id='innerFrame'
                                 title="InnerIframe"
                                 src="#/sample2"
                                 style="width: 100%; height: 300px; border: none;"

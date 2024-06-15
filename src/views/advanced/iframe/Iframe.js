@@ -15,8 +15,7 @@ const IFrame = () => {
         <CContainer>
             <CRow>
                 <CCol xs={12} md={6} className="mb-4">
-                    <CContainer>
-                        {/* Place your iframe here */}
+                    <CContainer id='iframe'>
                         <iframe
                             title="NestedIframe"
                             src="#/sample1"
@@ -26,7 +25,7 @@ const IFrame = () => {
                 </CCol>
 
                 <CCol xs={12} md={6} className="mb-4">
-                    <CContainer>
+                    <CContainer id='nestedIframe'>
                         <OuterIframe />
                     </CContainer>
                 </CCol>
