@@ -1,11 +1,11 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext();
 
 const checkTokenExpiry = (token) => {
   if (!token) return true;
-  const decodedToken = jwt_decode(token);
+  const decodedToken = jwtDecode(token);
   const expiryTime = decodedToken.exp * 1000;
   return Date.now() >= expiryTime;
 };
