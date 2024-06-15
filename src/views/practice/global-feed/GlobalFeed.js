@@ -164,7 +164,7 @@ const GlobalFeed = () => {
                     <CTabList className='mb-2' variant="tabs">
                         <CTab id='globalFeed' itemKey="global-feed"><small>Global Feed</small></CTab>
                         <CTab id='myFeed' itemKey="my-feed"><small>My Feed</small></CTab>
-                        <CTab id='createFeed' itemKey="create-feed"><smal>Create Feed</smal></CTab>
+                        <CTab id='createFeed' itemKey="create-feed"><small>Create Feed</small></CTab>
                     </CTabList>
                     <CTabContent>
                         <CTabPanel className="p-0" itemKey="global-feed">
