@@ -10,7 +10,7 @@ pipeline {
         }
         stage('📦 Backend Build') {
             steps {
-                dir('backend') {
+                dir('pg') {
                     echo 'Installing backend dependencies...'
                     sh 'npm install'
                 }
