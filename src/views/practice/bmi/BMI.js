@@ -30,7 +30,7 @@ const BMI = () => {
     const handleImageClick = (image) => setSelectedImage(image);
     const handleAgeGroupChange = (event) => {
         setAgeGroup(event.target.value);
-        setSelectedImage(null); // Reset selected image when age group changes
+        setSelectedImage(null);
     };
 
     const validateInputs = () => {
@@ -110,12 +110,13 @@ const BMI = () => {
         <CContainer>
             <CRow className="justify-content-center">
                 <CCol xs={12} md={6}>
-                    <CCard>
+                    <CCard id='bmi'>
                         <CCardHeader>
                             <strong>BMI Calculator</strong>
                         </CCardHeader>
                         <CCardBody>
                             <CFormSelect
+                                id='ageGroupSelector'
                                 aria-label="Select Age Group"
                                 value={ageGroup}
                                 onChange={handleAgeGroupChange}
@@ -129,6 +130,7 @@ const BMI = () => {
                                     <CCol xs={6} className="text-center">
                                         <CButton onClick={() => handleImageClick(1)}>
                                             <CImage
+                                                id='maleImg'
                                                 rounded
                                                 thumbnail
                                                 src={maleImg}
@@ -142,6 +144,7 @@ const BMI = () => {
                                     <CCol xs={6} className="text-center">
                                         <CButton onClick={() => handleImageClick(2)}>
                                             <CImage
+                                            id='femaleImg'
                                                 rounded
                                                 thumbnail
                                                 src={femaleImg}
@@ -156,7 +159,7 @@ const BMI = () => {
                             )}
                             <CRow className="mt-4">
                                 <CCol xs={12}>
-                                    <div className="text-center mb-2">
+                                    <div id='displayWeight' className="text-center mb-2">
                                         <span>Weight: {weight} kg</span>
                                     </div>
                                     <CFormRange
@@ -170,7 +173,7 @@ const BMI = () => {
                             </CRow>
                             <CRow className="mt-4">
                                 <CCol xs={12}>
-                                    <div className="text-center mb-2">
+                                    <div id='displayHeight' className="text-center mb-2">
                                         <span>Height: {height} cm</span>
                                     </div>
                                     <CFormRange
@@ -200,8 +203,8 @@ const BMI = () => {
                                 <CRow className="mt-4">
                                     <CCol xs={12}>
                                         <div className="text-center">
-                                            <h4>BMI: {bmiResult}</h4>
-                                            <h5>Category: {bmiCategory}</h5>
+                                            <h4 id='computedBMI'>BMI: {bmiResult}</h4>
+                                            <h5 id='category'>Category: {bmiCategory}</h5>
                                         </div>
                                     </CCol>
                                 </CRow>

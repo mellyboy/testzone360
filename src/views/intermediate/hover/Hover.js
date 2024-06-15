@@ -16,7 +16,7 @@ const Hover = () => {
     ];
 
     return (
-        <CContainer>
+        <CContainer id='imageContainer'>
             <CRow>
                 <CCol xs={12}>
                     <CCard className='mb-4'>
@@ -32,9 +32,9 @@ const Hover = () => {
                             onMouseLeave={() => setHoveredIndex(null)}
                             style={{ position: 'relative', display: 'inline-block', width: '100%' }}
                         >
-                            <CImage align="start" rounded src={image.src} width="100%" height="auto" />
+                            <CImage id={image.name} align="start" rounded src={image.src} width="100%" height="auto" />
                             {hoveredIndex === index && (
-                                <div
+                                <div id={image.name+'HoverImage'}
                                     style={{
                                         position: 'absolute',
                                         bottom: '10px',
@@ -64,7 +64,7 @@ const Hover = () => {
                 {images.map((image, index) => (
                     <CCol xs={12} sm={6} md={4} key={index}>
                         {clickedIndex === index && (
-                            <div style={{ textAlign: 'center', marginTop: '10px', fontWeight: 'bold' }}>
+                            <div id={'display'+image.name} style={{ textAlign: 'center', marginTop: '10px', fontWeight: 'bold' }}>
                                 {image.name}
                             </div>
                         )}

@@ -33,7 +33,7 @@ const Range = () => {
     return (
         <CRow>
             <CCol md={6} xs={12}>
-                <CCard className="mb-4">
+                <CCard id='example1' className="mb-4">
                     <CCardHeader>
                         <strong>Example 1</strong><small>{' '}| Simple Range</small>
                     </CCardHeader>
@@ -47,7 +47,7 @@ const Range = () => {
                                     <CFormRange
                                         min={0}
                                         max={100}
-                                        id="range"
+                                        id="simmpleRange"
                                         value={volume}
                                         onChange={handleRangeChange}
                                     />
@@ -59,7 +59,7 @@ const Range = () => {
             </CCol>
 
             <CCol md={6} xs={12}>
-                <CCard className="mb-4">
+                <CCard id='example2' className="mb-4">
                     <CCardHeader>
                         <strong>Example 2</strong><small>{' '}| Text Zoom</small>
                     </CCardHeader>
@@ -67,7 +67,7 @@ const Range = () => {
                         <CContainer>
                             <div className="row justify-content-md-center mb-4">
                                 <CCol md="auto">
-                                    <span style={{ fontSize: `${textZoom}%` }}>TEXT</span>
+                                    <span id='textDisplay' style={{ fontSize: `${textZoom}%` }}>TEXT</span>
                                 </CCol>
                             </div>
                             <CRow className="align-items-center">
@@ -75,7 +75,7 @@ const Range = () => {
                                     <CFormRange
                                         min={0}
                                         max={100}
-                                        id="range"
+                                        id="textZoomRange"
                                         step={25}
                                         value={textZoom}
                                         onChange={handleTextZoomChange}
@@ -88,7 +88,7 @@ const Range = () => {
             </CCol>
 
             <CCol md={6} xs={12}>
-                <CCard className="mb-4">
+                <CCard id='example3' className="mb-4">
                     <CCardHeader>
                         <strong>Example 3</strong><small>{' '}| Range with Color Indicator</small>
                     </CCardHeader>
@@ -96,7 +96,7 @@ const Range = () => {
                         <CContainer>
                             <div className="row justify-content-md-center mb-4">
                                 <CCol md="auto">
-                                    <span style={{ color: getColor(colorValue), fontWeight: 'bold' }}>Watch Me Change Color!</span>
+                                    <span id='coloredText' style={{ color: getColor(colorValue), fontWeight: 'bold' }}>Watch Me Change Color!</span>
                                 </CCol>
                             </div>
                             <CRow className="align-items-center">
@@ -116,7 +116,7 @@ const Range = () => {
             </CCol>
 
             <CCol md={6} xs={12}>
-                <CCard className="mb-4">
+                <CCard id='example4' className="mb-4">
                     <CCardHeader>
                         <strong>Example 4</strong><small>{' '}| Range with Tooltip</small>
                     </CCardHeader>
@@ -124,7 +124,7 @@ const Range = () => {
                         <CContainer>
                             <div className="row justify-content-md-center mb-4">
                                 <CCol md="auto">
-                                    <CTooltip content={`Value: ${tooltipValue}`} placement="top">
+                                    <CTooltip id='displayTooltip' content={`Value: ${tooltipValue}`} placement="top">
                                         <span>Hover to see value</span>
                                     </CTooltip>
                                 </CCol>

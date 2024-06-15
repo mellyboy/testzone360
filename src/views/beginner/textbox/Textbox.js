@@ -53,10 +53,10 @@ const Textbox = () => {
                     <CCardBody>
                         <CForm>
                             <div className="mb-3">
-                                <CFormInput label="Disabled Input:" type="text" aria-label="Disabled input example" disabled />
+                                <CFormInput id='disabledInput1' label="Disabled Input:" type="text" disabled />
                             </div>
                             <div className="mb-3">
-                                <CFormInput label="Disabled Readonly Input:" type="text" aria-label="Disabled input example" disabled />
+                                <CFormInput id='disabledInput1' label="Disabled Readonly Input:" type="text" disabled />
                             </div>
                             <div className="mb-3">
                                 <CFormInput label="Readonly Input Plain Text:" type="text" id="staticEmail" defaultValue="email@example.com" readOnly plainText />
@@ -73,10 +73,10 @@ const Textbox = () => {
                     <CCardBody>
                         <CForm>
                             <div className="mb-3">
-                                <CFormInput type="email" floatingClassName="mb-3" floatingLabel="Email address" placeholder="name@example.com" />
+                                <CFormInput id='floatingEmailAddress' type="email" floatingClassName="mb-3" floatingLabel="Email address" placeholder="name@example.com" />
                             </div>
                             <div className="mb-3">
-                                <CFormInput type="password" floatingLabel="Password" placeholder="Password" />
+                                <CFormInput id='floatingPassword' type="password" floatingLabel="Password" placeholder="Password" />
                             </div>
                             <div className="mb-3">
                                 <CFormInput

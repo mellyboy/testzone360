@@ -37,7 +37,7 @@ const Dialog = () => {
     return (
         <CRow className="justify-content-center">
             <CCol xs={12} md={10} lg={8}>
-                <CCard className="mb-4">
+                <CCard id='dialogBoxes' className="mb-4">
                     <CCardHeader>
                         <strong>Examples</strong><small>{' '}| JavaScript Dialog Boxes</small>
                     </CCardHeader>
@@ -51,7 +51,7 @@ const Dialog = () => {
                                 </div>
                             </CCol>
                             <CCol md={6} xs={12}>
-                                <div className="d-grid gap-2 col-6 mx-auto">
+                                <div id='displayOutput' className="d-grid gap-2 col-6 mx-auto">
                                     {output && <p>{output}</p>}
                                 </div>
                             </CCol>

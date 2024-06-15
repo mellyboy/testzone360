@@ -88,7 +88,7 @@ const Datepicker = () => {
                             </CRow>
 
                             <CRow className='mb-3'>
-                                <CCol xs={12} md={6}>
+                                <CCol id='simpleDatepicker1' xs={12} md={6}>
                                     <DatePicker
                                         selected={startDate}
                                         onChange={(date) => setStartDate(date)}
@@ -96,7 +96,7 @@ const Datepicker = () => {
                                         calendarClassName="custom-datepicker-theme"
                                     />
                                 </CCol>
-                                <CCol xs={6}>
+                                <CCol id='simpleDatepicker1Output' xs={6}>
                                     {startDate.toDateString()}
                                 </CCol>
                             </CRow>
@@ -108,7 +108,7 @@ const Datepicker = () => {
                             </CRow>
 
                             <CRow>
-                                <CCol xs={12} md={6}>
+                                <CCol id='simpleDatepicker2' xs={12} md={6}>
                                     <DatePicker
                                         calendarClassName="custom-datepicker-theme"
                                         selected={datePickerWithPortalStartDate}
@@ -116,7 +116,7 @@ const Datepicker = () => {
                                         withPortal
                                     />
                                 </CCol>
-                                <CCol xs={6} className=''>
+                                <CCol id='simpleDatepicker2Output' xs={6} className=''>
                                     {datePickerWithPortalStartDate.toDateString()}
                                 </CCol>
                             </CRow>
@@ -137,7 +137,7 @@ const Datepicker = () => {
                             </CRow>
 
                             <CRow className='mb-3'>
-                                <CCol xs={12} md={6}>
+                                <CCol id='dateRange1' xs={12} md={6}>
                                     <DatePicker
                                         selected={example2StartDate}
                                         onChange={(date) => setExample2StartDate(date)}
@@ -147,7 +147,7 @@ const Datepicker = () => {
                                         calendarClassName="custom-datepicker-theme"
                                     />
                                 </CCol>
-                                <CCol xs={12} md={6}>
+                                <CCol id='dateRange1Output' xs={12} md={6}>
                                     {example2StartDate.toDateString()}
                                 </CCol>
                             </CRow>
@@ -159,7 +159,7 @@ const Datepicker = () => {
                             </CRow>
 
                             <CRow>
-                                <CCol xs={12} md={6}>
+                                <CCol id='dateRange2' xs={12} md={6}>
                                     <DatePicker
                                         selected={example2EndDate}
                                         onChange={(date) => setExample2EndDate(date)}
@@ -170,7 +170,7 @@ const Datepicker = () => {
                                         calendarClassName="custom-datepicker-theme"
                                     />
                                 </CCol>
-                                <CCol xs={12} md={6}>
+                                <CCol id='dateRange2Output' xs={12} md={6}>
                                     {example2EndDate.toDateString()}
                                 </CCol>
                             </CRow>
@@ -195,6 +195,7 @@ const Datepicker = () => {
                                     <CRow>
                                         <CCol xs={12} md={6} className='mb-2'>
                                             <DatePicker
+                                            id='customDatepicker'
                                                 calendarClassName="custom-datepicker-theme"
                                                 renderCustomHeader={({
                                                     date,
@@ -261,7 +262,7 @@ const Datepicker = () => {
 
                                 </CCol>
 
-                                <CCol>
+                                <CCol id='customDatepickerOutput'>
                                     {customHeaderStartDate.toDateString()}
                                 </CCol>
                             </CRow>
@@ -283,7 +284,7 @@ const Datepicker = () => {
                                         </CCol>
                                     </CRow>
                                     <CRow>
-                                        <CCol>
+                                        <CCol id='dateRange3'>
                                             <DatePicker
                                                 calendarClassName="custom-datepicker-theme"
                                                 selectsRange={true}
@@ -305,7 +306,7 @@ const Datepicker = () => {
                                         </CCol>
                                     </CRow>
                                     <CRow>
-                                        <CCol>
+                                        <CCol id='dateRange4'>
                                             <DatePicker
                                                 calendarClassName="custom-datepicker-theme"
                                                 selectsRange={true}
@@ -331,7 +332,7 @@ const Datepicker = () => {
                         </CCardHeader>
                         <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol md={8} xs={12} className='mb-2'>
+                                <CCol id='monthpicker' md={8} xs={12} className='mb-2'>
                                     <DatePicker
                                         selected={monthPickerDate}
                                         onChange={(date) => setMonthPickerDate(date)}
@@ -356,7 +357,7 @@ const Datepicker = () => {
                         </CCardHeader>
                         <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol md={8} xs={12} className='mb-2'>
+                                <CCol id='quarterpicker' md={8} xs={12} className='mb-2'>
                                     <DatePicker
                                         selected={quarterPickerDate}
                                         onChange={(date) => setQuarterPickerDate(date)}
@@ -381,7 +382,7 @@ const Datepicker = () => {
                         </CCardHeader>
                         <CCardBody>
                             <CRow className="align-items-center">
-                                <CCol md={8} xs={12} className='mb-2'>
+                                <CCol id='yearpicker' md={8} xs={12} className='mb-2'>
                                     <DatePicker
                                         selected={yearPickerDate}
                                         onChange={(date) => setYearPickerDate(date)}

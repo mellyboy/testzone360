@@ -56,12 +56,12 @@ const Modal = () => {
                                                         onClose={() => setShortModal(false)}
                                                         aria-labelledby="ShortContentModal"
                                                     >
-                                                        <CModalHeader>
-                                                            <CModalTitle id="shortContentModal">
+                                                        <CModalHeader >
+                                                            <CModalTitle>
                                                                 Cat chasing phantoms
                                                             </CModalTitle>
                                                         </CModalHeader>
-                                                        <CModalBody>
+                                                        <CModalBody id="showShortContent">
                                                             <p>
                                                                 Find box a little too small and curl up with fur hanging out my water bowl is clean and freshly replenished,
                                                                 so i'll drink from the toilet so refuse to drink water except out of someone's glass pose purrfectly to show
@@ -100,7 +100,7 @@ const Modal = () => {
                                                         <CModalHeader>
                                                             <CModalTitle id="longContentModal">Cat chasing phantoms</CModalTitle>
                                                         </CModalHeader>
-                                                        <CModalBody>
+                                                        <CModalBody id="showLongContent">
                                                             <p>
                                                                 Find box a little too small and curl up with fur hanging out my water bowl is clean and freshly replenished,
                                                                 so i'll drink from the toilet so refuse to drink water except out of someone's glass pose purrfectly to show
@@ -203,7 +203,7 @@ const Modal = () => {
                                                         <CModalHeader>
                                                             <CModalTitle id="scrollableModal">Cat chasing phantoms</CModalTitle>
                                                         </CModalHeader>
-                                                        <CModalBody>
+                                                        <CModalBody id="showLongContentScrollable">
                                                             <p>
                                                                 Find box a little too small and curl up with fur hanging out my water bowl is clean and freshly replenished,
                                                                 so i'll drink from the toilet so refuse to drink water except out of someone's glass pose purrfectly to show
@@ -308,13 +308,13 @@ const Modal = () => {
                                                                 Static Modal
                                                             </CModalTitle>
                                                         </CModalHeader>
-                                                        <CModalBody>
+                                                        <CModalBody id='showStaticModal'>
                                                             <p>
                                                                 I am a static modal. The modal will not close when clicking outside it.
                                                             </p>
                                                         </CModalBody>
                                                         <CModalFooter>
-                                                            <CButton color="secondary" onClick={() => setStaticModal(false)}>
+                                                            <CButton id='closeStaticModal' color="secondary" onClick={() => setStaticModal(false)}>
                                                                 Close
                                                             </CButton>
                                                         </CModalFooter>
@@ -352,7 +352,7 @@ const Modal = () => {
                                                         <CModalHeader>
                                                             <CModalTitle id="fullscreenModalTitle">Full Screen Modal</CModalTitle>
                                                         </CModalHeader>
-                                                        <CModalBody>This is an example of fullscreen modal.</CModalBody>
+                                                        <CModalBody id='showFullScreenModal'>This is an example of fullscreen modal.</CModalBody>
                                                     </CModal>
                                                 </div>
                                             </CCol>
@@ -364,7 +364,6 @@ const Modal = () => {
                                                 <div className="d-grid gap-2">
                                                     <CButton id='btnToggleBetweenModals' color="primary" onClick={() => setToggleBetweenModal(!toggleBetweenModal)}>Launch first modal</CButton>
                                                     <CModal
-                                                        id="firstModal"
                                                         visible={toggleBetweenModal}
                                                         onClose={() => setToggleBetweenModal(false)}
                                                         aria-labelledby="ToggleBetweenModal1"
@@ -372,7 +371,7 @@ const Modal = () => {
                                                         <CModalHeader>
                                                             <CModalTitle id="toggleBetweenModalTitle1">This is first modal...</CModalTitle>
                                                         </CModalHeader>
-                                                        <CModalBody>
+                                                        <CModalBody id="firstModal">
                                                             <p>Click the button to move to the second modal.</p>
                                                         </CModalBody>
                                                         <CModalFooter>
@@ -389,7 +388,7 @@ const Modal = () => {
                                                         </CModalFooter>
                                                     </CModal>
                                                     <CModal
-                                                        id='secondModal'
+                                                        
                                                         visible={toggleBetweenModal2}
                                                         onClick={() => {
                                                             setToggleBetweenModal(true)
@@ -400,7 +399,7 @@ const Modal = () => {
                                                         <CModalHeader>
                                                             <CModalTitle id="toggleBetweenModal2">This is the second modal...</CModalTitle>
                                                         </CModalHeader>
-                                                        <CModalBody>
+                                                        <CModalBody id='secondModal'>
                                                             <p>Close this modal or click the button below to go back to first modal.</p>
                                                         </CModalBody>
                                                         <CModalFooter>
@@ -448,7 +447,7 @@ const Modal = () => {
                                                             <h5>Tooltips</h5>
                                                             <p>
                                                                 You can hover over{' '}
-                                                                <CTooltip content="Hi there!">
+                                                                <CTooltip id='tooltipContent' content="Hi there!">
                                                                     <CLink id='modalHoverLink'>this link</CLink>
                                                                 </CTooltip> to have tooltip.
                                                             </p>
@@ -465,7 +464,7 @@ const Modal = () => {
 
                                                         </CModalBody>
                                                         <CModalFooter>
-                                                            <CButton color="secondary" onClick={() => setComponentWithinModal(false)}>
+                                                            <CButton id='closeModalWithContent' color="secondary" onClick={() => setComponentWithinModal(false)}>
                                                                 Close
                                                             </CButton>
                                                         </CModalFooter>

@@ -121,7 +121,7 @@ const Checkbox = () => {
         }
 
         return (
-            <div>
+            <div id='selectedChaptersList'>
                 <p>You selected:</p>
                 <ul>
                     {selectedChaptersOutput}
@@ -149,7 +149,7 @@ const Checkbox = () => {
                         <strong>Example 1</strong><small>{' '}| Basic Checkbox</small>
                     </CCardHeader>
                     <CCardBody className="d-flex">
-                        <div className="flex-grow-1">
+                        <div id="fruitsList" className="flex-grow-1">
                             {fruits.map((fruit, index) => (
                                 <CFormCheck
                                     key={index}
@@ -162,7 +162,7 @@ const Checkbox = () => {
                                 />
                             ))}
                         </div>
-                        <div className="flex-grow-1 ms-3">
+                        <div id="itemTotalPrice" className="flex-grow-1 ms-3">
                             <div className="mt-3"><strong>Total Price: ₱{totalPrice.toFixed(2)}</strong></div>
                         </div>
                     </CCardBody>
@@ -175,7 +175,7 @@ const Checkbox = () => {
                         <strong>Example 2</strong><small>{' '}| with Disabled Checkbox</small>
                     </CCardHeader>
                     <CCardBody className="d-flex">
-                        <div className="flex-grow-1">
+                        <div id="animalsList" className="flex-grow-1">
                             {animals.map((animal, index) => (
                                 <CFormCheck
                                     key={index}
@@ -189,7 +189,7 @@ const Checkbox = () => {
                                 />
                             ))}
                         </div>
-                        <div className="flex-grow-1 ms-3">
+                        <div id="animalSelected" className="flex-grow-1 ms-3">
                             <ul>
                                 {selectedAnimals.map((isChecked, index) => (
                                     isChecked && <li key={index}>{animals[index].name}</li>
@@ -207,7 +207,7 @@ const Checkbox = () => {
                     <CCardHeader>
                         <strong>Example 3</strong><small>{' '}| Intermediate Checkbox</small>
                     </CCardHeader>
-                    <CCardBody className="d-flex flex-column">
+                    <CCardBody id='chaptersList' className="d-flex flex-column">
                         {renderCheckboxes(chapters)}
                     </CCardBody>
                 </CCard>
@@ -218,7 +218,7 @@ const Checkbox = () => {
                     <CCardHeader>
                         Output of Example 3
                     </CCardHeader>
-                    <CCardBody className="d-flex flex-column">
+                    <CCardBody id='outputChapters' className="d-flex flex-column">
                         {renderSelectedChaptersOutput()}
                     </CCardBody>
                 </CCard>
@@ -230,7 +230,7 @@ const Checkbox = () => {
                         <strong>Example 4</strong><small>{' '}| Checkbox as Toggle</small>
                     </CCardHeader>
                     <CCardBody className="d-flex">
-                        <div className="flex-grow-1">
+                        <div id="languageToggleList" className="flex-grow-1">
                             {languages.map((language, index) => (
                                 <CFormCheck
                                     key={index}
@@ -245,7 +245,7 @@ const Checkbox = () => {
                                 />
                             ))}
                         </div>
-                        <div className="flex-grow-1 ms-3">
+                        <div id="languageOutputList" className="flex-grow-1 ms-3">
                             <ul>
                                 {selectedLanguages.map((language, index) => (
                                     <li key={index}>{language}</li>

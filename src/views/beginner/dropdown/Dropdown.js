@@ -13,10 +13,12 @@ import {
     CDropdownMenu
 } from '@coreui/react';
 import Multiselect from 'multiselect-react-dropdown';
+import { useNavigate } from 'react-router-dom';
 
 const Dropdown = () => {
     const [countries, setCountries] = useState([]);
     const [selectedCountry, setSelectedCountry] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(
@@ -68,8 +70,8 @@ const Dropdown = () => {
             case 'print':
                 setSelectedAction("HELLO");
                 break;
-            case 'dashboard':
-                window.location.href = '/welcome';
+            case 'welcome':
+                navigate('/');
                 break;
             case 'google':
                 setSelectedAction("You should be redirected to Google...");
@@ -93,6 +95,7 @@ const Dropdown = () => {
                                 <CRow>
                                     <CCol xs={12} md={6}>
                                         <CFormSelect
+                                            id='countrySelector'
                                             label="Select Country"
                                             size="lg"
                                             className="mb-3"
@@ -123,6 +126,7 @@ const Dropdown = () => {
                             <label className='form-label'>Programming Language</label>
                             <div className='mb-3'>
                                 <Multiselect
+                                    id='programmingLanguage'
                                     isObject={false}
                                     onKeyPressFn={() => { }}
                                     onRemove={handleRemove}
@@ -147,6 +151,7 @@ const Dropdown = () => {
                             <label className='form-label'>Automation Framework</label>
                             <div className='mb-3'>
                                 <Multiselect
+                                    id='automationFramework'
                                     showCheckbox
                                     isObject={false}
                                     onKeyPressFn={() => { }}
@@ -182,16 +187,16 @@ const Dropdown = () => {
                             <CContainer>
                                 <CRow>
                                     <CCol xs={12} md={6}>
-                                        <CDropdown>
+                                        <CDropdown id='actionsBtn'>
                                             <CDropdownToggle color="primary">Some Actions</CDropdownToggle>
-                                            <CDropdownMenu>
+                                            <CDropdownMenu id='actionList'>
                                                 <CDropdownItem onClick={() => handleActionSelection('print')}>Print: HELLO</CDropdownItem>
-                                                <CDropdownItem onClick={() => handleActionSelection('dashboard')}>Redirect to Dashboard</CDropdownItem>
+                                                <CDropdownItem onClick={() => handleActionSelection('welcome')}>Redirect to Welcome Page</CDropdownItem>
                                                 <CDropdownItem onClick={() => handleActionSelection('google')}>Redirect to Google in New Tab</CDropdownItem>
                                             </CDropdownMenu>
                                         </CDropdown>
                                     </CCol>
-                                    <CCol xs={12} md={6}>
+                                    <CCol id='example3Output' xs={12} md={6}>
                                         <p>{selectedAction}</p>
                                     </CCol>
                                 </CRow>

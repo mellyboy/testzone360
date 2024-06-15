@@ -97,7 +97,7 @@ const Button = () => {
                                     </CCol>
                                     <CCol xs={6}>
                                         <CRow>
-                                            <CCol>
+                                            <CCol id="example1Msg">
                                                 {displayMessage}
                                             </CCol>
                                         </CRow>
@@ -136,9 +136,9 @@ const Button = () => {
                                             </CCol>
                                         </CRow>
                                     </CCol>
-                                    <CCol xs={6}>
+                                    <CCol xs={6} id="example2Msg">
                                         <CRow>
-                                            <CCol>
+                                            <CCol id="clickCounter">
                                                 {number}
                                             </CCol>
                                         </CRow>

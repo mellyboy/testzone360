@@ -246,9 +246,9 @@ const ToDo = () => {
         <CContainer>
             <CRow xs={{ cols: 1 }} md={{ cols: 3 }} className="g-4">
                 <DragDropContext onDragEnd={onDragEnd}>
-                    {columns.map((column) => (
+                    {columns.map((column, taskGroupIndex) => (
                         <CCol key={column.id}>
-                            <CCard className="h-100">
+                            <CCard id={'cardGroup'+taskGroupIndex} className="h-100">
                                 <CCardHeader>{column.title}</CCardHeader>
                                 <Droppable droppableId={column.id}>
                                     {(provided) => (
@@ -277,15 +277,17 @@ const ToDo = () => {
                                                                 boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
                                                             }}
                                                         >
-                                                            <CCard>
+                                                            <CCard id={'cardTask'+index+'Group'+taskGroupIndex}>
                                                                 <CCardHeader>
                                                                     {task.title}
                                                                     <div className="task-corner-buttons">
                                                                         <CTooltip
+                                                                        id='editTooltip'
                                                                             content="Edit Task"
                                                                             trigger={['hover']}
                                                                         >
                                                                             <CButton
+                                                                            id={'editCardTask'+index+'Group'+taskGroupIndex}
                                                                                 variant="ghost"
                                                                                 className='task-small-button mdi-icon'
                                                                                 size='sm'
@@ -296,10 +298,12 @@ const ToDo = () => {
                                                                         </CTooltip>
 
                                                                         <CTooltip
+                                                                        id='deleteTooltip'
                                                                             content="Delete Task"
                                                                             trigger={['hover']}
                                                                         >
                                                                             <CButton
+                                                                            id={'deleteCardTask'+index+'Group'+taskGroupIndex}
                                                                                 variant="ghost"
                                                                                 className='task-small-button mdi-icon'
                                                                                 size='sm' color='danger'
@@ -321,7 +325,7 @@ const ToDo = () => {
                                 </Droppable>
                                 <CCardFooter>
                                     <div className="d-grid gap-2">
-                                        <CButton color="primary" variant="ghost" onClick={() => handleOpenModal(column.id)}>
+                                        <CButton id={'addTaskBtn'+taskGroupIndex} color="primary" variant="ghost" onClick={() => handleOpenModal(column.id)}>
                                             <CIcon icon={cilPlus} size="lg" />
                                             Add task
                                         </CButton>

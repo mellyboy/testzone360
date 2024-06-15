@@ -28,7 +28,7 @@ const RadioButton = () => {
     return (
         <CRow className="d-flex align-items-stretch">
             <CCol xs={12} md={6} lg={4} className="mb-4 d-flex flex-column">
-                <CCard className="flex-grow-1">
+                <CCard id='example1' className="flex-grow-1">
                     <CCardHeader>
                         <strong>Example 1</strong><small>{' '}| Basic Radio Button</small>
                     </CCardHeader>
@@ -63,13 +63,13 @@ const RadioButton = () => {
                             onChange={handleBasicRadioChange}
                             className="mb-4"
                         />
-                        <div className="output-box mt-4">Selected: {selectedBasicRadio}</div>
+                        <div id='example1Output' className="output-box mt-4">Selected: {selectedBasicRadio}</div>
                     </CCardBody>
                 </CCard>
             </CCol>
 
             <CCol xs={12} md={6} lg={4} className="mb-4 d-flex flex-column">
-                <CCard className="flex-grow-1">
+                <CCard id='example2' className="flex-grow-1">
                     <CCardHeader>
                         <strong>Example 2</strong><small>{' '}| Disabled Radio Button</small>
                     </CCardHeader>
@@ -103,13 +103,13 @@ const RadioButton = () => {
                             onChange={handleDisabledRadioChange}
                             className="mb-4"
                         />
-                        <div className="output-box mt-4">Selected: {selectedDisabledRadio}</div>
+                        <div id='example2Output' className="output-box mt-4">Selected: {selectedDisabledRadio}</div>
                     </CCardBody>
                 </CCard>
             </CCol>
 
             <CCol xs={12} lg={4} className="mb-4 d-flex flex-column">
-                <CCard className="flex-grow-1">
+                <CCard id='example3' className="flex-grow-1">
                     <CCardHeader>
                         <strong>Example 3</strong><small>{' '}| Radio as Toggle Button</small>
                     </CCardHeader>
@@ -152,7 +152,7 @@ const RadioButton = () => {
                                 className="mb-2"
                             />
                         </div>
-                        <div className="output-box">Selected: {selectedToggleButton}</div>
+                        <div id='example3Output' className="output-box">Selected: {selectedToggleButton}</div>
                     </CCardBody>
                 </CCard>
             </CCol>

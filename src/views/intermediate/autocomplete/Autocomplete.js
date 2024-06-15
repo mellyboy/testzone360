@@ -45,6 +45,7 @@ const Autocomplete = () => {
                             <CRow>
                                 <CCol xs={12} md={6}>
                                     <CFormInput
+                                        id='searchBox'
                                         type="text"
                                         size="lg"
                                         placeholder="Search here..."
@@ -62,7 +63,7 @@ const Autocomplete = () => {
                                         </div>
                                     )}
                                 </CCol>
-                                <CCol xs={12} md={6} className='mt-2'>
+                                <CCol id='selectedValue' xs={12} md={6} className='mt-2'>
                                     You selected: {selectedValue}
                                 </CCol>
                             </CRow>

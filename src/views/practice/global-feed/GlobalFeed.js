@@ -81,8 +81,8 @@ const GlobalFeed = () => {
         let isValid = true;
         let errors = { title: '', content: '' };
 
-        if (newFeedTitle.length < 15 || newFeedTitle.length > 120) {
-            errors.title = 'Title cannot be empty.';
+        if (newFeedTitle.length < 15 || newFeedTitle.length > 100) {
+            errors.title = 'Content must be between 15 and 100 characters.';
             isValid = false;
         }
 
@@ -162,9 +162,9 @@ const GlobalFeed = () => {
             <CCol xs={12}>
                 <CTabs activeItemKey={activeKey} onActiveItemChange={setActiveKey}>
                     <CTabList className='mb-2' variant="tabs">
-                        <CTab itemKey="global-feed"><small>Global Feed</small></CTab>
-                        <CTab itemKey="my-feed"><small>My Feed</small></CTab>
-                        <CTab itemKey="create-feed"><smal>Create Feed</smal></CTab>
+                        <CTab id='globalFeed' itemKey="global-feed"><small>Global Feed</small></CTab>
+                        <CTab id='myFeed' itemKey="my-feed"><small>My Feed</small></CTab>
+                        <CTab id='createFeed' itemKey="create-feed"><smal>Create Feed</smal></CTab>
                     </CTabList>
                     <CTabContent>
                         <CTabPanel className="p-0" itemKey="global-feed">
@@ -207,6 +207,7 @@ const GlobalFeed = () => {
                                     </CAlert>
                                 )}
                                 <CFormInput
+                                    id='inputTitle'
                                     size="lg"
                                     placeholder="Title"
                                     type="text"
@@ -217,6 +218,7 @@ const GlobalFeed = () => {
                                 {errors.title && <div className="invalid-feedback">{errors.title}</div>}
 
                                 <CFormTextarea
+                                    id='inputContent'
                                     className={`mb-2 ${errors.content ? 'is-invalid' : ''}`}
                                     placeholder="Must be 15 - 1500 characters."
                                     value={newFeedContent}
@@ -226,6 +228,7 @@ const GlobalFeed = () => {
                                 {errors.content && <div className="invalid-feedback">{errors.content}</div>}
 
                                 <CButton
+                                id='publishBtn'
                                     size="sm"
                                     color="primary"
                                     onClick={handlePublish}
