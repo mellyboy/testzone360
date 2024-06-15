@@ -20,7 +20,7 @@ const TextArea = () => {
                     <CCardBody>
                         <CFormTextarea
                             placeholder="Leave a comment here"
-                            id="floatingTextarea2"
+                            id="exampleTextArea"
                             style={{ height: '100px' }}
                             text="Must be 15 - 1500 characters."
                         ></CFormTextarea>
