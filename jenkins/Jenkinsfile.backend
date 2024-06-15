@@ -24,7 +24,7 @@ pipeline {
                     echo 'Deploying backend...'
 
                     sh '''
-                    rsync -avzh pg/ ${DEPLOYMENT_PATH}
+                    rsync -avzh -e "ssh -o StrictHostKeyChecking=no" pg/ ${DEPLOYMENT_PATH}
                     '''
                 }
             }
