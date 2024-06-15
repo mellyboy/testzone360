@@ -1,16 +1,11 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'REPO_URL', description: 'Repository URL')
-        string(name: 'DEPLOYMENT_PATH', description: 'Deployment Path')
-    }
-
     stages {
         stage('🔄 Checkout') {
             steps {
                 echo 'Checking out code...'
-                git url: "${params.REPO_URL}", credentialsId: 'github-pat'
+                git url: "${REPO_URL}", credentialsId: 'github-pat'
             }
         }
         stage('📦 Backend Build') {
@@ -29,7 +24,7 @@ pipeline {
                     echo 'Deploying backend...'
 
                     sh '''
-                    rsync -avz -e "ssh -o StrictHostKeyChecking=no" pg/* ${params.DEPLOYMENT_PATH}
+                    rsync -avz -e "ssh -o StrictHostKeyChecking=no" pg/* ${DEPLOYMENT_PATH}
                     '''
                 }
             }
