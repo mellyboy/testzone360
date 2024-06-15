@@ -125,13 +125,13 @@ const DraggableCards = () => {
       <Droppable droppableId="insideCard">
         {(provided) => (
           <CContainer {...provided.droppableProps} ref={provided.innerRef}>
-            <CCard color={bigCardColor} textColor="white" className="mt-4">
-              <CCardBody>
+            <CCard id='bigCard' color={bigCardColor} textColor="white" className="mt-4">
+              <CCardBody id='bigCardBody'>
                 <CCardTitle>BIG CARD</CCardTitle>
                 <CCardSubtitle className="mb-2 text-body-secondary">
                   Drop cards here
                 </CCardSubtitle>
-                <CCardText>
+                <CCardText >
                   {insideCard.length === 0
                     ? 'No cards here'
                     : 'Cards inside this big card:'}
@@ -148,7 +148,7 @@ const DraggableCards = () => {
                         {...provided.dragHandleProps}
                         className="mb-4"
                       >
-                        <CCard className="h-100">
+                        <CCard id={card.id} className="h-100">
                           <CCardBody>
                             <CCardTitle>{card.title}</CCardTitle>
                             <CCardSubtitle className="mb-2 text-body-secondary">
