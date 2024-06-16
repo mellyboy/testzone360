@@ -20,11 +20,13 @@ pipeline {
             steps {
                 sshagent(credentials: ['testzone360vm']) {
                     echo 'Deploying build...'
-
-                    echo 'Deploying frontend...'
-
                     sh '''
-                    rsync -avzh -e "ssh -o StrictHostKeyChecking=no" build/ ${FE_DEPLOYMENT_PATH}
+                    rsync -avzh -e "ssh -o StrictHostKeyChecking=no" build/ ${USER_HOST}:${FE_DEPLOYMENT_PATH}
+                    '''
+
+                    echo 'Restarting service...'
+                    sh '''
+                    ssh ${USER_HOST} sudo systemctl restart nginx
                     '''
                 }
             }

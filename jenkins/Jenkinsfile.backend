@@ -19,12 +19,13 @@ pipeline {
         stage('🚀 Deploy') {
             steps {
                 sshagent(credentials: ['testzone360vm']) {
-                    echo 'Deploying build...'
-
                     echo 'Deploying backend...'
-
                     sh '''
-                    rsync -avzh -e "ssh -o StrictHostKeyChecking=no" pg/ ${BE_DEPLOYMENT_PATH}
+                    rsync -avzh -e "ssh -o StrictHostKeyChecking=no" pg/ ${USER_HOST}:${BE_DEPLOYMENT_PATH}
+                    '''
+                    echo 'Starting service...'
+                    sh '''
+                    ssh ${USER_HOST} pm2 start npm --name `${USER_HOST}-api` -- start --cwd ${BE_DEPLOYMENT_PATH}
                     '''
                 }
             }
