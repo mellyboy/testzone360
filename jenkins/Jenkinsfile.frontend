@@ -8,12 +8,12 @@ pipeline {
                 git url: "${REPO_URL}", credentialsId: 'github-pat'
             }
         }
-        stage('📦 Backend Build') {
+        stage('📦 Frontend Build') {
             steps {
-                dir('pg') {
-                    echo 'Installing backend dependencies...'
-                    sh 'npm install'
-                }
+                echo 'Installing frontend dependencies...'
+                sh 'npm install'
+                echo 'Building frontend...'
+                sh 'npm run build'
             }
         }
         stage('🚀 Deploy') {
@@ -21,10 +21,10 @@ pipeline {
                 sshagent(credentials: ['testzone360vm']) {
                     echo 'Deploying build...'
 
-                    echo 'Deploying backend...'
+                    echo 'Deploying frontend...'
 
                     sh '''
-                    rsync -avzh -e "ssh -o StrictHostKeyChecking=no" pg/ ${BE_DEPLOYMENT_PATH}
+                    rsync -avzh -e "ssh -o StrictHostKeyChecking=no" build/ ${FE_DEPLOYMENT_PATH}
                     '''
                 }
             }
