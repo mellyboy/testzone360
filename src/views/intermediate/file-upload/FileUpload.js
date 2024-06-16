@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import Icon from '@mdi/react';
-import { mdiFileUpload, mdiAlertOutline } from '@mdi/js';
+import {
+    mdiFileUpload,
+    mdiAlertOutline,
+    mdiInformationVariantCircleOutline
+} from '@mdi/js';
 import {
     CCard,
     CCardBody,
@@ -21,7 +25,7 @@ const FileUpload = () => {
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
-        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif']; // Add more allowed types if needed
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
         const maxSize = 0.5 * 1024 * 1024;
 
         if (!file) {
@@ -65,30 +69,25 @@ const FileUpload = () => {
             return;
         }
 
-        const formData = new FormData();
-        formData.append('file', selectedFile);
-
-        fetch('http://localhost:5000/api/file/upload', {
-            method: 'POST',
-            body: formData,
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    setUploadStatus('File uploaded successfully!');
-                } else {
-                    setUploadStatus('File upload failed.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                setUploadStatus('Error uploading file.');
-            });
+        //simulation of file upload process
+        setUploadStatus('Uploading...');
+        setTimeout(() => {
+            const isSuccess = Math.random() > 0.2; //80% success rate
+            if (isSuccess) {
+                setUploadStatus('File uploaded successfully!');
+            } else {
+                setUploadStatus('File upload failed.');
+            }
+        }, 2000); //delay of 2 seconds
     };
 
     return (
-        <CRow>
-            <CCol xs={6}>
+        <CRow className="justify-content-center">
+            <CCol lg={6} md={6} sm={12}>
+                <div className="alert alert-info text-center mb-2" role="alert">
+                <Icon path={mdiInformationVariantCircleOutline} size={1} />{' '}
+                    <small>Simulation of file upload scenario only.</small>
+                </div>
                 <CCard className="mb-4">
                     <CCardHeader>
                         <strong>Example</strong><small>{' '}| File Upload</small>
