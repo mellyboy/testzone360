@@ -56,7 +56,7 @@ const Welcome = () => {
         { title: 'Autocomplete', text: 'Suggests options as the user types in a text field.', link: '/autocomplete' },
         { title: 'Date Pickers:', text: 'Allows users to select dates from a calendar.', link: '/datepicker' },
         { title: 'Hover', text: 'Elements that respond to mouse hover actions.', link: '/hover' },
-        // { title: 'File Upload', text: 'Allows users to upload files from their device.', link: '/file-upload' },
+        { title: 'File Upload', text: 'Allows users to upload files from their device.', link: '/file-upload' },
         { title: 'Modal', text: 'A dialog box that overlays the main content.', link: '/modal' },
         { title: 'Range', text: 'Allows users to select a value from a range by sliding a handle.', link: '/range' },
         { title: 'Tooltips and Popover', text: 'Displays informational text when users hover over or click an element.', link: '/tooltips-and-popover' },
