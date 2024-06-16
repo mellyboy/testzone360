@@ -25,7 +25,7 @@ pipeline {
                     '''
                     echo 'Starting service...'
                     sh '''
-                    ssh ${USER_HOST} pm2 start npm --name `${USER_HOST}-api` -- start --cwd ${BE_DEPLOYMENT_PATH}
+                    ssh -o StrictHostKeyChecking=no ${USER_HOST} "pm2 start npm --name ${APP_NAME}-api -- start --cwd ${BE_DEPLOYMENT_PATH}"
                     '''
                 }
             }
