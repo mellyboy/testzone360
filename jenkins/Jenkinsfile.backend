@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('🔄 Checkout') {
+        stage('✅ Checkout') {
             steps {
                 echo 'Checking out code...'
                 git url: "${REPO_URL}", credentialsId: 'github-pat'
@@ -14,6 +14,18 @@ pipeline {
                     echo 'Installing backend dependencies...'
                     sh 'npm install'
                 }
+            }
+        }
+        stage('🧪 Tests') {
+            agent {
+                docker {
+                    echo 'Using testzone360-cy image...'
+                    image 'mellyboy/testzone360-cy'
+                }
+            }
+            steps {
+                echo 'Running tests...'
+                sh 'npm run cy:run:be:smoke'
             }
         }
         stage('🚀 Deploy') {
