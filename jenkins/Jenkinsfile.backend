@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    options {
+        timestamps()
+        skipStagesAfterUnstable()
+    }
+
     stages {
         stage('✅ Checkout') {
             steps {
@@ -16,46 +21,77 @@ pipeline {
                 }
             }
         }
-
-        stage('🚢 Cypress Tests Image') {
-         steps {
-            script {
-               docker.withRegistry('', 'dockerhub-creds') {
-                  docker.image('mellyboy/testzone360-cy').pull()
-               }
-            }
-         }
-      }
-
-        stage('🧪 Tests') {
+        stage('🚢 Pull Cypress Tests') {
             steps {
                 script {
-                    ansiColor('xterm') {
-                    sh """
-                        docker run --rm \\
-                        -e BASE_URL=${BASE_URL} \\
-                        -e API_URL=${API_URL} \\
-                        -e TEST_EMAIL=${TEST_EMAIL} \\
-                        -e TEST_PASSWORD=${TEST_PASSWORD} \\
-                        mellyboy/testzone360-cy npm run cy:run:be:smoke
-                    """
+                    docker.withRegistry('', 'dockerhub-creds') {
+                        docker.image('mellyboy/testzone360-cy').pull()
                     }
                 }
             }
         }
-
+        stage('🧪 Tests') {
+            steps {
+                script {
+                    ansiColor('xterm') {
+                        sh """
+                            docker run --rm \\
+                            -e BASE_URL=${BASE_URL} \\
+                            -e API_URL=${API_URL} \\
+                            -e TEST_EMAIL=${TEST_EMAIL} \\
+                            -e TEST_PASSWORD=${TEST_PASSWORD} \\
+                            mellyboy/testzone360-cy npm run ${TEST_CHOICE}
+                        """
+                    }
+                }
+            }
+        }
         stage('🚀 Deploy') {
             steps {
                 sshagent(credentials: ['testzone360vm']) {
                     echo 'Deploying backend...'
-                    sh '''
-                    rsync -avzh -e "ssh -o StrictHostKeyChecking=no" pg/ ${USER_HOST}:${BE_DEPLOYMENT_PATH}
-                    '''
-                    echo 'Starting service...'
-                    sh '''
-                    ssh -o StrictHostKeyChecking=no ${USER_HOST} "cd ${BE_DEPLOYMENT_PATH} && pm2 start npm --name ${APP_NAME}-api -- start"
-                    '''
+                    ansiColor('xterm') {
+                        sh '''
+                            rsync -azh -e "ssh -o StrictHostKeyChecking=no" pg/ ${USER_HOST}:${BE_DEPLOYMENT_PATH}
+                        '''
+                        echo 'Starting service...'
+                        sh '''
+                            ssh -o StrictHostKeyChecking=no ${USER_HOST} "
+                                pm2 delete ${APP_NAME}-api || true
+                                cd ${BE_DEPLOYMENT_PATH} && pm2 start npm --name ${APP_NAME}-api -- start
+                            "
+                        '''
+                    }
                 }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo ':🧹 Performing cleanup...'
+            cleanWs()
+            script {
+                def containers = sh(script: "docker ps -a -q --filter 'name=testzone360-cy'", returnStdout: true).trim()
+                if (containers) {
+                    sh "docker rm -f ${containers}"
+                }
+                def images = sh(script: "docker images -q 'mellyboy/testzone360-cy'", returnStdout: true).trim()
+                if (images) {
+                    sh "docker rmi -f ${images}"
+                }
+            }
+        }
+        success {
+            script {
+                def message = "@here :🌟 Backend services successfully deployed!"
+                slackSend(color: '#36a64f', message: message)
+            }
+        }
+        failure {
+            script {
+                def message = "@here :👁️ Docker image build or push failed."
+                slackSend(color: '#ff0000', message: message)
             }
         }
     }
