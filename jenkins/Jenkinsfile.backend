@@ -16,18 +16,34 @@ pipeline {
                 }
             }
         }
+
+        stage('🚢 Cypress Tests Image') {
+         steps {
+            script {
+               docker.withRegistry('', 'dockerhub-creds') {
+                  docker.image('mellyboy/testzone360-cy').pull()
+               }
+            }
+         }
+      }
+
         stage('🧪 Tests') {
-            agent {
-                docker {
-                    image 'mellyboy/testzone360-cy'
+            steps {
+                script {
+                    ansiColor('xterm') {
+                    sh """
+                        docker run --rm \\
+                        -e BASE_URL=${BASE_URL} \\
+                        -e API_URL=${API_URL} \\
+                        -e TEST_EMAIL=${TEST_EMAIL} \\
+                        -e TEST_PASSWORD=${TEST_PASSWORD} \\
+                        mellyboy/testzone360-cy npm run cy:run:be:smoke
+                    """
+                    }
                 }
             }
-            steps {
-                echo 'Using testzone360-cy image...'
-                echo 'Running tests...'
-                sh 'npm run cy:run:be:smoke'
-            }
         }
+
         stage('🚀 Deploy') {
             steps {
                 sshagent(credentials: ['testzone360vm']) {
