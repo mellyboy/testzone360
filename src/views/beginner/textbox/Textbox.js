@@ -56,7 +56,7 @@ const Textbox = () => {
                                 <CFormInput id='disabledInput1' label="Disabled Input:" type="text" disabled />
                             </div>
                             <div className="mb-3">
-                                <CFormInput id='disabledInput1' label="Disabled Readonly Input:" type="text" disabled />
+                                <CFormInput id='disabledInput2' label="Disabled Readonly Input:" type="text" disabled />
                             </div>
                             <div className="mb-3">
                                 <CFormInput label="Readonly Input Plain Text:" type="text" id="staticEmail" defaultValue="email@example.com" readOnly plainText />
