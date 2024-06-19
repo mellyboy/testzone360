@@ -19,11 +19,11 @@ pipeline {
         stage('🧪 Tests') {
             agent {
                 docker {
-                    echo 'Using testzone360-cy image...'
                     image 'mellyboy/testzone360-cy'
                 }
             }
             steps {
+                echo 'Using testzone360-cy image...'
                 echo 'Running tests...'
                 sh 'npm run cy:run:be:smoke'
             }
