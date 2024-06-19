@@ -3,7 +3,6 @@ pipeline {
 
     options {
         timestamps()
-        skipStagesAfterUnstable()
     }
 
     stages {
@@ -50,38 +49,22 @@ pipeline {
             steps {
                 sshagent(credentials: ['testzone360vm']) {
                     echo 'Deploying backend...'
-                    ansiColor('xterm') {
-                        sh '''
-                            rsync -azh -e "ssh -o StrictHostKeyChecking=no" pg/ ${USER_HOST}:${BE_DEPLOYMENT_PATH}
-                        '''
-                        echo 'Starting service...'
-                        sh '''
-                            ssh -o StrictHostKeyChecking=no ${USER_HOST} "
-                                pm2 delete ${APP_NAME}-api || true
-                                cd ${BE_DEPLOYMENT_PATH} && pm2 start npm --name ${APP_NAME}-api -- start
-                            "
-                        '''
-                    }
+                    sh '''
+                        rsync -azh -e "ssh -o StrictHostKeyChecking=no" pg/ ${USER_HOST}:${BE_DEPLOYMENT_PATH}
+                    '''
+                    echo 'Starting service...'
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ${USER_HOST} "
+                            pm2 delete ${APP_NAME}-api || true
+                            cd ${BE_DEPLOYMENT_PATH} && pm2 start npm --name ${APP_NAME}-api -- start
+                        "
+                    '''
                 }
             }
         }
     }
 
     post {
-        always {
-            echo ':🧹 Performing cleanup...'
-            cleanWs()
-            script {
-                def containers = sh(script: "docker ps -a -q --filter 'name=testzone360-cy'", returnStdout: true).trim()
-                if (containers) {
-                    sh "docker rm -f ${containers}"
-                }
-                def images = sh(script: "docker images -q 'mellyboy/testzone360-cy'", returnStdout: true).trim()
-                if (images) {
-                    sh "docker rmi -f ${images}"
-                }
-            }
-        }
         success {
             script {
                 def message = "@here :🌟 Backend services successfully deployed!"
