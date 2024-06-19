@@ -67,14 +67,14 @@ pipeline {
     post {
         success {
             script {
-                def message = "@here :🌟 Backend services successfully deployed!"
-                slackSend(color: '#36a64f', message: message)
+                def message = "@here 🌟 Backend services successfully deployed!"
+                slackSend(color: '#36a64f', message: message, channel: backend)
             }
         }
         failure {
             script {
-                def message = "@here :👁️ Docker image build or push failed."
-                slackSend(color: '#ff0000', message: message)
+                def message = "@here 😿 Backend services deployment failed."
+                slackSend(color: '#ff0000', message: message, channel: backend)
             }
         }
     }
