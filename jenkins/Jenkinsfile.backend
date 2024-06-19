@@ -39,7 +39,7 @@ pipeline {
                             -e API_URL=${API_URL} \\
                             -e TEST_EMAIL=${TEST_EMAIL} \\
                             -e TEST_PASSWORD=${TEST_PASSWORD} \\
-                            mellyboy/testzone360-cy npm run ${TEST_CHOICE}
+                            mellyboy/testzone360-cy npm run cy:run:be:smoke
                         """
                     }
                 }
