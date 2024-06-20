@@ -112,7 +112,7 @@ const Login = () => {
                       <CFormInput
                         type="email"
                         placeholder="Email"
-                        autoComplete="username"
+                        autoComplete="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         invalid={!!errors.email}
@@ -137,7 +137,7 @@ const Login = () => {
 
                     <CRow className="mb-5">
                       <CCol className="text-center">
-                        <CButton color="primary" className="px-0 w-100" type="submit">
+                        <CButton id='btnLogin' color="primary" className="px-0 w-100" type="submit">
                           Login
                         </CButton>
                       </CCol>
@@ -146,7 +146,7 @@ const Login = () => {
                     <CRow>
                       <CCol className="text-center">
                         Don't have an account?
-                        <CButton color="link" onClick={handleCreateAcctLink}>
+                        <CButton id='createAccount' color="link" onClick={handleCreateAcctLink}>
                           Create Account
                         </CButton>
                       </CCol>
