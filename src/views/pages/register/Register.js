@@ -87,7 +87,7 @@ const Register = () => {
 
       setTimeout(() => {
         navigate('/login');
-      }, 2500);
+      }, 2000);
     } catch (error) {
       console.error('Error registering user:', error.response.data);
     }
@@ -193,14 +193,14 @@ const Register = () => {
                   </CInputGroup>
 
                   <div className="d-grid mb-5">
-                    <CButton type="submit" color="primary">
+                    <CButton id='btnCreateAccount' type="submit" color="primary">
                       Create Account
                     </CButton>
                   </div>
 
                   <CRow>
                     <CCol className="text-center">Already have an account?
-                      <CButton color='link' onClick={handleLoginLink}>
+                      <CButton id='navigateLogin' color='link' onClick={handleLoginLink}>
                         Login Account
                       </CButton>
                     </CCol>
@@ -213,9 +213,9 @@ const Register = () => {
       </CContainer>
 
       <CToaster className="p-3" placement="top-end">
-        <CToast autohide={false} visible={showToast} className="align-items-center">
+        <CToast id='toastMessage' autohide={false} visible={showToast} className="align-items-center">
           <div className="d-flex">
-            <CToastBody>Registration Successful. You will be redirected to the Login Form in 3 seconds</CToastBody>
+            <CToastBody id='toastBody'>Registration Successful. You will be redirected to the Login Form in 2 seconds</CToastBody>
             <CToastClose onClick={() => setShowToast(false)} className="me-2 m-auto" />
           </div>
         </CToast>
