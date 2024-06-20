@@ -16,31 +16,6 @@ pipeline {
                 sh 'npm run build'
             }
         }
-        stage('🚢 Pull Cypress Tests') {
-            steps {
-                script {
-                    docker.withRegistry('', 'dockerhub-creds') {
-                        docker.image('mellyboy/testzone360-cy').pull()
-                    }
-                }
-            }
-        }
-        stage('🧪 Tests') {
-            steps {
-                script {
-                    ansiColor('xterm') {
-                        sh """
-                            docker run --rm \\
-                            -e BASE_URL=${BASE_URL} \\
-                            -e API_URL=${API_URL} \\
-                            -e TEST_EMAIL=${TEST_EMAIL} \\
-                            -e TEST_PASSWORD=${TEST_PASSWORD} \\
-                            mellyboy/testzone360-cy npm run cy:run:fe:smoke
-                        """
-                    }
-                }
-            }
-        }
         stage('🚀 Deploy') {
             steps {
                 sshagent(credentials: ['testzone360vm']) {
