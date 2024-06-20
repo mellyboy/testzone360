@@ -21,7 +21,7 @@ pipeline {
                 sshagent(credentials: ['testzone360vm']) {
                     echo 'Deploying build...'
                     sh '''
-                    rsync -avzh -e "ssh -o StrictHostKeyChecking=no" build/ ${USER_HOST}:${FE_DEPLOYMENT_PATH}
+                    rsync -azh -e "ssh -o StrictHostKeyChecking=no" build/ ${USER_HOST}:${FE_DEPLOYMENT_PATH}
                     '''
                 }
             }
@@ -31,13 +31,13 @@ pipeline {
         success {
             script {
                 def message = "@here 🌟 Frontend successfully deployed!"
-                slackSend(color: '#36a64f', message: message, channel: frontend)
+                slackSend(color: '#36a64f', message: message, channel: 'frontend')
             }
         }
         failure {
             script {
                 def message = "@here 😿 Frontend deployment failed."
-                slackSend(color: '#ff0000', message: message, channel: frontend)
+                slackSend(color: '#ff0000', message: message, channel: 'frontend')
             }
         }
     }
