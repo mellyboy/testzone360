@@ -1,7 +1,7 @@
 {
   "name": "testzone360",
   "version": "1.0.0",
-  "description": "Collection of UI and API examples and applications ",
+  "description": "A versatile QA and automation practice playground featuring a collection of UI and API examples, perfect for practicing with tools like Cypress and Playwright.",
   "homepage": ".",
   "main": "index.js",
   "repository": {
@@ -9,7 +9,7 @@
     "url": "git+https://github.com/mellyboy/testzone360.git"
   },
   "author": "mellyboy",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/mellyboy/testzone360/issues"
   },
@@ -19,7 +19,8 @@
     "lint": "eslint \"src/**/*.js\"",
     "serve": "vite preview",
     "start:dev": "cross-env NODE_ENV=development vite",
-    "start": "vite"
+    "start": "vite",
+    "start:all": "concurrently \"npm start\" \"npm start --prefix ./pg\""
   },
   "dependencies": {
     "@coreui/chartjs": "^4.0.0",
@@ -55,6 +56,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
+    "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
