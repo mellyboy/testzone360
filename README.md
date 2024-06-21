@@ -1,7 +1,7 @@
 
 # TestZone360
 
-A versatile QA and automation practice playground featuring a collection of UI and API examples and applications.
+A versatile QA and automation practice playground featuring a collection of UI and API examples, perfect for practicing with tools like Cypress and Playwright.
 
 ## Contents
 - [Installation](#installation)
@@ -58,11 +58,11 @@ A versatile QA and automation practice playground featuring a collection of UI a
 ```
 4. Setup your local database using postgresql
 - Follow this [link](https://www.w3schools.com/postgresql/postgresql_install.php) to setup postgresql in your local machine.
-- [Create tables](https://www.w3schools.com/postgresql/postgresql_create_table.php) using the sql script found inside the directory pg/sql/ . Once executed, you should have the following tables in your database.
+- [Create tables](https://www.w3schools.com/postgresql/postgresql_create_table.php) using the sql script found inside the directory [pg/sql/](pg/sql/sql.sql) . Once executed, you should have the following tables in your database.
 
 <img src="img/pg-tables.png" alt="PostgreSQL Tables" style="width: 300px; height: auto;">
 
-5. Once you have setup your database, you can create an ```.env.dev``` file inside the pg/ directory to contain your credentials and secret. So your files might look like this:
+5. Once you have setup your database, you can create an ```.env.dev``` file inside the pg/config/ directory to contain your credentials and secret. So your files might look like this:
 
 <img src="img/config-files.png" alt="Config Files" style="width: 300px; height: auto;">
 
