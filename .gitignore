@@ -20,20 +20,6 @@ build
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-config/
-
 #backend
-/backend/node_modules
-/backend/database.db
-/backend/package-lock.json
-/backend/uploads
-/backend/knexfile.js
-/backend/migrations/
-/backend/database.db*
-
 /pg/node_modules
 /pg/config/
